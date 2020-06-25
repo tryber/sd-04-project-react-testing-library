@@ -32,9 +32,10 @@ describe('Teste Pokedex', () => {
   });
 
   test('apenas um pokemon na tela', () => {
-    const { getAllByTestId } = renderWithRouter(<App />);
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const pokemon = getAllByTestId('pokemon-name');
     expect(pokemon.length).toBe(1);
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   test('pokemons por tipo', () => {
