@@ -1,6 +1,9 @@
 import React from 'react';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
+
+afterEach(cleanup);
 
 it('renders not found title', () => {
   const { getByText, history } = renderWithRouter(<App />);
