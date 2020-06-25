@@ -9,10 +9,10 @@ afterEach(cleanup);
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');
 
-  return {
+  return ({
     ...originalModule,
-    BrowserRouter: ({ children }) => <div>{children}</div>,
-  };
+    BrowserRouter: ({ children }) => (<div>{children}</div>),
+  });
 });
 
 function renderWithRouter(ui, routeConfigs = {}) {
