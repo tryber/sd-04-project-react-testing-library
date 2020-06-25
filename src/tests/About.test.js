@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 
 afterEach(cleanup);
 
-describe('teste da aplicação toda', () => {
+describe('teste da About', () => {
   test('A página "About" deve exibir informações sobre a Pokédex', () => {
     const { getByText } = renderWithRouter(<About />);
     const pokeInfo = getByText(/digital encliclopedia containing all Pokémons/i);

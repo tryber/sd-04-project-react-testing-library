@@ -5,8 +5,7 @@ import renderWithRouter from './renderWithRouter';
 
 afterEach(cleanup);
 
-describe('teste da aplicação toda', () => {
-
+describe('teste da App', () => {
   test('Testar página principal  URL “/”', () => {
     const { history } = renderWithRouter(<App />);
     const pathname = history.location.pathname;
