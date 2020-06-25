@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import App from '../App';
 
-import { renderWithRouter } from '../helper/renderWithRouter';
+import renderWithRouter from '../helper/renderWithRouter';
 
 afterEach(cleanup);
 
