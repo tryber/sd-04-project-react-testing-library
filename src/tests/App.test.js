@@ -26,6 +26,7 @@ describe('Iniciando testes com o arquivo App.js', () => {
     expect(homePage).toBeInTheDocument();
 
     fireEvent.click(homePage);
+    expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
   });
 
   test('Navegando no Link About', () => {
@@ -38,6 +39,7 @@ describe('Iniciando testes com o arquivo App.js', () => {
     expect(AboutPage).toBeInTheDocument();
 
     fireEvent.click(AboutPage);
+    expect(getByText(/About Pokédex/i)).toBeInTheDocument();
   });
 
   test('Navegando no Link Favorite Pokémons', () => {
@@ -50,5 +52,6 @@ describe('Iniciando testes com o arquivo App.js', () => {
     expect(FavoritePage).toBeInTheDocument();
 
     fireEvent.click(FavoritePage);
+    expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
 });
