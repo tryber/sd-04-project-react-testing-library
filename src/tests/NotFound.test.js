@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import NotFound from '../components/NotFound';
 import { MemoryRouter } from 'react-router-dom';
+import NotFound from '../components/NotFound';
 
 test('A página deve conter um heading h2 com o texto Page requested not found ', () => {
   const { getByText } = render(
