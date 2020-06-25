@@ -14,14 +14,14 @@ test('The page must contain an heading h2 with the text About Pokédex', () => {
 });
 
 test('The page must contain two paragraphs with text about Pokédex;', () => {
-  renderWithRouter(<App />, { route: '/about' });
-  const p = document.querySelectorAll('p');
+  const { queryAllByTestId } = renderWithRouter(<App />, { route: '/about' });
+  const p = queryAllByTestId('paragraph');
   expect(p.length).toBe(2);
 });
 
 test('The page should contain the following image of a Pokédex', () => {
-  renderWithRouter(<App />, { route: '/about' });
-  const img = document.querySelector('img');
+  const { getByRole } = renderWithRouter(<App />, { route: '/about' });
+  const img = getByRole('img');
   const src =
     'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
   expect(img.src).toBe(src);
