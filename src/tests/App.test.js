@@ -7,17 +7,8 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('teste da aplicação toda', () => {
-  test('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
-  });
 
-  test('Testar página principal URL “/”', () => {
+  test('Testar página principal  URL “/”', () => {
     const { history } = renderWithRouter(<App />);
     const pathname = history.location.pathname;
     expect(pathname).toBe('/');
