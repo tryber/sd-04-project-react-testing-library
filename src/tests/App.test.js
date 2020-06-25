@@ -44,8 +44,8 @@ describe('testing Nav links are presents', () => {
   });
 });
 
-describe('testing routes', () => {
-  afterEach(cleanup);
+// describe('testing routes', () => {
+//   afterEach(cleanup);
 
 //   test('navigating from home to About', () => {
 //     const { getByText } = renderWithRouter(<App />);
@@ -79,3 +79,5 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+
