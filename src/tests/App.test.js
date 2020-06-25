@@ -26,8 +26,6 @@ describe('Iniciando testes com o arquivo App.js', () => {
     expect(homePage).toBeInTheDocument();
 
     fireEvent.click(homePage);
-
-
   });
 
   test('Navegando no Link About', () => {
@@ -40,8 +38,6 @@ describe('Iniciando testes com o arquivo App.js', () => {
     expect(AboutPage).toBeInTheDocument();
 
     fireEvent.click(AboutPage);
-
-
   });
 
   test('Navegando no Link Favorite Pokémons', () => {
@@ -54,7 +50,5 @@ describe('Iniciando testes com o arquivo App.js', () => {
     expect(FavoritePage).toBeInTheDocument();
 
     fireEvent.click(FavoritePage);
-
-
   });
 });
