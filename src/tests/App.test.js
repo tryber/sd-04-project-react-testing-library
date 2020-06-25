@@ -10,9 +10,9 @@ function renderWithRouter(ui, routeConfigs = {}) {
 
   return {
     ...render(<Router history={history}>{ui}</Router>),
-    history
-  }
-};
+    history,
+  };
+}
 
 afterEach(cleanup);
 
@@ -38,7 +38,7 @@ test('shows the Pokédex when the route is `/`', () => {
 
 test('conjunto fixo de links de navegação', () => {
   const { getByText } = renderWithRouter(<App />);
-  
+
   expect(getByText(/Home/i)).toBeInTheDocument();
   expect(getByText(/About/i)).toBeInTheDocument();
   expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
@@ -46,7 +46,7 @@ test('conjunto fixo de links de navegação', () => {
 
 test('navegando para a página Home', () => {
   const { getByText, history } = renderWithRouter(<App />);
-  
+
   fireEvent.click(getByText(/Home/i));
 
   expect(history.location.pathname).toBe('/');
@@ -81,7 +81,7 @@ test('navegando para uma rota inexistente', () => {
   const { getByText } = render(
     <Router history={history}>
       <App />
-    </Router>
+    </Router>,
   );
 
   expect(getByText(/Page requested not found/i)).toBeInTheDocument();
