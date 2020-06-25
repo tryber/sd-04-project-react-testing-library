@@ -1,7 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, getByRole } from '@testing-library/react';
-import renderWithRouter from '../helper/renderWithRouter';
+import { render } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Testes do arquivo About.js', () => {
