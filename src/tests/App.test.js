@@ -6,13 +6,11 @@ import renderWithRouter from '../services/renderWithRouter';
 describe('App', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
-
     expect(getByText(/Pokédex/i)).toBeInTheDocument();
   });
 
   test('links: Home, About and Favorite Pokémons', () => {
     const { getByText } = renderWithRouter(<App />);
-
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
@@ -21,9 +19,7 @@ describe('App', () => {
   test('Home link goes to "/"', () => {
     const { getByText, history } = renderWithRouter(<App />);
     expect(history.location.pathname).toBe('/');
-    const home = getByText('Home');
-    expect(home).toBeInTheDocument();
-    fireEvent.click(home);
+    fireEvent.click(getByText(/Home/i));
     expect(history.location.pathname).toBe('/');
     // expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
