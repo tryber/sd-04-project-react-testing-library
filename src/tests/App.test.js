@@ -59,21 +59,30 @@ describe('No topo da aplicação, deve haver um conjunto fixo de links de navega
 
 test(`Ao clicar no link "Home" na barra de navegação, 
 a aplicação deve ser redirecionada para a página inicial, na URL "/"`, () => {
-  const { getByText, history: { location: { pathname } } } = renderWithRouter(<App />);
+  const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Home/));
+  const { location: { pathname } } = history;
   expect(pathname).toBe('/');
 });
 
 test(`Ao clicar no link "About" na barra de navegação,
 a aplicação deve ser redirecionada para a página de About, na URL "/about"`, () => {
-  const { getByText, history: { location: { pathname } } } = renderWithRouter(<App />);
+  const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/About/));
+  const { location: { pathname } } = history;
   expect(pathname).toBe('/about');
 });
 
 test(`Ao clicar no link "Favorite Pokémons" na barra de navegação, 
 a aplicação deve ser redirecionada para a página de pokémons favoritados, na URL "/favorites"`, () => {
-  const { getByText, history: { location: { pathname } } } = renderWithRouter(<App />);
+  const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Favorite Pokémons/));
+  const { location: { pathname } } = history;
   expect(pathname).toBe('/favorites');
+});
+
+test('Entrar em uma URL desconhecida exibe a página Not Found', () => {
+  const { getByText } = renderWithRouter(<App />, { route: '/qwerty' });
+  const notFound = getByText('Page requested not found');
+  expect(notFound).toBeInTheDocument();
 });
