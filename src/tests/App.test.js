@@ -39,4 +39,12 @@ describe('Requisito 1', () => {
     expect(path).toBe('/about');
   });
 
+  test('Render Favorite', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+    fireEvent.click(getByText('Favorite Pokémons'));
+    const path = history.location.pathname;
+    expect(path).toBe('/favorites');
+  });
+
 });
