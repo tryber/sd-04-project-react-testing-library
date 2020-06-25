@@ -124,7 +124,7 @@ Todos os arquivos de teste que vocês usarão **já estão previamente criados e
 
     - A imagem deve ter o atributo `alt` igual a `<pokemon> is marked as favorite`, onde `<pokemon>` é o nome do pokémon cujos detalhes estão sendo exibidos.
 
-### Testes do arquivo PokemonDetails.js
+### 7. Testes do arquivo PokemonDetails.js
 
   - Deve conter mais informações sobre apenas o pokémon selecionado;
 
