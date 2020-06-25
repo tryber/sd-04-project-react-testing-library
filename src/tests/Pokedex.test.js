@@ -30,19 +30,15 @@ describe('Testes no arquivo Pokedex', () => {
     expect(pokemon.length).toBe(1);
   });
 
-  test('A Pokédex deve conter botões de filtro', () => {
-    const { getAllByTestId } = renderWithRouter(<App />);
+  test('A Pokédex deve conter botões de filtro, e um h2', () => {
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const pokemon = getAllByTestId('pokemon-name');
     expect(pokemon.length).toBe(1);
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
+
   test('pokemons por tipo', () => {
-    const {
-      getAllByRole,
-      getByTestId,
-      getByText,
-      getAllByTestId,
-      queryByText,
-    } = renderWithRouter(
+    const { getAllByRole, getByTestId, getByText, getAllByTestId, queryByText } = renderWithRouter(
       <App />,
     );
     const buttons = getAllByRole('button');
