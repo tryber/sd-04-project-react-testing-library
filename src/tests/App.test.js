@@ -1,6 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './services/renderWithRouter';
 
