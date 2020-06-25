@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithRouter';
 import { FavoritePokemons } from '../components';
 import pokemons from '../data';
 
-describe('3. Testes no arquivo FavoritePokenons.js', () => {
+describe('Testes no arquivo FavoritePokenons', () => {
   afterEach(cleanup);
 
   test('Caso a pessoa não tenha pokémons favoritos, a mensagem No favorite pokemon found deve aparecer na tela', () => {
