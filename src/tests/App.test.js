@@ -6,6 +6,7 @@ import App from '../App';
 import { createMemoryHistory } from 'history';
 
 jest.mock('react-router-dom', () => {
+  // Estamos mockando a lib toda.
   const moduloOriginal = jest.requireActual('react-router-dom');
   return {
     ...moduloOriginal,
@@ -34,7 +35,31 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('Teste se existe o botão home e se, ao clicar, redireciona para home page', () => {
+test('shows the Pokédex when the route is `/`', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>,
+  );
+
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
+test('testando se existe os tres links fixos de navegação', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>,
+  );
+  const homeLink = getByText(/Home/i);
+  const aboutLink = getByText(/About/i);
+  const favLink = getByText(/Favorite Pokémons/i);
+  expect(homeLink).toBeInTheDocument();
+  expect(aboutLink).toBeInTheDocument();
+  expect(favLink).toBeInTheDocument();
+});
+
+test('Teste se, ao clicar em home, redireciona para home page', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -45,7 +70,7 @@ test('Teste se existe o botão home e se, ao clicar, redireciona para home page'
   expect(getByText(/Encountered pokémons/));
 });
 
-test('Teste se existe o botão About e se, ao clicar, redireciona para about page', () => {
+test('Teste se, ao clicar em about, redireciona para about page', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -56,7 +81,7 @@ test('Teste se existe o botão About e se, ao clicar, redireciona para about pag
   expect(getByText(/About Pokédex/));
 });
 
-test('Teste o botão Favorite Pokemons e se, ao clicar, redireciona para fav page ', () => {
+test('Teste se, ao clicar em favorite pokemons, redireciona para fav page ', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
