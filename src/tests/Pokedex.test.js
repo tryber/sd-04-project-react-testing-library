@@ -35,7 +35,7 @@ describe('Testes do requisito 5', () => {
   });
 
   test('A pokedex deve conter botões de filtro', () => {
-    const { getAllByTestId, getByText } = render(
+    const { getAllByTestId } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
@@ -46,7 +46,7 @@ describe('Testes do requisito 5', () => {
   });
 
   test('A pokedex deve conter um botão para resetar o filtro', () => {
-    const { getAllByTestId, getByText } = render(
+    const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
@@ -56,7 +56,7 @@ describe('Testes do requisito 5', () => {
   });
 
   test('O botão de Próximo pokémon deve ser desabilitado', () => {
-    const { getAllByTestId, getByText } = render(
+    const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
