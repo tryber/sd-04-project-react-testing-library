@@ -11,16 +11,22 @@ describe('Requisito 1', () => {
     expect(getByText('About')).toBeInTheDocument();
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
-  test('Render Router Home', () => {
+  test('Redirecionando para Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
     expect(getByText('Home')).toBeInTheDocument();
     fireEvent.click(getByText('Home'));
     expect(history.location.pathname).toBe('/');
   });
-  test('Render Router About', () => {
+  test('Redirecionando para About', () => {
     const { getByText, history } = renderWithRouter(<App />);
     expect(getByText('About')).toBeInTheDocument();
     fireEvent.click(getByText('About'));
     expect(history.location.pathname).toBe('/about');
+  });
+  test('Redirecionando para Favorite Pokémons', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+    fireEvent.click(getByText('Favorite Pokémons'));
+    expect(history.location.pathname).toBe('/favorites');
   });
 });
