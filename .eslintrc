@@ -1,5 +1,12 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
     "no-console": "off",
     "no-alert": "off",
@@ -16,7 +23,10 @@
     ],
     "react/prefer-stateless-function": 0,
     "react/no-did-mount-set-state": 0,
-    "arrow-parens": [2, "always"],
+    "arrow-parens": [
+      2,
+      "always"
+    ],
     "jsx-a11y/label-has-associated-control": 0
   },
   "env": {
