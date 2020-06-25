@@ -25,7 +25,7 @@ describe('Testes do App.js', () => {
 
   test('Ao clicar no link "Home" na barra de navegação, a aplicação deve ser redirecionada para a página inicial, na URL "/"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    expect(getByText(/Home/i)).toBeInTheDocument;
+    expect(getByText(/Home/i)).toBeInTheDocument();
     fireEvent.click(getByText(/Home/i));
     const pathname = history.location.pathname;
     expect(pathname).toBe('/');
@@ -33,7 +33,7 @@ describe('Testes do App.js', () => {
 
   test('Ao clicar no link "About" na barra de navegação, a aplicação deve ser redirecionada para a página de About, na URL "/about"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    expect(getByText(/About/i)).toBeInTheDocument;
+    expect(getByText(/About/i)).toBeInTheDocument();
     fireEvent.click(getByText(/About/i));
     const pathname = history.location.pathname;
     expect(pathname).toBe('/about');
@@ -41,7 +41,7 @@ describe('Testes do App.js', () => {
 
   test('Ao clicar no link "Favorite Pokémons" na barra de navegação, a aplicação deve ser redirecionada para a página de pokémons favoritados, na URL "/favorites"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument;
+    expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
     fireEvent.click(getByText(/Favorite Pokémons/i));
     const pathname = history.location.pathname;
     expect(pathname).toBe('/favorites');
