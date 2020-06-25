@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../services/renderWithRouter';
 
 describe('Iniciando testes com o arquivo App.js', () => {
   afterEach(cleanup);
@@ -17,41 +18,37 @@ describe('Iniciando testes com o arquivo App.js', () => {
   });
 
   test('Navegando no Link Home', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const homePage = getByText(/Home/i);
     expect(homePage).toBeInTheDocument();
 
     fireEvent.click(homePage);
-    expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/');
   });
 
   test('Navegando no Link About', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const AboutPage = getByText(/About/i);
     expect(AboutPage).toBeInTheDocument();
 
     fireEvent.click(AboutPage);
-    expect(getByText(/About Pokédex/i)).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/about');
   });
 
   test('Navegando no Link Favorite Pokémons', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const FavoritePage = getByText(/Favorite Pokémons/i);
     expect(FavoritePage).toBeInTheDocument();
 
     fireEvent.click(FavoritePage);
-    expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/favorites');
+  });
+
+  test('testando pagina nao encontrada', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const route = '/qualquer-rota';
+    history.push(route);
+
+    expect(getByText(/Not Found/i)).toBeInTheDocument();
   });
 });
