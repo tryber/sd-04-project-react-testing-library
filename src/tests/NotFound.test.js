@@ -20,7 +20,8 @@ test('A página deve conter a imagem:', () => {
       <NotFound />
     </MemoryRouter>,
   );
-  const img = getByAltText('Pikachu crying because the page requested was not found');
+  const img = getByAltText(
+    'Pikachu crying because the page requested was not found',
+  );
   expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
 });
-

@@ -36,7 +36,6 @@ test('Verificando se existe dois paragrafos', () => {
   const para2 = getByText(/One can filter Pokémons by type/);
   expect(para2).toBeInTheDocument();
   expect(para2.tagName).toBe('P');
-
 });
 
 test('A página deve conter a imagem de uma Pokédex:', () => {
