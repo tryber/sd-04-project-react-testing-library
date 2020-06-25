@@ -50,7 +50,7 @@ describe('Testes do requisito 6, Pokemon.js', () => {
   });
 
   test('Testando o link de navegação', () => {
-    const { getByText, getByAltText } = render(
+    const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
