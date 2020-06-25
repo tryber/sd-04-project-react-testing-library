@@ -15,7 +15,6 @@ describe('FevoritePokemons', () => {
           getByText(pokemons.find(({ favoriteId }) => favoriteId === idStored).name),
         ).toBeInTheDocument();
       });
-
       pokemons
         .filter(({ id }) => !favoritePokemons.includes(id))
         .forEach(({ name }) => {
