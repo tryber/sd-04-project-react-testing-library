@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
-import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 
 describe('FevoritePokemons', () => {
