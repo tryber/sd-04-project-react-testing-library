@@ -17,4 +17,10 @@ describe('Requisito 1', () => {
     fireEvent.click(getByText('Home'));
     expect(history.location.pathname).toBe('/');
   });
+  test('Render Router About', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    expect(getByText('About')).toBeInTheDocument();
+    fireEvent.click(getByText('About'));
+    expect(history.location.pathname).toBe('/about');
+  });
 });
