@@ -1,14 +1,20 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from './services/renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+describe('Requisito 1', () => {
+  test('Links estão presentes', () => {
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
+  test('Render Router Home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    expect(getByText('Home')).toBeInTheDocument();
+    fireEvent.click(getByText('Home'));
+    expect(history.location.pathname).toBe('/');
+  });
 });
