@@ -28,4 +28,8 @@ describe('Requisito 1', () => {
     fireEvent.click(getByText('Favorite Pokémons'));
     expect(history.location.pathname).toBe('/favorites');
   });
+  test('Pagina não encontrada', () => {
+    const { getByText } = renderWithRouter(<App />, { route: '/any' });
+    expect(getByText('Page requested not found')).toBeInTheDocument();
+  });
 });
