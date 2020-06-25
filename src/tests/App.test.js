@@ -53,5 +53,4 @@ describe('Requisito 1', () => {
     const path = getByText('Page requested not found');
     expect(path).toBeInTheDocument();
   });
-
 });
