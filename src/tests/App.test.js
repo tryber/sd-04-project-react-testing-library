@@ -24,13 +24,13 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-jest.mock('react-router-dom', () => {
-  const moduloOriginal = jest.requireActual('react-router-dom');
-  return {
-    ...moduloOriginal,
-    BrouserRouter: ({ children }) => (<div>{children}</div>),
-  };
-});
+// jest.mock('react-router-dom', () => {
+//   const moduloOriginal = jest.requireActual('react-router-dom');
+//   return {
+//     ...moduloOriginal,
+//     BrouserRouter: ({ children }) => (<div>{children}</div>),
+//   };
+// });
 
 function renderWithRouter(
   ui,
