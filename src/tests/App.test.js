@@ -22,4 +22,13 @@ describe('Requisito 1', () => {
     const path = history.location.pathname;
     expect(path).toBe('/');
   });
+
+  test('Render Home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    expect(getByText('Home')).toBeInTheDocument();
+    fireEvent.click(getByText('Home'));
+    const path = history.location.pathname;
+    expect(path).toBe('/');
+  });
+
 });
