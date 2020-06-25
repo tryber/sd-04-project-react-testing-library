@@ -13,43 +13,46 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>,
-  );
+// test('shows the Pokédex when the route is `/`', () => {
+//   const { getByText } = render(
+//     <MemoryRouter initialEntries={['/']}>
+//       <App />
+//     </MemoryRouter>,
+//   );
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
+//   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+// });
 
-test('testando se existe os tres links fixos de navegação', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>,
-  );
-  const homeLink = getByText(/Home/i);
-  const aboutLink = getByText(/About/i);
-  const favLink = getByText(/Favorite Pokémons/i);
-  expect(homeLink).toBeInTheDocument();
-  expect(aboutLink).toBeInTheDocument();
-  expect(favLink).toBeInTheDocument();
-});
+// test('testando se existe os tres links fixos de navegação', () => {
+//   const { getByText } = render(
+//     <MemoryRouter initialEntries={['/']}>
+//       <App />
+//     </MemoryRouter>,
+//   );
+//   const homeLink = getByText(/Home/i);
+//   const aboutLink = getByText(/About/i);
+//   const favLink = getByText(/Favorite Pokémons/i);
+//   expect(homeLink).toBeInTheDocument();
+//   expect(aboutLink).toBeInTheDocument();
+//   expect(favLink).toBeInTheDocument();
+// });
 
-test('Testes de navegação juntos pro CC nao encrencar', () => {
+test('Testes de navegação e existencia de links juntos pro CC nao encrencar', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
   );
   const homeLink = getByText(/Home/);
+  expect(homeLink).toBeInTheDocument();
   fireEvent.click(homeLink);
   expect(getByText(/Encountered pokémons/));
   const aboutLink = getByText(/About/);
+  expect(aboutLink).toBeInTheDocument();
   fireEvent.click(aboutLink);
   expect(getByText(/About Pokédex/));
   const favLink = getByText(/Favorite Pokémons/);
+  expect(favLink).toBeInTheDocument();
   fireEvent.click(favLink);
   expect(getByText(/Favorite pokémons/));
 });

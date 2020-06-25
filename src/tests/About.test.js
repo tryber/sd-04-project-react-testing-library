@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import About from '../components/About';
 import { MemoryRouter } from 'react-router-dom';
+import About from '../components/About';
 
 test('A página "About" deve exibir informações sobre a Pokédex ', () => {
   const { getByText } = render(
