@@ -21,15 +21,17 @@ describe('Test App component', () => {
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
-  test('test favorites home', () => {
+  test('test home page', () => {
     const { getByText, history } = renderWithRouter(<App />);
+    const pokedexText1 = getByText('Encountered pokémons');
+    expect(pokedexText1).toBeInTheDocument();
 
-    fireEvent.click(getByText(/Home/i));
-    expect(history.location.pathname).toBe('/');
     const home = getByText(/Home/i);
-
+    fireEvent.click(home);
+    expect(history.location.pathname).toBe('/');
     expect(home).toBeInTheDocument();
-    expect(getByText('Pokédex')).toBeInTheDocument();
+    const pokedex = getByText(/Pokédex/i);
+    expect(pokedex).toBeInTheDocument();
   });
   test('test about route', () => {
     const { getByText, history } = renderWithRouter(<App />);
@@ -39,11 +41,11 @@ describe('Test App component', () => {
   });
   test('test favorites route', () => {
     const { getByText, history } = renderWithRouter(<App />);
-
-    fireEvent.click(getByText(/Favorite Pokémons/i));
+    const favoriteText = getByText(/Favorite Pokémons/i);
+    fireEvent.click(favoriteText);
     expect(history.location.pathname).toBe('/favorites');
 
-    expect(getByText(/Favorite pokémons/i)).toBeInTheDocument();
+    expect(favoriteText).toBeInTheDocument();
   });
 
   test('test not found page', () => {
