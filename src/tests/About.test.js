@@ -11,4 +11,10 @@ describe('Requisito 2', () => {
     const { getByText } = renderWithRouter(<About />);
     expect(getByText('About Pokédex')).toBeInTheDocument();
   });
+
+  test('Contém H2 escrito "About Pokémon"', () => {
+    const { getByRole } = renderWithRouter(<About />);
+    const title = getByRole('heading');
+    expect(title).toHaveTextContent('About Pokédex');
+  });
 });
