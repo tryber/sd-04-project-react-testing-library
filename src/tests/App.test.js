@@ -31,4 +31,12 @@ describe('Requisito 1', () => {
     expect(path).toBe('/');
   });
 
+  test('Render About', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    expect(getByText('About')).toBeInTheDocument();
+    fireEvent.click(getByText('About'));
+    const path = history.location.pathname;
+    expect(path).toBe('/about');
+  });
+
 });
