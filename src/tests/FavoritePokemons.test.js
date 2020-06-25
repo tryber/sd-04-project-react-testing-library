@@ -10,11 +10,11 @@ test('If the person does not have favorite pokémons, the message `No favorite p
   }
 });
 
-test('The page should not display any non-favored Pokémon cards.', () => {
-  const { getByText } = renderWithRouter(<App />, { route: '/favorites' });
-  const notfavoritePokemons = document.querySelectorAll('.pokemon');
-  expect(notfavoritePokemons).not.toBeInTheDocument();
-});
+// test('The page should not display any non-favored Pokémon cards.', () => {
+//   const { getByText } = renderWithRouter(<App />, { route: '/favorites' });
+//   const notfavoritePokemons = document.querySelectorAll('.pokemon');
+//   expect(notfavoritePokemons).not.toBeInTheDocument();
+// });
 
 // test('The page should display all favorite Pokémon cards;', () => {
 //   const { getByText } = renderWithRouter(<App />, { route: '/about' });
