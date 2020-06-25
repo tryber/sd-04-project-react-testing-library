@@ -17,4 +17,19 @@ describe('Requisito 2', () => {
     const title = getByRole('heading');
     expect(title).toHaveTextContent('About Pokédex');
   });
+
+  // test('Possui dois parágrafos sobre Pokédex', () => {
+  //   const { getAllByRole } = render(<About />);
+  //   const paragraph = getAllByRole('p');
+  //   expect(paragraph).toBe(2);
+  // });
+
+  test('Contém uma Imagem"', () => {
+    const { getByRole } = render(<About />);
+    const image = getByRole('img');
+    expect(image).toBeInTheDocument();
+    expect(image.src).toBe(
+      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
+    );
+  });
 });
