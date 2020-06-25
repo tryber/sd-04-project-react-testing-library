@@ -47,4 +47,11 @@ describe('Requisito 1', () => {
     expect(path).toBe('/favorites');
   });
 
+  test('Render Not Found', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/bicho-piruleta');
+    const path = getByText('Page requested not found');
+    expect(path).toBeInTheDocument();
+  });
+
 });
