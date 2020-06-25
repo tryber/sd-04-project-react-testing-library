@@ -45,7 +45,6 @@ describe('App', () => {
 
   test('Not found route', () => {
     const { getByText } = renderWithRouter(<App />, { route: '/anything' });
-    // fireEvent.click(getByText('favorites'));
     expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 });
