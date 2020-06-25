@@ -24,7 +24,7 @@ it('redirects to "/" when clicked on "Home"', () => {
   fireEvent.click(getByText('Home'));
   const pathname = history.location.pathname;
   expect(pathname).toBe('/');
-  expect(getByText('Pokédex')).toBeInTheDocument;
+  expect(getByText('Pokédex')).toBeInTheDocument();
 });
 
 it('redirects to "/about" when clicked on "About"', () => {
@@ -32,7 +32,7 @@ it('redirects to "/about" when clicked on "About"', () => {
   fireEvent.click(getByText('About'));
   const pathname = history.location.pathname;
   expect(pathname).toBe('/about');
-  expect(getByText('About Pokédex')).toBeInTheDocument;
+  expect(getByText('About Pokédex')).toBeInTheDocument();
 });
 
 it('redirects to "/favorites" when clicked on "Favorite Pókemons"', () => {
@@ -40,11 +40,11 @@ it('redirects to "/favorites" when clicked on "Favorite Pókemons"', () => {
   fireEvent.click(getByText('Favorite Pokémons'));
   const pathname = history.location.pathname;
   expect(pathname).toBe('/favorites');
-  expect(getByText('Favorite pokémons')).toBeInTheDocument;
+  expect(getByText('Favorite pokémons')).toBeInTheDocument();
 });
 
 it('renders the "Not Found" page when an URL is not found', () => {
   const { getByText, history } = renderWithRouter(<App />);
   history.push('/non/existing/page');
-  expect(getByText('Page requested not found')).toBeInTheDocument;
+  expect(getByText('Page requested not found')).toBeInTheDocument();
 });
