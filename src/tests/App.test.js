@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import {Router} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import App from '../App';
 
 function renderWithRouter(ui, routeConfigs = {}) {
@@ -12,9 +12,9 @@ function renderWithRouter(ui, routeConfigs = {}) {
   return {
     ...render(
       <Router history={history}>{ui}</Router>,
-      history
-    )
-  }
+      history,
+    ),
+  };
 }
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -55,10 +55,10 @@ test('Verifies if a not found route exists', () => {
   const history = createMemoryHistory();
   const route = '/any-route';
   history.push(route);
-  const {getByText} = render(
+  const { getByText } = render(
     <Router history={history}>
-        <App />
-      </Router>
+      <App />
+    </Router>,
   );
   const pageNotFound = getByText(/Page requested not found/i);
   expect(pageNotFound).toBeInTheDocument();
