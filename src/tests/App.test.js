@@ -40,7 +40,6 @@ describe('App', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText('Favorite Pokémons'));
     expect(history.location.pathname).toBe('/favorites');
-    // expect(getAllByText(/Favorite pokémons/i).length).toBe(2);
   });
 
   test('Not found route', () => {

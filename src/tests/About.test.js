@@ -4,7 +4,7 @@ import About from '../components/About';
 
 describe('About', () => {
   test('have a H2 tag with the text "About Pokédex"', () => {
-    const { getByText, getAllByAltText } = render(<About />);
+    const { getByText } = render(<About />);
 
     expect(getByText('About Pokédex').tagName).toBe('H2');
   });
