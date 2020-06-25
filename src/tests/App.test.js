@@ -27,22 +27,22 @@ import App from '../App';
 //   };
 // }
 
-describe('testing Nav links are presents', () => {
-  test('test first link has the text "Home" ', () => {
-    const {} = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    expect(document.querySelectorAll('a')[0].getAttribute('href')).toBe('/');
-    expect(document.querySelectorAll('a')[1].getAttribute('href')).toBe(
-      '/about',
-    );
-    expect(document.querySelectorAll('a')[2].getAttribute('href')).toBe(
-      '/favorites',
-    );
-  });
-});
+// describe('testing Nav links are presents', () => {
+//   test('test first link has the text "Home" ', () => {
+//     const {} = render(
+//       <MemoryRouter>
+//         <App />
+//       </MemoryRouter>,
+//     );
+//     expect(document.querySelectorAll('a')[0].getAttribute('href')).toBe('/');
+//     expect(document.querySelectorAll('a')[1].getAttribute('href')).toBe(
+//       '/about',
+//     );
+//     expect(document.querySelectorAll('a')[2].getAttribute('href')).toBe(
+//       '/favorites',
+//     );
+//   });
+// });
 
 // describe('testing routes', () => {
 //   afterEach(cleanup);
