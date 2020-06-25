@@ -8,7 +8,6 @@ import App from '../App';
 function renderWithRouter(ui, routeConfigs = {}) {
   const route = routeConfigs.route || '/';
   const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-
   return {
     ...render(<Router history={history}>{ui}</Router>),
     history,
@@ -26,35 +25,30 @@ describe('Test App component', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/Home/i));
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
+    expect(history.location.pathname).toBe('/');
     const home = getByText(/Home/i);
+
     expect(home).toBeInTheDocument();
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
+    expect(getByText('Pokédex')).toBeInTheDocument();
   });
   test('test about route', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/About/i));
-    const { pathname } = history.location;
-    expect(pathname).toBe('/about');
-    const about = getByText(/about/i);
-    expect(about).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/about');
   });
   test('test favorites route', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/Favorite Pokémons/i));
-    const { pathname } = history.location;
-    expect(pathname).toBe('/favorites');
-    const favorite = getByText(/found/i);
-    expect(favorite).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/favorites');
+
+    expect(getByText(/Favorite pokémons/i)).toBeInTheDocument();
   });
+
   test('test not found page', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/page/not-found/');
-    const noMatch = getByText(/Page requested not found/i);
-    expect(noMatch).toBeInTheDocument();
+    expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 });
