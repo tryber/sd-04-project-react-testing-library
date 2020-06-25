@@ -15,34 +15,46 @@ function renderWithRouter(ui, routeConfigs = {}) {
   };
 }
 
-describe('Testando componente App', () => {
+describe('Test App component', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
 
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
-  test('Testando o Link Home', () => {
-    const { getByText } = renderWithRouter(<App />);
+  test('test favorites home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/Home/i));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
     const home = getByText(/Home/i);
     expect(home).toBeInTheDocument();
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
-  test('Testando o Link About', () => {
-    const { getByText } = renderWithRouter(<App />);
+  test('test about route', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/About/i));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
     const about = getByText(/about/i);
     expect(about).toBeInTheDocument();
   });
-  test('Testando o Link Favorite Pokémons', () => {
-    const { getByText } = renderWithRouter(<App />);
+  test('test favorites route', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/Favorite Pokémons/i));
-    const favorites = getByText(/favorite/i);
-    expect(favorites).toBeInTheDocument();
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+    const favorite = getByText(/found/i);
+    expect(favorite).toBeInTheDocument();
+  });
+  test('test not found page', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/page/not-found/');
+    const noMatch = getByText(/Page requested not found/i);
+    expect(noMatch).toBeInTheDocument();
   });
 });
