@@ -35,13 +35,13 @@ test('At the top of the application, there should be a fixed set of navigation l
 
   const homeLink = getByText(/Home/i);
   expect(homeLink.getAttribute('href')).toBe('/');
-  
+
   const aboutLink = getByText(/About/i);
   expect(aboutLink.getAttribute('href')).toBe('/about');
 
   const favLink = getByText(/Favorite Pokémons/i);
   expect(favLink.getAttribute('href')).toBe('/favorites');
-})
+});
 
 
 test('when the user clicks Home', () => {
@@ -51,7 +51,7 @@ test('when the user clicks Home', () => {
   fireEvent.click(homeLink);
   const path = history.location.pathname;
   expect(path).toBe('/');
-})
+});
 
 test('when the user clicks About', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -60,7 +60,7 @@ test('when the user clicks About', () => {
   fireEvent.click(aboutLink);
   const path = history.location.pathname;
   expect(path).toBe('/about');
-})
+});
 
 test('when the user clicks Favorite Pokémons', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -69,7 +69,7 @@ test('when the user clicks Favorite Pokémons', () => {
   fireEvent.click(favLink);
   const path = history.location.pathname;
   expect(path).toBe('/favorites');
-})
+});
 
 test('Entering an unknown URL displays the Not Found page', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -77,4 +77,4 @@ test('Entering an unknown URL displays the Not Found page', () => {
   // console.log(history)
   const pageNotFound = getByText(/Page requested not found/i);
   expect(pageNotFound).toBeInTheDocument();
-})
+});
