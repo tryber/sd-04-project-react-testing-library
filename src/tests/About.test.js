@@ -1,19 +1,9 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import About from '../components/About';
+import { renderWithRouter } from '../helper/renderWithRouter';
 
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history =
-    routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+afterEach(cleanup);
 
 describe('Testes da página About', () => {
   it('Contém um heading com o texto About Pokédex', () => {
@@ -26,10 +16,10 @@ describe('Testes da página About', () => {
     const { getByText } = renderWithRouter(<About />, { route: '/about' });
 
     const p1 = getByText(
-      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons'
+      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons',
     );
     const p2 = getByText(
-      'One can filter Pokémons by type, and see more details for each one of them'
+      'One can filter Pokémons by type, and see more details for each one of them',
     );
 
     expect(p1).toBeInTheDocument();
@@ -46,7 +36,7 @@ describe('Testes da página About', () => {
     const srcImage = image.src;
 
     expect(srcImage).toBe(
-      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
     );
   });
 });
