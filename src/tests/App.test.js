@@ -7,6 +7,7 @@ test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
+      {/* Initial Commit */}
     </MemoryRouter>,
   );
   const heading = getByText(/Pokédex/i);
