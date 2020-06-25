@@ -1,6 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
@@ -22,7 +20,7 @@ test('The page must contain two paragraphs with text about Pokédex;', () => {
 });
 
 test('The page should contain the following image of a Pokédex', () => {
-  const { getByText } = renderWithRouter(<App />, { route: '/about' });
+  renderWithRouter(<App />, { route: '/about' });
   const img = document.querySelector('img');
   const src =
     'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
