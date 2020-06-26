@@ -9,10 +9,10 @@ describe('NotFound', () => {
   });
 
   test('has the gif of Pikachu crying ', () => {
-    const { getByText } = render(<NotFound />);
+    const { getByText, container } = render(<NotFound />);
     expect(getByText(/Page requested not found/i).tagName).toBe('H2');
 
-    expect(document.querySelector('img').src).toBe(
+    expect(container.querySelector('img').src).toBe(
       'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
     );
   });

@@ -4,7 +4,7 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
 describe('FevoritePokemons', () => {
-  test('when no favorite render No favorite pokemon, when some favorite render it', () => {
+  test("when no favorite render No favorite pokemon, when some favorite render it and don't render others", () => {
     const { getByText } = render(<FavoritePokemons />);
     const favoritePokemons = localStorage.favoritePokemonsIds;
     if (favoritePokemons === undefined || favoritePokemons.length === 0) {
