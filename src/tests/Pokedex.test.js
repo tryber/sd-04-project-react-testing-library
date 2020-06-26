@@ -1,5 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
@@ -7,8 +6,9 @@ import renderWithRouter from '../services/renderWithRouter';
 describe('Testando o botão de proximo', () => {
   afterEach(cleanup);
 
-  const { getByTestId, history } = renderWithRouter(<App />);
+  const { getByTestId } = renderWithRouter(<App />);
   const nextPokemon = getByTestId('next-pokemon');
+
   test('Testando o botão de proximo ativo', () => {
     const firstPokemon = getByTestId('pokemon-name').innerHTML;
 
