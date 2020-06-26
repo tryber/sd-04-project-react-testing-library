@@ -33,7 +33,7 @@ describe('Testando o botão de proximo', () => {
   });
 
   test('testando os botoes de tipo', () => {
-    const { getAllByTestId, getByText } = renderWithRouter(<App />);
+    const { getAllByTestId } = renderWithRouter(<App />);
     const buttons = getAllByTestId('pokemon-type-button');
 
     expect(buttons.length).toBe((types.length - 2));
