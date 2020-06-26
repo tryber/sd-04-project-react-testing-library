@@ -89,10 +89,12 @@ describe('Click next button must display next pokemon', () => {
     );
     const allButton = document.querySelectorAll('button');
     const pokemonType = screen.getByTestId('pokemonType');
+    const pokemonTypeButton = screen.queryAllByTestId('pokemon-type-button');
     fireEvent.click(allButton[3]);
     fireEvent.click(allButton[0]);
     expect(pokemonType).toHaveTextContent('Electric');
     expect(getByText('All')).toBeInTheDocument();
+    expect(pokemonTypeButton.length).not.toBeNull();
   });
 
   test('If only one pokemon button next disable', () => {
