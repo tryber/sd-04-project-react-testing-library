@@ -21,8 +21,8 @@ describe('it tests Pokemon file', () => {
 
   test('it test if a favorite pokemon has a star', () => {
     pokemons.forEach((pokemon) => {
-      const { getByAltText } = renderWithRouter(<Pokemon pokemon={pokemon} isFavorite/>);
-      let img = getByAltText(`${pokemon.name} is marked as favorite`);
+      const { getByAltText } = renderWithRouter(<Pokemon pokemon={pokemon} isFavorite />);
+      const img = getByAltText(`${pokemon.name} is marked as favorite`);
       expect(img).toBeInTheDocument();
       expect(img.src).toBe('http://localhost/star-icon.svg');
     });
