@@ -36,10 +36,9 @@ describe('Testando o botão de proximo', () => {
     const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const buttons = getAllByTestId('pokemon-type-button');
 
-    console.log(types);
-    //  expect(buttons.length).toBe(types.length);
+    expect(buttons.length).toBe((types.length - 2));
     buttons.forEach((elem) => {
-      const type = getByText(elem.innerHTML);
+      const type = types.find((typ) => typ === elem.innerHTML);
       expect(elem.innerHTML).toBe(type);
     });
   });
