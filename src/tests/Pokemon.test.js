@@ -7,7 +7,7 @@ import Pokemon from '../components/Pokemon';
 
 describe('it tests Pokemon file', () => {
   test('pokemon info card', () => {
-    const { getByText, getByAltText, getAllByTestId, history } = renderWithRouter(<App />);
+    const { getByText, getByAltText, getAllByTestId } = renderWithRouter(<App />);
 
     expect(getAllByTestId('pokemon-name').length).toBe(1);
     pokemons.forEach(({ id, name, image, averageWeight: { value, measurementUnit } }) => {
