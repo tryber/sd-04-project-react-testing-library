@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
+import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
 describe('Pokemon', () => {
@@ -31,17 +32,12 @@ describe('Pokemon', () => {
   });
 
   test('Favorite pokemons have a star icon', () => {
-    const { container } = renderWithRouter(<App />);
-    if (localStorage.favoritePokemonsId) {
-      const { favoritePokemonsId } = localStorage;
-      pokemons.forEach(({ id, name }) => {
-        if (favoritePokemonsId.includes(id)) {
-          expect(container.querySelector('img + img').src).toBe('/star-icon.svg');
-          expect(container.querySelector('img + img').alt).toBe(`${name} is marked as favorite`);
-        }
-      });
-    } else {
-      expect(container.querySelector('img + img')).toBeFalsy();
-    }
+    pokemons.forEach((pokemon) => {
+      const { container } = renderWithRouter(<Pokemon pokemon={pokemon} isFavorite />);
+      expect(container.querySelector('img + img').src).toMatch('/star-icon.svg');
+      expect(container.querySelector('img + img').alt).toMatch(
+        `${pokemon.name} is marked as favorite`,
+      );
+    });
   });
 });

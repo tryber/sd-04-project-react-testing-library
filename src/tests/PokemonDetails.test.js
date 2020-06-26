@@ -9,6 +9,8 @@ describe('PokemonDetails', () => {
       const { getByText, container } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
       expect(getByText(name)).toBeInTheDocument();
       expect(container.querySelector('section.pokemon-details a')).toBeFalsy();
+      expect(getByText('Summary').tagName).toBe('H2');
+      expect(container.querySelector('section > p').innerHTML).toMatch('Pokémon');
     });
   });
 });
