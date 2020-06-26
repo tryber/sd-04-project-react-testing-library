@@ -16,9 +16,9 @@ describe('Testes da página NotFound', () => {
         <NotFound />
       </Router>,
     );
-  
+
     // console.log(history.location.pathname);
-  
+
     expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 
