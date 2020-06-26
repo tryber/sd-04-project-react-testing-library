@@ -60,6 +60,7 @@ describe('Pokédex', () => {
     pokemons.forEach(({ name }) => {
       expect(getByText(name)).toBeInTheDocument();
       fireEvent.click(getByText('Próximo pokémon'));
+      expect(container.querySelectorAll('div.pokemon').length).toBe(1);
     });
   });
 
