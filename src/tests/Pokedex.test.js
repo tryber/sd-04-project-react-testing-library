@@ -5,15 +5,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 
-// describe('Click next button must diplay next pokemon', () => {
-//   test('Button must contain the text "Próximo pokémon" ', () => {
-//     const {} = render(
-//         <Pokedex />
-//     );
-
-//   });
-// });
-
 describe('Click next button must display next pokemon', () => {
   test('Click next button must display next pokemon', () => {
     const { getByText } = render(
@@ -63,17 +54,19 @@ describe('Click next button must display next pokemon', () => {
       </MemoryRouter>,
     );
     const pokemonName = screen.getAllByTestId('pokemon-name');
-    console.log(pokemonName.length);
     expect(pokemonName.length).toBe(1);
   });
-  test('Pokedex must contain filter button', () => {
-    render(
+  test('Pokedex must contain button filter', () => {
+    const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const pokemonName = screen.getAllByTestId('pokemon-name');
-    console.log(pokemonName.length);
-    expect(pokemonName.length).toBe(1);
+    const allButton = document.querySelectorAll('button');
+    const buttonNext = getByText(/Próximo pokémon/);
+    const pokemonType = screen.getByTestId('pokemonType');
+    fireEvent.click(allButton[1]);
+    fireEvent.click(buttonNext);
+    expect(pokemonType).toHaveTextContent(allButton[1].innerHTML);
   });
 });
