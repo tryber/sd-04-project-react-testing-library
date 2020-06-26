@@ -32,7 +32,7 @@ describe('Teste Pokemon Details', () => {
       expect(getByText(location)).toBeInTheDocument();
       expect(getAllByAltText(`${pokemons[0].name} location`).length).toBeGreaterThan(0);
       const img = Array.from(getAllByRole('img'));
-      img.some((imagem) => imagem.src === map);
+      expect(img.some((imagem) => imagem.src === map)).toBe(true);
       return null;
     });
     const favorite = getByLabelText('Pokémon favoritado?');
