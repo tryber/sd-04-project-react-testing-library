@@ -28,10 +28,10 @@ describe('Tests About.js', () => {
   });
 
   test('Image Pokedex ', () => {
-    const { getByAltText, getByRole } = renderWithRouter(<About />);
+    const { getByAltText } = renderWithRouter(<About />);
     const alt = getByAltText('Pokédex');
-    const img = getByRole('img', { src: 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png' });
+    const img = document.querySelector('img');
     expect(alt).toBeInTheDocument();
-    expect(img).toBeInTheDocument();
+    expect(img.src).toEqual('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
