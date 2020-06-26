@@ -1,7 +1,7 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import About from '../components/About';
 import renderWithRouter from './services/renderWithRouter';
-import { render, getAllByAltText, getAllByRole } from '@testing-library/react';
 
 describe('Requisito 2, About.test', () => {
   test('A página "About" deve exibir informações sobre a Pokédex', () => {
