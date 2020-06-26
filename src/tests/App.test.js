@@ -4,20 +4,15 @@ import { MemoryRouter, Router } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 
-function renderWithRouter(
-  ui,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) {
-  const Wrapper = ({ children }) => (
-    <Router history={history}>{children}</Router>
-  );
+function renderWithRouter(ui, routeConfigs = {}) {
+  const route = routeConfigs.route || '/';
+  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
+
   return {
-    ...render(ui, { wrapper: Wrapper }),
-    history,
-  };
+    ...render(<Router history={history}>{ui}</Router>),
+    history
+  }
+
 }
 
 test('renders a reading with the text `Pokédex`', () => {
