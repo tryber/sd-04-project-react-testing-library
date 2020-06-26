@@ -5,7 +5,6 @@ import pokemons from '../data';
 import App from '../App';
 
 describe('it tests Pokedex file', () => {
-
   test('it tests heading', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
@@ -37,7 +36,7 @@ describe('it tests Pokedex file', () => {
   });
 
   test('it tests the All button', () => {
-    const { getByText, container } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('All'));
     pokemons.forEach((pokemon) => {
