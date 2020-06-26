@@ -3,8 +3,9 @@ import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
-afterEach(cleanup);
+
 describe('Teste Pokemon', () => {
+  afterEach(cleanup);
   test('retorna um card', () => {
     const { getByTestId } = renderWithRouter(<App />);
     expect(getByTestId('pokemon-name')).toBeInTheDocument();
