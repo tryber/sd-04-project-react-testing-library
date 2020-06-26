@@ -4,6 +4,11 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
+const types = [];
+pokemons.forEach((pokemon) => {
+  if (!types.includes(pokemon.type)) types.push(pokemon.type);
+});
+
 describe('When pressing the next button, the page should display the next pokémon in the list', () => {
   test('The button should contain the text `Próximo pokémon`', () => {
     const { getByTestId } = renderWithRouter(<App />);
@@ -35,10 +40,6 @@ test('Pokédex must display only one Pokémon at a time', () => {
 describe('The Pokédex must contain filter buttons', () => {
   test('From the selection of a type button, the Pokédex should only circulate through the Pokémon of that type', () => {
     const { getByTestId, queryAllByTestId, getByText } = renderWithRouter(<App />);
-    const types = [];
-    pokemons.forEach((pokemon) => {
-      if (!types.includes(pokemon.type)) types.push(pokemon.type);
-    });
 
     const next = getByTestId('next-pokemon');
     const buttons = queryAllByTestId('pokemon-type-button');
@@ -97,15 +98,10 @@ describe('The Pokédex must contain a button to reset the filter', () => {
 });
 
 // test('The Pokédex should dynamically generate
-//a filter button for each type of Pokémon', () => {});
+// a filter button for each type of Pokémon', () => {});
 
 test('The `Próximo pokémon` button should be disabled if the filtered list of Pokémon has only one Pokémon', () => {
-  const { getByTestId, queryAllByTestId, getByText } = renderWithRouter(<App />);
-  const types = [];
-  pokemons.forEach((pokemon) => {
-    if (!types.includes(pokemon.type)) types.push(pokemon.type);
-  });
-
+  const { getByTestId, queryAllByTestId } = renderWithRouter(<App />);
   const next = getByTestId('next-pokemon');
   const buttons = queryAllByTestId('pokemon-type-button');
 
