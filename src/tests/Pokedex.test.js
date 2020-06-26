@@ -2,24 +2,35 @@ import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import Pokemon from '../components/Pokemon'
 import pokemons from '../data';
 
-describe('Testes no arquivo Pokemon', () => {
+describe('Teste Pokedex', () => {
   afterEach(cleanup);
-
-  test('Deve ser retornado um card com as informações de determinado pokémon', () => {
-    const { getByTestId } = renderWithRouter(<App />);
-    expect(getB)
+  test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
+    const { getByText, queryByText } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/Próximo pokémon/i));
+    const pokemon = queryByText(pokemons[1].name);
+    expect(pokemon).toBeInTheDocument();
   });
 
-  test('A Pokédex deve exibir apenas um pokémon por vez', () => {
-    const { getAllByTestId } = renderWithRouter(<App />);
-    const pokemon = getAllByTestId('pokemon-name');
-    expect(pokemon.length).toBe(1);
+  test('Clicks sucessivos', () => {
+    const { getByText, queryByText } = renderWithRouter(<App />);
+    let i = 0;
+    while (i < pokemons.length) {
+      fireEvent.click(getByText(/Próximo pokémon/i));
+      const pokemon = queryByText(
+        i !== pokemons.length - 1 ? pokemons[i + 1].name : pokemons[0].name,
+      );
+      expect(pokemon).toBeInTheDocument();
+      if (i !== pokemons.length) {
+        i += 1;
+      } else {
+        i = 0;
+      }
+    }
   });
 
-  test('A Pokédex deve conter botões de filtro, e um h2', () => {
+  test('apenas um pokemon na tela', () => {
     const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const pokemon = getAllByTestId('pokemon-name');
     expect(pokemon.length).toBe(1);

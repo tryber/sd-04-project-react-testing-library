@@ -14,18 +14,21 @@ describe('Teste Pokemon', () => {
     expect(getByTestId('pokemon-name').innerHTML).toBe(pokemons[0].name);
     expect(getByTestId('pokemonType').innerHTML).toBe(pokemons[0].type);
   });
+
   test('texto com peso médio', () => {
     const { getByTestId } = renderWithRouter(<App />);
     expect(getByTestId('pokemon-weight').innerHTML).toBe(
       `Average weight:${pokemons[0].averageWeight.value}${pokemons[0].averageWeight.measurementUnit}`,
     );
   });
+
   test('testar imagem do pokemon', () => {
     const { getByRole } = renderWithRouter(<App />);
     const image = getByRole('img');
     expect(image.src).toBe(pokemons[0].image);
     expect(image.alt).toBe(`${pokemons[0].name} sprite`);
   });
+
   test('Testar rota', () => {
     const { history, getByText } = renderWithRouter(<App />);
     const link = getByText(/More Details/i);
@@ -34,6 +37,7 @@ describe('Teste Pokemon', () => {
     const pathname = history.location.pathname;
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
+
   test('icone de estrela', () => {
     const { getByText, getByLabelText, getAllByRole } = renderWithRouter(<App />);
     const link = getByText(/More Details/i);
@@ -45,4 +49,5 @@ describe('Teste Pokemon', () => {
     expect(star[0].alt).toBe(`${pokemons[0].name} is marked as favorite`);
     expect(star.length).toBeGreaterThan(0);
   });
+
 });
