@@ -7,14 +7,15 @@ import Pokemon from '../components/Pokemon';
 
 describe('it tests Pokemon file', () => {
   test('pokemon info card', () => {
-    const { getByText, getByAltText, getAllByTestId } = renderWithRouter(<App />);
+    const { getByText, getByAltText, getAllByTestId, history } = renderWithRouter(<App />);
 
     expect(getAllByTestId('pokemon-name').length).toBe(1);
     pokemons.forEach(({ id, name, image, averageWeight: { value, measurementUnit } }) => {
       expect(getByText(name)).toBeInTheDocument();
+      expect(getByAltText(`${name} sprite`)).toBeInTheDocument();
       expect(getByAltText(`${name} sprite`).src).toBe(image);
       expect(getByText(`Average weight:${value}${measurementUnit}`)).toBeInTheDocument();
-      expect(getByText('More details').href).toBe(`http://localhost/pokemons/${id}`);
+      expect(getByText('More details').href).toMatch(`/pokemons/${id}`);
       fireEvent.click(getByText('Próximo pokémon'));
     });
   });
@@ -24,7 +25,7 @@ describe('it tests Pokemon file', () => {
       const { getByAltText } = renderWithRouter(<Pokemon pokemon={pokemon} isFavorite />);
       const img = getByAltText(`${pokemon.name} is marked as favorite`);
       expect(img).toBeInTheDocument();
-      expect(img.src).toBe('http://localhost/star-icon.svg');
+      expect(img.src).toMatch('/star-icon.svg');
     });
   });
 });
