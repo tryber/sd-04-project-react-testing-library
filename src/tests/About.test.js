@@ -16,4 +16,11 @@ describe('About', () => {
     const arrayOfPs = container.getElementsByTagName('p');
     expect(arrayOfPs.length).toBe(2);
   });
+
+  test('A página deve conter a seguinte imagem de uma Pokédex: `https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png`.', () => {
+    const { getByRole } = render(<About />);
+    const img = getByRole('img');
+    expect(img).toBeInTheDocument();
+    expect(img.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  });
 });
