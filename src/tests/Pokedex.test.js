@@ -18,6 +18,13 @@ const favs = {
 
 const types = [...new Set(pokemons.reduce((all, { type }) => [...all, type], []))];
 
+test('O texto Encountered pokémons deve ser renderizado', () => {
+  const { getByText } = renderWithRouter(
+    <Pokedex pokemons={pokemons} isPokemonFavoriteById={favs} />,
+  );
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
 describe('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
   test('O botão deve conter o texto Próximo pokémon', () => {
     const { getByTestId } = renderWithRouter(
