@@ -1,6 +1,5 @@
 import React from 'react';
 import renderWithRouter from '../helper/renderWithRouter';
-import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 
 describe('Requisito 3', () => {
