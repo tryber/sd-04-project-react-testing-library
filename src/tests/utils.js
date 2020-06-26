@@ -14,6 +14,12 @@ export default function renderWithRouter(
   const Wrapper = ({ children }) => (
     <Router history={history}>{children}</Router>
   );
+  Wrapper.propTypes = {
+    children: PropTypes.node,
+  };
+  Wrapper.defaultProps = {
+    children: '',
+  };
   return {
     ...render(ui, { wrapper: Wrapper }),
     // adding `history` to the returned utilities to allow us
@@ -22,7 +28,3 @@ export default function renderWithRouter(
     history,
   };
 }
-
-renderWithRouter.propTypes = {
-  children: PropTypes.node,
-};
