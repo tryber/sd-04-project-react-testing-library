@@ -82,16 +82,17 @@ describe('Click next button must display next pokemon', () => {
   });
 
   test('Pokedex must pass all pokemons after click button All', () => {
-    render(
+    const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
     const allButton = document.querySelectorAll('button');
-    // const buttonNext = getByText(/Próximo pokémon/);
     const pokemonType = screen.getByTestId('pokemonType');
     fireEvent.click(allButton[3]);
     fireEvent.click(allButton[0]);
     expect(pokemonType).toHaveTextContent('Electric');
+    expect(getByText('All')).toBeInTheDocument();
   });
+
 });
