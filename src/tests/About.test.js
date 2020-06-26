@@ -19,8 +19,8 @@ describe('teste da About', () => {
   });
 
   test('Testar parágrafos', () => {
-    const { getAllByRole } = renderWithRouter(<About />);
-    const paragraphs = getAllByRole('region');
+    renderWithRouter(<About />);
+    const paragraphs = document.querySelectorAll('p');
     expect(paragraphs.length).toBe(2);
   });
 
