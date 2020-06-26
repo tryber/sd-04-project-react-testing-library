@@ -10,6 +10,8 @@ test('Should have the right name', () => {
   const { getByTestId } = renderWithRouter(<App />);
   const name = getByTestId('pokemon-name');
   expect(name.innerHTML).toMatch(pokemons[0].name);
+  const type = getByTestId('pokemonType');
+  expect(type.innerHTML).toMatch(pokemons[0].type);
 });
 
 test('Should have the right weight and measurament unit', () => {
