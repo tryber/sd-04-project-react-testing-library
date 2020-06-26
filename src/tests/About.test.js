@@ -1,6 +1,6 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter'
-import About from '../components/About'
+import renderWithRouter from '../renderWithRouter';
+import About from '../components/About';
 
 
 describe('Tests of the About.js file', () => {
@@ -19,10 +19,10 @@ describe('Tests of the About.js file', () => {
 
   test('The page should contain the following image of a Pokédex', () => {
     const { container } = renderWithRouter(<About />);
-    const img = container.querySelector('IMG')
+    const img = container.querySelector('IMG');
     expect(img).toBeInTheDocument();
     expect(img.src).toBe(
-      `https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png`,
+      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
     );
   });
 });
