@@ -5,6 +5,11 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Pokédex', () => {
+  test('Contains the heading "Encountered pokémons"', () => {
+    const { container } = renderWithRouter(<App />);
+    expect(container.querySelector('h2').innerHTML).toBe('Encountered pokémons');
+  });
+
   test('Button with text "Próximo pokémon"', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText('Próximo pokémon').type).toBe('button');
@@ -27,8 +32,8 @@ describe('Pokédex', () => {
   });
 
   test('There is filter buttons', () => {
-    const { container } = renderWithRouter(<App />);
-    expect(container.querySelectorAll('.filter-button')).toBeTruthy();
+    const { getAllByTestId } = renderWithRouter(<App />);
+    expect(getAllByTestId('pokemon-type-button')).toBeTruthy();
   });
 
   test('Filter buttons filters', () => {
@@ -54,8 +59,9 @@ describe('Pokédex', () => {
     fireEvent.load(container);
     pokemons.forEach(({ name }) => {
       expect(getByText(name)).toBeInTheDocument();
-      expect(container.querySelectorAll('div.pokemon').length).toBe(1);
       fireEvent.click(getByText('Próximo pokémon'));
     });
   });
+
+  test('create de type buttons dinamically', () => {});
 });
