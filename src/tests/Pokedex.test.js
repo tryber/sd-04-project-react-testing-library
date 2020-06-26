@@ -1,8 +1,8 @@
 import React from 'react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+// import { createMemoryHistory } from 'history';
+// import { Router } from 'react-router-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { render, logDOM, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 
 // describe('Click next button must diplay next pokemon', () => {
@@ -57,12 +57,21 @@ describe('Click next button must display next pokemon', () => {
     expect(pokemonName).toHaveTextContent('Pikachu');
   });
   test('Pokedex must show only one pokemon', () => {
-    const { getAllByTestId } = render(
+    render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-
+    const pokemonName = screen.getAllByTestId('pokemon-name');
+    console.log(pokemonName.length);
+    expect(pokemonName.length).toBe(1);
+  });
+  test('Pokedex must contain filter button', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
     const pokemonName = screen.getAllByTestId('pokemon-name');
     console.log(pokemonName.length);
     expect(pokemonName.length).toBe(1);
