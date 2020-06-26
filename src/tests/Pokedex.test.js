@@ -82,7 +82,7 @@ describe('Click next button must display next pokemon', () => {
   });
 
   test('Pokedex must pass all pokemons after click button All', () => {
-    const { getByText } = render(
+    render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
