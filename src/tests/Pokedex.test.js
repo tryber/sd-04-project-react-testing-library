@@ -94,5 +94,4 @@ describe('Click next button must display next pokemon', () => {
     expect(pokemonType).toHaveTextContent('Electric');
     expect(getByText('All')).toBeInTheDocument();
   });
-
 });
