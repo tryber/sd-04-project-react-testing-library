@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, logDOM } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import About from '../components/About';
 
@@ -9,6 +9,7 @@ test('renders a reading at least the text `Pokédex`', () => {
       <About />
     </MemoryRouter>,
   );
+ 
   const heading = queryAllByText(/Pokédex/i);
   expect(heading).not.toBeNull();
 });
