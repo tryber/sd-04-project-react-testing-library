@@ -9,7 +9,10 @@ test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>, 
+  /* MemoryRouter para ter controle do histórico da navegaçao e assim 
+  ter controle da navegaçao e assim testar os varios casos de uso 
+  de navegaçao da nossa aplicação */
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
