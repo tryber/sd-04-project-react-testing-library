@@ -6,14 +6,13 @@ import renderWithRouter from '../services/renderWithRouter';
 describe('Testando o botão de proximo', () => {
   afterEach(cleanup);
 
-  const { getByTestId } = renderWithRouter(<App />);
-  const nextPokemon = getByTestId('next-pokemon');
-
   test('Testando o botão de proximo ativo', () => {
+    const { getByTestId } = renderWithRouter(<App />);
+    const nextPokemon = getByTestId('next-pokemon');
     const firstPokemon = getByTestId('pokemon-name').innerHTML;
 
     expect(nextPokemon).toBeInTheDocument();
-
+    expect(nextPokemon.disabled).toBe(false);
     fireEvent.click(nextPokemon);
 
     const secondPokemon = getByTestId('pokemon-name').innerHTML;
@@ -21,11 +20,14 @@ describe('Testando o botão de proximo', () => {
   });
 
   test('Testando o botão de proximo inativo', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const nextPokemon = getByTestId('next-pokemon');
+    const buttons = getAllByTestId('pokemon-type-button');
 
+    fireEvent.click(buttons[2]);
+    expect(nextPokemon.disabled).toBe(true);
   });
 });
-
-test('Testando o botão de proximo', () => {});
 
 test('Testando os botoes de filtro', () => {});
 
