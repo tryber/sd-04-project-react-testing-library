@@ -25,7 +25,7 @@ describe('Pokemon', () => {
       }
       expect(history.location.pathname).toBe('/');
       fireEvent.click(getByText('More details'));
-      expect(history.location.pathname).toBe(`pokemons/${id}`);
+      expect(history.location.pathname).toBe(`/pokemons/${id}`);
     });
   });
 });

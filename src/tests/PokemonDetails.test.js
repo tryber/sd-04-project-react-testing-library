@@ -6,8 +6,9 @@ import renderWithRouter from '../services/renderWithRouter';
 describe('PokemonDetails', () => {
   test('show pokemon name', () => {
     pokemons.forEach(({ name, id }) => {
-      const { getByText } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
+      const { getByText, container } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
       expect(getByText(name)).toBeInTheDocument();
+      expect(container.querySelector('section.pokemon-details a')).toBeFalsy();
     });
   });
 });
