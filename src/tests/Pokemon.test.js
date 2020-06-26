@@ -13,6 +13,8 @@ describe('Teste Pokemon', () => {
     expect(getByTestId('pokemonType')).toBeInTheDocument();
     expect(getByTestId('pokemon-weight')).toBeInTheDocument();
     expect(getByTestId('pokemon-name').innerHTML).toBe(pokemons[0].name);
+    expect(getByTestId('pokemonType').innerHTML).toBe(pokemons[0].type);
+
   });
 
   test('texto com peso médio', () => {
@@ -46,6 +48,7 @@ describe('Teste Pokemon', () => {
     fireEvent.click(label);
     const images = getAllByRole('img');
     const star = images.filter((img) => img.src.includes('/star-icon.svg'));
+    expect(star[0].alt).toBe(`${pokemons[0].name} is marked as favorite`)
     expect(star.length).toBeGreaterThan(0);
   });
 });
