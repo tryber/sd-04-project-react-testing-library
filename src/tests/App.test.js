@@ -10,9 +10,8 @@ function renderWithRouter(ui, routeConfigs = {}) {
 
   return {
     ...render(<Router history={history}>{ui}</Router>),
-    history
-  }
-
+    history,
+  };
 }
 
 test('renders a reading with the text `Pokédex`', () => {
