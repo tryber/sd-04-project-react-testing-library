@@ -2,26 +2,15 @@ import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import Pokemon from '../components/Pokemon'
 import pokemons from '../data';
 
-describe('Testes no arquivo Pokedex', () => {
+describe('Testes no arquivo Pokemon', () => {
   afterEach(cleanup);
 
-  test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
-    const { getByText, queryByText } = renderWithRouter(<App />);
-    let i = 0;
-    while (i < pokemons.length) {
-      fireEvent.click(getByText(/Próximo pokémon/i));
-      const pokemon = queryByText(
-        i !== pokemons.length - 1 ? pokemons[i + 1].name : pokemons[0].name,
-      );
-      expect(pokemon).toBeInTheDocument();
-      if (i !== pokemons.length) {
-        i += 1;
-      } else {
-        i = 0;
-      }
-    }
+  test('Deve ser retornado um card com as informações de determinado pokémon', () => {
+    const { getByTestId } = renderWithRouter(<App />);
+    expect(getB)
   });
 
   test('A Pokédex deve exibir apenas um pokémon por vez', () => {
