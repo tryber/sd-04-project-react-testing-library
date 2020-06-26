@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, getByText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
@@ -34,17 +34,24 @@ test('Pokédex must display only one Pokémon at a time', () => {
 
 describe('The Pokédex must contain filter buttons', () => {
   test('From the selection of a type button, the Pokédex should only circulate through the Pokémon of that type', () => {
-    const { getByTestId, queryAllByTestId } = renderWithRouter(<App />);
+    const { getByTestId, queryAllByTestId, getByText } = renderWithRouter(<App />);
+    const types = [];
+    pokemons.forEach((pokemon) => {
+      if (!types.includes(pokemon.type)) types.push(pokemon.type);
+    });
+
     const next = getByTestId('next-pokemon');
     const buttons = queryAllByTestId('pokemon-type-button');
 
-    buttons.forEach((type) => {
-      const btn = buttons.find((element) => (element.type = type));
+    types.forEach((type) => {
+      const btn = buttons.find((element) => element.textContent === type);
       fireEvent.click(btn);
 
+      expect(btn).toHaveTextContent(type);
       const pokemonByType = pokemons.filter((pokemon) => pokemon.type === type);
+
       pokemonByType.forEach((pokemon) => {
-        expect(pokemon.name).toBeInTheDocument();
+        expect(getByText(pokemon.name)).toBeInTheDocument();
         if (!next.disabled) {
           fireEvent.click(next);
         }
@@ -53,11 +60,14 @@ describe('The Pokédex must contain filter buttons', () => {
   });
 
   test('The button text must be the type name, p. ex. `Psychic`', () => {
-    const { queryAllByTestId } = renderWithRouter(<App />);
+    const { queryAllByTestId, getByTestId } = renderWithRouter(<App />);
     const buttons = queryAllByTestId('pokemon-type-button');
-    buttons.forEach((type) => {
-      const btn = buttons.find((element) => (element.type = type));
-      expect(btn).toBeInTheDocument();
+
+    buttons.forEach((button) => {
+      fireEvent.click(button);
+      const type = button.textContent;
+      const pokemonType = getByTestId('pokemonType').textContent;
+      expect(pokemonType).toBe(type);
     });
   });
 });
@@ -86,20 +96,29 @@ describe('The Pokédex must contain a button to reset the filter', () => {
   });
 });
 
-// test('The Pokédex should dynamically generate a filter button for each type of Pokémon', () => {});
+// test('The Pokédex should dynamically generate
+//a filter button for each type of Pokémon', () => {});
 
 test('The `Próximo pokémon` button should be disabled if the filtered list of Pokémon has only one Pokémon', () => {
-  const { getByTestId, queryAllByTestId } = renderWithRouter(<App />);
+  const { getByTestId, queryAllByTestId, getByText } = renderWithRouter(<App />);
+  const types = [];
+  pokemons.forEach((pokemon) => {
+    if (!types.includes(pokemon.type)) types.push(pokemon.type);
+  });
+
   const next = getByTestId('next-pokemon');
   const buttons = queryAllByTestId('pokemon-type-button');
 
-  buttons.forEach((type) => {
-    const btn = buttons.find((element) => (element.type = type));
+  types.forEach((type) => {
+    const btn = buttons.find((element) => element.textContent === type);
     fireEvent.click(btn);
 
     const pokemonByType = pokemons.filter((pokemon) => pokemon.type === type);
-    if (pokemonByType.length === 1) {
-      expect(next.disabled).toBeTruthy();
-    }
+
+    pokemonByType.forEach(() => {
+      if (pokemonByType.length === 1) {
+        expect(next.disabled).toBeTruthy();
+      }
+    });
   });
 });
