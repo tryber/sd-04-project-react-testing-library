@@ -60,17 +60,17 @@ describe('The Pokédex must contain filter buttons', () => {
     });
   });
 
-  test('The button text must be the type name, p. ex. `Psychic`', () => {
-    const { queryAllByTestId, getByTestId } = renderWithRouter(<App />);
-    const buttons = queryAllByTestId('pokemon-type-button');
+  // test('The button text must be the type name, p. ex. `Psychic`', () => {
+  //   const { queryAllByTestId, getByTestId } = renderWithRouter(<App />);
+  //   const buttons = queryAllByTestId('pokemon-type-button');
 
-    buttons.forEach((button) => {
-      fireEvent.click(button);
-      const type = button.textContent;
-      const pokemonType = getByTestId('pokemonType').textContent;
-      expect(pokemonType).toBe(type);
-    });
-  });
+  //   buttons.forEach((button) => {
+  //     fireEvent.click(button);
+  //     const type = button.textContent;
+  //     const pokemonType = getByTestId('pokemonType').textContent;
+  //     expect(pokemonType).toBe(type);
+  //   });
+  // });
 });
 
 describe('The Pokédex must contain a button to reset the filter', () => {
