@@ -63,6 +63,4 @@ describe('Pokédex', () => {
       expect(container.querySelectorAll('div.pokemon').length).toBe(1);
     });
   });
-
-  test('create de type buttons dinamically', () => {});
 });
