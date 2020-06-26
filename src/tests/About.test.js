@@ -14,8 +14,8 @@ test('The page must contain an heading h2 with the text About Pokédex', () => {
 });
 
 test('The page must contain two paragraphs with text about Pokédex;', () => {
-  const { queryAllByTestId } = renderWithRouter(<App />, { route: '/about' });
-  const p = queryAllByTestId('paragraph');
+  const { container } = renderWithRouter(<App />, { route: '/about' });
+  const p = container.getElementsByTagName('p');
   expect(p.length).toBe(2);
 });
 
