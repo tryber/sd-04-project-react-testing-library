@@ -49,5 +49,4 @@ describe('Teste Pokemon', () => {
     expect(star[0].alt).toBe(`${pokemons[0].name} is marked as favorite`);
     expect(star.length).toBeGreaterThan(0);
   });
-
 });
