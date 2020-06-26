@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, getByText } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 import Data from '../data';
@@ -24,10 +24,11 @@ describe('Testando o botoes da pokedex', () => {
   afterEach(cleanup);
 
   test('Testando o botão de proximo ativo', () => {
-    const { getByTestId } = renderWithRouter(<App />);
+    const { getByTestId, getByText } = renderWithRouter(<App />);
     const nextPokemon = getByTestId('next-pokemon');
     const firstPokemon = getByTestId('pokemon-name').innerHTML;
 
+    getByText('Encountered pokémons');
     expect(nextPokemon).toBeInTheDocument();
     expect(nextPokemon.disabled).toBe(false);
     fireEvent.click(nextPokemon);
@@ -75,6 +76,7 @@ describe('Testando o botoes da pokedex', () => {
     const AllButton = getByText('All');
 
     expect(AllButton).toBeInTheDocument();
+    fireEvent.click(AllButton);
     PassandoPokemons(getByText);
   });
 });
