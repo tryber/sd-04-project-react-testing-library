@@ -8,10 +8,9 @@ test('Teste do texto contido em h2', () => {
   const text = getByText('Page requested not found');
   const face = getAllByRole('img');
 
-  console.log(textcontainer);
   expect(text).toBeInTheDocument();
   expect(face.length).toBe(2);
-  expect(textcontainer).toBeInTheDocument();
+  expect(textcontainer.length).toBe(1);
 });
 
 test('teste da imagem', () => {
