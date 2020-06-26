@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history'
-import { render, fireEvent, queryByText } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
+import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
@@ -20,7 +20,7 @@ describe('Testes do arquivo FavoritePokemons.js', () => {
     const history = createMemoryHistory();
     const { queryByText } = render(
       <Router history={history}>
-        <FavoritePokemons pokemons={pokemons.slice(0,1)} />
+        <FavoritePokemons pokemons={pokemons.slice(0, 1)} />
       </Router>,
     );
     const nonExistentPokemonOne = queryByText('Caterpie');
@@ -33,7 +33,7 @@ describe('Testes do arquivo FavoritePokemons.js', () => {
     const history = createMemoryHistory();
     const { queryByText } = render(
       <Router history={history}>
-        <FavoritePokemons pokemons={pokemons.slice(0,2)} />
+        <FavoritePokemons pokemons={pokemons.slice(0, 2)} />
       </Router>,
     );
     const existentPokemonOne = queryByText('Pikachu');
