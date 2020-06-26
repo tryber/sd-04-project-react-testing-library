@@ -4,6 +4,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
 import App from '../App';
+import pokemons from '../data';
 
 describe('Click next button must display next pokemon', () => {
   test('Click next button must display next pokemon', () => {
@@ -78,5 +79,19 @@ describe('Click next button must display next pokemon', () => {
       </MemoryRouter>,
     );
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
+
+  test('Pokedex must pass all pokemons after click button All', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const allButton = document.querySelectorAll('button');
+    const buttonNext = getByText(/Próximo pokémon/);
+    const pokemonType = screen.getByTestId('pokemonType');
+    fireEvent.click(allButton[3]);
+    fireEvent.click(allButton[0]);
+    expect(pokemonType).toHaveTextContent('Electric');
   });
 });
