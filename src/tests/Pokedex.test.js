@@ -94,4 +94,16 @@ describe('Click next button must display next pokemon', () => {
     expect(pokemonType).toHaveTextContent('Electric');
     expect(getByText('All')).toBeInTheDocument();
   });
+
+  test('If only one pokemon button next disable', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const allButton = document.querySelectorAll('button');
+    const buttonNext = getByText(/Próximo pokémon/);
+    fireEvent.click(allButton[1]);
+    expect(buttonNext.disabled).toBeTruthy();
+  });
 });
