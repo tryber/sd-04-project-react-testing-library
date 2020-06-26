@@ -1,20 +1,8 @@
 import React from 'react';
-import { fireEvent, cleanup, render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 import data from '../data';
-
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history =
-    routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from '../components/renderWithRouter';
 
 describe('Testes do requisito 5', () => {
   test('Ao apertar o botão de próximo, deve exibir o próximo pokémon da lista', () => {
