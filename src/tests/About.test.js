@@ -1,8 +1,6 @@
 import React from 'react';
 import About from '../components/About';
 import renderWithRouter from '../services/renderWithRouter';
-import { getByRole } from '@testing-library/react';
-
 
 test('Testando se na pagina About contem infos sobre o pokemon', () => {
   const { getByText, container, getByRole } = renderWithRouter(<About />);

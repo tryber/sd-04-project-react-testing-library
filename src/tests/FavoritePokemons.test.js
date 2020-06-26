@@ -10,9 +10,9 @@ test('testando se não exibe nada', () => {
 });
 
 test('testando se exibe todos os pokemons favoritados', () => {
-  const { } = renderWithRouter(<FavoritePokemons />);
+//  const { } = renderWithRouter(<FavoritePokemons />);
 });
 
 test('testando se não exibe nenhum card nao favoritado', () => {
-  const { } = renderWithRouter(<FavoritePokemons />);
+//  const { } = renderWithRouter(<FavoritePokemons />);
 });
