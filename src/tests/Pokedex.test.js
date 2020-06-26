@@ -94,7 +94,7 @@ describe('Click next button must display next pokemon', () => {
     fireEvent.click(allButton[0]);
     expect(pokemonType).toHaveTextContent('Electric');
     expect(getByText('All')).toBeInTheDocument();
-    expect(pokemonTypeButton.length).not.toBeNull();
+    expect(pokemonTypeButton.length).toBe(7);
   });
 
   test('If only one pokemon button next disable', () => {
