@@ -33,13 +33,13 @@ test('Nav link should be pointed to the right url', () => {
   expect(history.location.pathname).toMatch(`/pokemons/${pokemons[0].id}`);
 });
 
-test('Nav link should be pointed to the right url', () => {
+test('Favorite itens should display a star icon', () => {
   const favPokemons = [25];
   window.localStorage.setItem(
     'favoritePokemonIds',
     JSON.stringify(favPokemons),
   );
-  const { getByAltText, history } = renderWithRouter(<App />);
+  const { getByAltText } = renderWithRouter(<App />);
   const favImage = getByAltText(`${pokemons[0].name} is marked as favorite`);
   expect(favImage.src).toMatch('/star-icon.svg');
 });
