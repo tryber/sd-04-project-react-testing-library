@@ -33,8 +33,9 @@ describe('When pressing the next button, the page should display the next pokém
 });
 
 test('Pokédex must display only one Pokémon at a time', () => {
-  const { getAllByTestId } = renderWithRouter(<App />);
+  const { getAllByTestId, getByText } = renderWithRouter(<App />);
   expect(getAllByTestId('pokemon-name').length).toBe(1);
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
 describe('The Pokédex must contain filter buttons', () => {
@@ -60,17 +61,17 @@ describe('The Pokédex must contain filter buttons', () => {
     });
   });
 
-  // test('The button text must be the type name, p. ex. `Psychic`', () => {
-  //   const { queryAllByTestId, getByTestId } = renderWithRouter(<App />);
-  //   const buttons = queryAllByTestId('pokemon-type-button');
+  test('The button text must be the type name, p. ex. `Psychic`', () => {
+    const { queryAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const buttons = queryAllByTestId('pokemon-type-button');
 
-  //   buttons.forEach((button) => {
-  //     fireEvent.click(button);
-  //     const type = button.textContent;
-  //     const pokemonType = getByTestId('pokemonType').textContent;
-  //     expect(pokemonType).toBe(type);
-  //   });
-  // });
+    buttons.forEach((button) => {
+      fireEvent.click(button);
+      const type = button.textContent;
+      const pokemonType = getByTestId('pokemonType').textContent;
+      expect(pokemonType).toBe(type);
+    });
+  });
 });
 
 describe('The Pokédex must contain a button to reset the filter', () => {
@@ -96,9 +97,6 @@ describe('The Pokédex must contain a button to reset the filter', () => {
     });
   });
 });
-
-// test('The Pokédex should dynamically generate
-// a filter button for each type of Pokémon', () => {});
 
 test('The `Próximo pokémon` button should be disabled if the filtered list of Pokémon has only one Pokémon', () => {
   const { getByTestId, queryAllByTestId } = renderWithRouter(<App />);
