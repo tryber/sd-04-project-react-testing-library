@@ -32,16 +32,16 @@ describe('Pokemon', () => {
 
   test('Favorite pokemons have a star icon', () => {
     const { container } = renderWithRouter(<App />);
-
     if (localStorage.favoritePokemonsId) {
       const { favoritePokemonsId } = localStorage;
-
       pokemons.forEach(({ id, name }) => {
         if (favoritePokemonsId.includes(id)) {
           expect(container.querySelector('img + img').src).toBe('/star-icon.svg');
           expect(container.querySelector('img + img').alt).toBe(`${name} is marked as favorite`);
         }
       });
+    } else {
+      expect(container.querySelector('img + img')).toBeFalsy();
     }
   });
 });
