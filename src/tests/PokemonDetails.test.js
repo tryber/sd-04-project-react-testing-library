@@ -1,6 +1,13 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import reanderWithRouter from '../services/renderWithRouter';
-import PokemonDetails from '../components/PokemonDetails';
+import App from '../App';
+import pokemons from '../data';
+import renderWithRouter from '../services/renderWithRouter';
 
-describe('PokemonDetails', () => {});
+describe('PokemonDetails', () => {
+  test('show pokemon name', () => {
+    pokemons.forEach(({ name, id }) => {
+      const { getByText } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
+      expect(getByText(name)).toBeInTheDocument();
+    });
+  });
+});
