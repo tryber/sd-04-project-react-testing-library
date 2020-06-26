@@ -25,7 +25,9 @@ test('Should heave a next button', () => {
 
 test('Next button should change pokemon', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
+  const allButton = getByText('All');
   const nextButton = getByText('Próximo pokémon');
+  fireEvent.click(allButton);
   pokemons.forEach((pokemon, index) => {
     let name = getByTestId('pokemon-name');
     expect(name.innerHTML).toMatch(pokemon.name);
