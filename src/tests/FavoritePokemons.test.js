@@ -27,7 +27,7 @@ test('testando se não exibe nada', () => {
 
 test('testando se exibe todos os pokemons favoritados', () => {
   const { getAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={pokemonsFavoritos} />, { route: '/favorites' });
-  const pokemons = getAllByTestId('pokemon-name') ;
+  const pokemons = getAllByTestId('pokemon-name');
 
   expect(pokemons.length).toBe(5);
   expect(pokemons[0].innerHTML).not.toBe(pokemonsNaoFavoritos[0].name);

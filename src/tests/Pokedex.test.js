@@ -2,6 +2,10 @@ import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
+import Data from '../data';
+
+const types = Data.map((elem) => elem.type);
+// const unitType = types.find(({type}))
 
 describe('Testando o botão de proximo', () => {
   afterEach(cleanup);
@@ -26,6 +30,17 @@ describe('Testando o botão de proximo', () => {
 
     fireEvent.click(buttons[2]);
     expect(nextPokemon.disabled).toBe(true);
+  });
+
+  test('testando os botoes de tipo', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const buttons = getAllByTestId('pokemon-type-button');
+
+    console.log(types)
+    expect(buttons.length).toBe(types.length);
+    buttons.forEach((elem, index) => {
+      expect(buttons[index].innerHTML).toBe(types[index].type);
+    })
   });
 });
 
