@@ -56,17 +56,27 @@ describe('Click next button must display next pokemon', () => {
     const pokemonName = screen.getAllByTestId('pokemon-name');
     expect(pokemonName.length).toBe(1);
   });
-  // test('Pokedex must contain button filter', () => {
-  //   const { getByText } = render(
-  //     <MemoryRouter>
-  //       <App />
-  //     </MemoryRouter>,
-  //   );
-  //   const allButton = document.querySelectorAll('button');
-  //   const buttonNext = getByText(/Próximo pokémon/);
-  //   const pokemonType = screen.getByTestId('pokemonType');
-  //   fireEvent.click(allButton[1]);
-  //   fireEvent.click(buttonNext);
-  //   expect(pokemonType).toHaveTextContent(allButton[1].innerHTML);
-  // });
+  // To be refracted with mock and to forEach
+  test('Pokedex must contain button filter', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const allButton = document.querySelectorAll('button');
+    const buttonNext = getByText(/Próximo pokémon/);
+    const pokemonType = screen.getByTestId('pokemonType');
+    fireEvent.click(allButton[1]);
+    fireEvent.click(buttonNext);
+    expect(pokemonType).toHaveTextContent(allButton[1].innerHTML);
+  });
+
+  test('Encountered pokémons must be on the page', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
 });
