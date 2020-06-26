@@ -1,21 +1,18 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../services/renderWithRouter';
+import pokemons from '../data';
+import App from '../App';
 
 describe('it tests Pokedex file', () => {
 
-  const pokemons = [
-    { id: 1, name: 'Pikachu', type: 'Electric',
-      averageWeight: { value: '6.0', measurementUnit: 'kg' } },
-    { id: 2, name: 'Charmander', type: 'Fire',
-      averageWeight: { value: '8.5', measurementUnit: 'kg' } },
-  ];
-  const isPokemonFavoriteById = { 1: true, 2: false };
+  test('it tests heading', () => {
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
+  });
 
   test('it tests button Next Pokemon', () => {
-    const { getByTestId, getByText } = renderWithRouter(<Pokedex pokemons={pokemons}
-      isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getByTestId, getByText } = renderWithRouter(<App />);
     const btnNext = getByTestId('next-pokemon');
     expect(btnNext.textContent).toBe('Próximo pokémon');
 
@@ -29,10 +26,9 @@ describe('it tests Pokedex file', () => {
   });
 
   test('it tests filter buttons', () => {
-    const { getByTestId, getByText, container } = renderWithRouter(<Pokedex pokemons={pokemons}
-      isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getByTestId, getByText, getAllByTestId } = renderWithRouter(<App />);
 
-    expect(container.querySelectorAll('.filter-button')).toBeTruthy();
+    expect(getAllByTestId('pokemon-type-button')).toBeTruthy();
     fireEvent.click(getByText('Fire'));
     pokemons.forEach(() => {
       expect(getByTestId('pokemonType').innerHTML).toBe('Fire');
@@ -40,9 +36,8 @@ describe('it tests Pokedex file', () => {
     });
   });
 
-  test("it tests the All button", () => {
-    const { getByText, container } = renderWithRouter(<Pokedex pokemons={pokemons}
-      isPokemonFavoriteById={isPokemonFavoriteById} />);
+  test('it tests the All button', () => {
+    const { getByText, container } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('All'));
     pokemons.forEach((pokemon) => {
@@ -52,15 +47,13 @@ describe('it tests Pokedex file', () => {
   });
 
   test('it tests one pokemon at a time', () => {
-    const { getByText, getAllByTestId } = renderWithRouter(<Pokedex pokemons={pokemons}
-      isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getByText, getAllByTestId } = renderWithRouter(<App />);
 
     expect(getAllByTestId('pokemon-name').length).toBe(1);
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
-      expect(getAllByTestId('pokemon-name').length).toBe(1);
       fireEvent.click(getByText('Próximo pokémon'));
+      expect(getAllByTestId('pokemon-name').length).toBe(1);
     });
   });
-
 });
