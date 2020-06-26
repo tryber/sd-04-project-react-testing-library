@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
