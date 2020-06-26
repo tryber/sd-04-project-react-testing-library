@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, cleanup, render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import App from '../App';
@@ -16,6 +16,8 @@ function renderWithRouter(ui, routeConfigs = {}) {
   };
 }
 
+afterEach(cleanup);
+
 describe('Testes do requisito 6, Pokemon.js', () => {
   test('Testando o card', () => {
     const { getByTestId } = renderWithRouter(<App />);
@@ -24,6 +26,7 @@ describe('Testes do requisito 6, Pokemon.js', () => {
     expect(pokeName).toBeInTheDocument();
     const pokeType = getByTestId('pokemonType');
     expect(pokeType).toBeInTheDocument();
+    expect(pokeType.innerHTML).toBe(data[0].type);
     const pokeWeight = getByTestId('pokemon-weight');
     expect(pokeWeight).toBeInTheDocument();
   });
@@ -41,27 +44,34 @@ describe('Testes do requisito 6, Pokemon.js', () => {
   });
 
   test('Testando o peso', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByTestId } = renderWithRouter(<App />);
 
-    const btn = getByText('Próximo pokémon');
-    data.forEach(({ averageWeight: { value, measurementUnit } }) => {
-      expect(
-        getByText(`Average weight:${value}${measurementUnit}`),
-      ).toBeInTheDocument();
-      fireEvent.click(btn);
-    });
+    const pokeWeight = getByTestId('pokemon-weight');
+    expect(pokeWeight.innerHTML).toBe(
+      `Average weight:${data[0].averageWeight.value}${data[0].averageWeight.measurementUnit}`,
+    );
+    // const btn = getByText('Próximo pokémon');
+    // data.forEach(({ averageWeight: { value, measurementUnit } }) => {
+    //   expect(
+    //     getByText(`Average weight:${value}${measurementUnit}`),
+    //   ).toBeInTheDocument();
+    //   fireEvent.click(btn);
+    // });
   });
 
   test('Testando a src e alt', () => {
-    const { getByText, getByAltText } = renderWithRouter(<App />);
+    const { getByRole } = renderWithRouter(<App />);
 
-    const btn = getByText('Próximo pokémon');
-    const image = getByAltText(/Pikachu sprite/i);
-    expect(image).toBeInTheDocument();
-    expect(image.src).toEqual(
-      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    );
-    fireEvent.click(btn);
+    const img = getByRole('img');
+    expect(img.src).toBe(data[0].image);
+    expect(img.alt).toBe(`${data[0].name} sprite`);
+    // const btn = getByText('Próximo pokémon');
+    // const image = getByAltText(/Pikachu sprite/i);
+    // expect(image).toBeInTheDocument();
+    // expect(image.src).toEqual(
+    //   'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    // );
+    // fireEvent.click(btn);
   });
 
   test('Testando o link de navegação', () => {
@@ -80,7 +90,9 @@ describe('Testes do requisito 6, Pokemon.js', () => {
 
     const detailsLink = getByText('More details');
     expect(detailsLink.href).toMatch(`/pokemons/${data[0].id}`);
+
     fireEvent.click(detailsLink);
+
     const path = history.location.pathname;
     expect(path).toBe(`/pokemons/${data[0].id}`);
   });
