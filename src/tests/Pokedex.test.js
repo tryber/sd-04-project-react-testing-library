@@ -1,19 +1,8 @@
 import React from 'react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-import { render, logDOM, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from './renderWithRouter';
 
 describe('Pokedex', () => {
   test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
