@@ -33,6 +33,7 @@ describe('Teste Pokemon Details', () => {
       expect(getAllByAltText(`${pokemons[0].name} location`).length).toBeGreaterThan(0);
       const img = Array.from(getAllByRole('img'));
       img.some((imagem) => imagem.src === map);
+      return null;
     });
     const favorite = getByLabelText('Pokémon favoritado?');
     fireEvent.click(favorite);
