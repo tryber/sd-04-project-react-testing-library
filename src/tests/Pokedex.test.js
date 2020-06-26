@@ -10,6 +10,13 @@ const types = pokemons
 
 afterEach(cleanup);
 
+test('Should a h2', () => {
+  const { getAllByRole } = renderWithRouter(<App />);
+  const heading = getAllByRole('heading');
+  const header2 = heading.find((h) => h.nodeName === 'H2');
+  expect(header2.innerHTML).toMatch('Encountered pokémons');
+});
+
 test('Should heave a next button', () => {
   const { getByText } = renderWithRouter(<App />);
   const nextButton = getByText('Próximo pokémon');
