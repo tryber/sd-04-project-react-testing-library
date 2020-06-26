@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import About from '../components/About';
+import { About } from '../components';
 
 describe('A página "About" deve exibir informações sobre a Pokédex', () => {
   test('A página deve conter um heading h2 com o texto About Pokédex', () => {
