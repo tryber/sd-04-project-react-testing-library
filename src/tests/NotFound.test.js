@@ -1,7 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../helper/renderWithRouter';
 import NotFound from '../components/NotFound';
-import App from '../App';
 
 test('The page must contain an heading h2 with the text `Page requested not found 😭`', () => {
   const { getByText } = renderWithRouter(<NotFound />);
