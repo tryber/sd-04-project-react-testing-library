@@ -13,12 +13,14 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('shows the Pokédex when the route is `/`', () => {
+test('testing if shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
       <App />
     </MemoryRouter>,
   );
+
+  // testing commit
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
