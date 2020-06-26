@@ -4,7 +4,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
 import App from '../App';
-import pokemons from '../data';
+// import pokemons from '../data';
 
 describe('Click next button must display next pokemon', () => {
   test('Click next button must display next pokemon', () => {
@@ -88,7 +88,7 @@ describe('Click next button must display next pokemon', () => {
       </MemoryRouter>,
     );
     const allButton = document.querySelectorAll('button');
-    const buttonNext = getByText(/Próximo pokémon/);
+    // const buttonNext = getByText(/Próximo pokémon/);
     const pokemonType = screen.getByTestId('pokemonType');
     fireEvent.click(allButton[3]);
     fireEvent.click(allButton[0]);
