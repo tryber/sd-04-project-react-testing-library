@@ -47,6 +47,5 @@ describe('Test on the FavoritePokemons page', () => {
     pokemonsNotFavored.forEach(({ name }) => {
       expect(queryByText(name)).not.toBeInTheDocument();
     });
-
   });
 });
