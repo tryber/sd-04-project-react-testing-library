@@ -2,6 +2,7 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
+import PropTypes from 'prop-types';
 
 export default function renderWithRouter(
   ui,
@@ -21,3 +22,7 @@ export default function renderWithRouter(
     history,
   };
 }
+
+renderWithRouter.propTypes = {
+  children: PropTypes.node,
+};
