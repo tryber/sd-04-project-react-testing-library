@@ -7,7 +7,7 @@ describe('it tests PokemonDetails page', () => {
   pokemons.forEach(({ id, name, summary, foundAt }) => {
     test('show pokemon details', () => {
       const { getByText, getAllByAltText } = renderWithRouter(<App />, {
-        route: `/pokemons/${id}`
+        route: `/pokemons/${id}`,
       });
 
       const pokemonLocation = getAllByAltText(`${name} location`);
