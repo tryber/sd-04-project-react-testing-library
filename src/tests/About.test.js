@@ -1,18 +1,6 @@
 import React from 'react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import About from '../components/About';
-
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from './renderWithRouter';
 
 describe('Tests About.js', () => {
   test('Page About', () => {
@@ -24,7 +12,7 @@ describe('Tests About.js', () => {
   test('h2 with text About Pokédex', () => {
     const { getByText } = renderWithRouter(<About />);
     const text = getByText('About Pokédex');
-    const header = document.querySelector('h2')
+    const header = document.querySelector('h2');
     expect(header).toBeInTheDocument();
     expect(text).toBeInTheDocument();
     expect(header);
@@ -45,7 +33,5 @@ describe('Tests About.js', () => {
     const img = getByRole('img', { src: 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png' });
     expect(alt).toBeInTheDocument();
     expect(img).toBeInTheDocument();
-  })
-  
-})
-
+  });
+});
