@@ -1,6 +1,6 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
-import { render, fireEvent } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 
 const pokeMock = [
@@ -38,8 +38,6 @@ const pokeMock = [
       'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
   },
 ];
-
-const filter = 'all';
 
 describe('requisito 5', () => {
   test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista;', () => {
