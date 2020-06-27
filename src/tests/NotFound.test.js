@@ -29,7 +29,4 @@ describe('requisito 4', () => {
 
     expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
-
-
-
 });
