@@ -59,14 +59,17 @@ describe('requisito 5', () => {
     expect(button).toBeInTheDocument();
   });
 
-  //     test('Quando a página carrega, o filtro selecionado deve ser o All', () => {
-  //     const { getByText } = renderWithRouter(
-  //       <Pokedex />,
-  //     );
+  test('A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
+    const { getByText, getAllByTestId } = renderWithRouter(
+      <Pokedex pokemons={pokeMock} isPokemonFavoriteById={25} />,
+    );
 
-  //     const button = getByText(/Próximo pokémon/i);
-  //     expect(button).toBeInTheDocument();
-  //   });
+    const allTypes = getAllByTestId('pokemon-type-button').map((btn) => btn.textContent);
+    const buttonAll = getByText('All');
+
+    expect(allTypes).toEqual(pokeMock.map((obj) => obj.type));
+    expect(buttonAll).toBeInTheDocument();
+  });
 
   test('Should return to enable the Next button for all pokemons.', () => {
     const { getByText } = renderWithRouter(
