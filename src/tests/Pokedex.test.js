@@ -54,10 +54,8 @@ describe('Pokedex', () => {
       expect(button.textContent).toBe(types[index]);
       // clica no botão de tipo e pega o primeiro pokemom
       fireEvent.click(button);
-      console.log('clickei no tipo');
       const firstPokemom = getByTestId('pokemon-name');
       expect(firstPokemom).toBeInTheDocument();
-      console.log(firstPokemom.textContent);
       // testa se todos os pokemons estão mesmo com o tipo certo
       if (!btnOfProx.disabled) {
         PokemonsByType[types[index]].forEach((pokemon) => {
@@ -66,7 +64,6 @@ describe('Pokedex', () => {
           expect(renderedPokemon.textContent).toBe(pokemon.name);
           expect(pokemon.type).toBe(button.textContent);
           fireEvent.click(btnOfProx);
-          console.log('clickei em proximo');
         });
         // testa se voltou para o primeiro pokemom depois do loop
         const pokemonAfterLoop = getByTestId('pokemon-name');
@@ -77,5 +74,25 @@ describe('Pokedex', () => {
         expect(btnOfProx.disabled).toBe(true);
       }
     });
+  });
+
+  test('A Pokédex deve exibir apenas um pokémon por vez', () => {
+    const { getByText, getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const buttonsOfTypes = getAllByTestId('pokemon-type-button');
+    const btnOfProx = getByTestId('next-pokemon');
+    const pokemonName = getByTestId('pokemon-name');
+    const allbutton = getByText(/all/i);
+    expect(allbutton).toBeInTheDocument();
+    expect(allbutton.textContent).toBe('All');
+    fireEvent.click(buttonsOfTypes[0]);
+    fireEvent.click(allbutton);
+    expect(pokemonName.textContent).toBe(pokemons[0].name);
+    fireEvent.click(btnOfProx);
+    expect(pokemonName.textContent).toBe(pokemons[1].name);
+    for (let i = 1; i < 9; i += 1) {
+      expect(pokemonName.textContent).toBe(pokemons[i].name);
+      fireEvent.click(btnOfProx);
+    }
+    expect(pokemonName.textContent).toBe(pokemons[0].name);
   });
 });
