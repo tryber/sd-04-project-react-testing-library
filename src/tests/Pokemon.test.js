@@ -38,3 +38,15 @@ describe('Must return information of specific pokemon/', () => {
     );
   });
 });
+
+test('correct image information must be display', () => {
+  const { getByRole } = renderWithRouter(
+    <Pokemon pokemon={pokemon} isFavorite={false} />,
+  );
+  const image = getByRole('img');
+  console.log(image.src);
+  console.log(image.alt);
+  console.log(pokemon.image);
+  expect(image.src).toBe(pokemon.image);
+  expect(image.alt).toBe(`${pokemon.name} sprite`);
+});
