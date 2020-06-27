@@ -43,14 +43,10 @@ describe('Pokedex tests', () => {
   });
 
   test('The Pokédex should contain filter buttons.', () => {
-    const { container } = renderWithRouter(
+    const { getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
     );
-
-    const filterButtons = container.querySelectorAll('.filter-button');
-    filterButtons.forEach((btn) => {
-      expect(btn).toBeDefined();
-    });
+    expect(getAllByTestId('pokemon-type-button')).toBeDefined();
   });
 
   test('Listing pokemons only of one type', () => {
