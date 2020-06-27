@@ -44,9 +44,14 @@ test('correct image information must be display', () => {
     <Pokemon pokemon={pokemon} isFavorite={false} />,
   );
   const image = getByRole('img');
-  console.log(image.src);
-  console.log(image.alt);
-  console.log(pokemon.image);
   expect(image.src).toBe(pokemon.image);
   expect(image.alt).toBe(`${pokemon.name} sprite`);
+});
+
+test('correct image information must be display', () => {
+  const { getByRole } = renderWithRouter(
+    <Pokemon pokemon={pokemon} isFavorite={false} />,
+  );
+  const link = getByRole('link');
+  expect(link.href).toBe(`http://localhost/pokemons/${pokemon.id}`);
 });
