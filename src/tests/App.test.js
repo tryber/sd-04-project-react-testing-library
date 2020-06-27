@@ -4,19 +4,7 @@ import { Router } from 'react-router-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
-
-function renderWithRouter(
-  ui,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from './renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = renderWithRouter(<App />);

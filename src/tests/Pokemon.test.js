@@ -1,22 +1,7 @@
 import React from 'react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import pokemon from './mockPokemon';
-
-function renderWithRouter(
-  ui,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from './renderWithRouter';
 
 describe('Must return information of specific pokemon/', () => {
   test('correct name must be display', () => {
