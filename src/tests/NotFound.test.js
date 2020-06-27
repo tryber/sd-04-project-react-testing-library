@@ -9,8 +9,8 @@ test('correct image information must be display', () => {
   images.map((image) => {
     if (image.src === 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif') {
       flag = true;
-      return flag;
     }
+    return flag;
   });
   expect(flag).toBeTruthy();
 });
