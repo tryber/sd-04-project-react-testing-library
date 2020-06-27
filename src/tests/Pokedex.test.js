@@ -39,17 +39,15 @@ const pokeMock = [
 ];
 
 describe('requisito 5', () => {
-
-    test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista;', () => {
-        const { getByText } = renderWithRouter(
-          <Pokedex pokemons={pokeMock} isPokemonFavoriteById={25} />,
-        );
-        const h2 = document.querySelector('h2');
-        const heading = getByText('Encountered pokémons');
-        expect(h2).toBeInTheDocument();
-        expect(heading).toBeInTheDocument();
-    
-      });
+  test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista;', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={pokeMock} isPokemonFavoriteById={25} />,
+    );
+    const h2 = document.querySelector('h2');
+    const heading = getByText('Encountered pokémons');
+    expect(h2).toBeInTheDocument();
+    expect(heading).toBeInTheDocument();
+  });
 
   test('O botão deve conter o texto Próximo pokémon', () => {
     const { getByText } = renderWithRouter(
