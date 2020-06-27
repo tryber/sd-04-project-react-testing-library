@@ -2,10 +2,10 @@ import React from 'react';
 import renderWithRouter from '../components/renderWithRouter';
 import { About } from '../components';
 
-describe('testando componente about', () => {  
+describe('testando componente about', () => {
   test('testando h2', () => {
     const { getByRole } = renderWithRouter(<About />);
-    const tituloH2 = getByRole('heading', {tagName: /h2/i, name: /About Pokédex/i});
+    const tituloH2 = getByRole('heading', { tagName: /h2/i, name: /About Pokédex/i });
     expect(tituloH2).toBeInTheDocument();
   });
   test('testando p', () => {
