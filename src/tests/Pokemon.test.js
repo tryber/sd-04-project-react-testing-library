@@ -1,5 +1,5 @@
 import React from 'react';
-import { logDOM, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { Pokemon } from '../components';
 import pokemons from '../data';
 import renderWithRouter from './renderWithRouter';
