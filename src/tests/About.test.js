@@ -4,6 +4,11 @@ import { About } from '../components';
 
 describe('testando componente about', () => {
   test('testando h2', () => {
+    const { getByText } = renderWithRouter(<About />);
+    const titulo = getByText(/About Pokédex/i);
+    expect(titulo).toBeInTheDocument();
+  });
+  test('testando h2', () => {
     const { getByRole } = renderWithRouter(<About />);
     const tituloH2 = getByRole('heading', { tagName: /h2/i, name: /About Pokédex/i });
     expect(tituloH2).toBeInTheDocument();
