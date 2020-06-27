@@ -40,6 +40,33 @@ describe('PokemonDetails', () => {
     const sections = getAllByRole('region');
     expect(sections[1].children[1]).toBeInTheDocument();
     expect(sections[1].children[1].textContent).toBe(pokemons[0].summary);
+  });
+
+  test('A seção de detalhes deve conter um heading `h2` com o texto `Game Locations of <name>`, , onde `<name>` é o nome do pokémon exibido;', () => {
+    const { getByText, getAllByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText(/More details/i);
+    fireEvent.click(heading);
+    const sections = getAllByRole('region');
+    expect(sections[2].children[0]).toBeInTheDocument();
+    expect(sections[2].children[0].textContent).toBe(`Game Locations of ${pokemons[0].name}`);
+  });
+
+  test('A imagem da localização deve ter um atributo `src` com a URL da localização;', () => {
+    const { getByText, getAllByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText(/More details/i);
+    fireEvent.click(heading);
+    const imgs = getAllByRole('img');
+    console.log(imgs[imgs.length - 2].alt);
+    expect(imgs[imgs.length - 2].src).toBe(pokemons[0].foundAt[0].map);
+    expect(imgs[imgs.length - 2].alt).toBe(`${pokemons[0].name} location`);
     logDOM();
   });
 });
