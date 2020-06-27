@@ -53,7 +53,7 @@ describe('Pokemon tests', () => {
   test('The link takes you to the details page.', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText('More details'));
-    expect(history.location.pathname).toBe(`pokemons/${pok.id}`);
+    expect(history.location.pathname).toMatch(`pokemons/${pok.id}`);
   });
 
   test('Favorite pokemons have a start in the card.', () => {
