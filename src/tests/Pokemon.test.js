@@ -2,7 +2,7 @@ import React from 'react';
 import { createMemoryHistory } from 'history';
 // import { Router } from 'react-router-dom';
 import { Router } from 'react-router-dom';
-import { render, getByText } from '@testing-library/react';
+import { render } from '@testing-library/react';
 // import App from '../App';
 import Pokemon from '../components/Pokemon';
 import pokemon from './mockPokemon';
@@ -63,18 +63,29 @@ test('check if  link to detail is correct', () => {
   expect(link.href).toBe(`http://localhost/pokemons/${pokemon.id}`);
 });
 
-test('I pokemon is favorite check if there is an star as icon', () => {
-  const { getAllByRole } = renderWithRouter(
-    <Pokemon pokemon={pokemon} isFavorite={true} />,
-  );
-  const images = getAllByRole('img');
-  let flag = false;
-  images.map((image) => {
-    if (
-      image.alt === `${pokemon.name} is marked as favorite` &&
-      image.src === 'http://localhost/star-icon.svg'
-    )
-      flag = true;
+describe('If pokemon is favorite check if there is an star as icon', () => {
+  test('If pokemon is favorite check if alt as a text pokemon name is marked as favorite`', () => {
+    const { getAllByRole } = renderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={true} />,
+    );
+    const images = getAllByRole('img');
+    let flag = false;
+    images.map((image) => {
+      if (image.alt === `${pokemon.name} is marked as favorite`) flag = true;
+      return flag;
+    });
+    expect(flag).toBeTruthy();
   });
-  expect(flag).toBeTruthy();
+  test('If pokemon is favorite check if src the correct link`', () => {
+    const { getAllByRole } = renderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={true} />,
+    );
+    const images = getAllByRole('img');
+    let flag = false;
+    images.map((image) => {
+      if (image.src === 'http://localhost/star-icon.svg') flag = true;
+      return flag;
+    });
+    expect(flag).toBeTruthy();
+  });
 });
