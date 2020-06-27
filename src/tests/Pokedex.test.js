@@ -82,6 +82,8 @@ describe('Pokedex', () => {
     const btnOfProx = getByTestId('next-pokemon');
     const pokemonName = getByTestId('pokemon-name');
     const allbutton = getByText(/all/i);
+    const h2 = getByText('Encountered pokémons');
+    expect(h2).toBeInTheDocument();
     expect(allbutton).toBeInTheDocument();
     expect(allbutton.textContent).toBe('All');
     fireEvent.click(buttonsOfTypes[0]);
