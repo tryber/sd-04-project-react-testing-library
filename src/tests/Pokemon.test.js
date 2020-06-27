@@ -2,7 +2,7 @@ import React from 'react';
 import { createMemoryHistory } from 'history';
 // import { Router } from 'react-router-dom';
 import { Router } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 // import App from '../App';
 import Pokemon from '../components/Pokemon';
 import pokemon from './mockPokemon';
@@ -55,10 +55,26 @@ test('correct image information must be display', () => {
   expect(image.alt).toBe(`${pokemon.name} sprite`);
 });
 
-test('correct image information must be display', () => {
+test('check if  link to detail is correct', () => {
   const { getByRole } = renderWithRouter(
     <Pokemon pokemon={pokemon} isFavorite={false} />,
   );
   const link = getByRole('link');
   expect(link.href).toBe(`http://localhost/pokemons/${pokemon.id}`);
+});
+
+test('I pokemon is favorite check if there is an star as icon', () => {
+  const { getAllByRole } = renderWithRouter(
+    <Pokemon pokemon={pokemon} isFavorite={true} />,
+  );
+  const images = getAllByRole('img');
+  let flag = false;
+  images.map((image) => {
+    if (
+      image.alt === `${pokemon.name} is marked as favorite` &&
+      image.src === 'http://localhost/star-icon.svg'
+    )
+      flag = true;
+  });
+  expect(flag).toBeTruthy();
 });
