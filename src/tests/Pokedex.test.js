@@ -1,5 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../helper/renderWithRouter';
+import { render, fireEvent } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 
 const pokeMock = [
@@ -38,6 +39,8 @@ const pokeMock = [
   },
 ];
 
+const filter = 'all';
+
 describe('requisito 5', () => {
   test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista;', () => {
     const { getByText } = renderWithRouter(
@@ -56,5 +59,25 @@ describe('requisito 5', () => {
 
     const button = getByText(/Próximo pokémon/i);
     expect(button).toBeInTheDocument();
+  });
+
+  //     test('Quando a página carrega, o filtro selecionado deve ser o All', () => {
+  //     const { getByText } = renderWithRouter(
+  //       <Pokedex />,
+  //     );
+
+  //     const button = getByText(/Próximo pokémon/i);
+  //     expect(button).toBeInTheDocument();
+  //   });
+
+  test('Should return to enable the Next button for all pokemons.', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={pokeMock} isPokemonFavoriteById={25} />,
+    );
+    fireEvent.click(getByText(/All/i));
+    pokeMock.forEach(({ name }) => {
+      expect(getByText(name)).toBeDefined();
+      fireEvent.click(getByText(/Próximo pokémon/i));
+    });
   });
 });
