@@ -58,7 +58,7 @@ describe('Pokedex tests', () => {
   });
 
   test('Should contain a reset button with text All', () => {
-    const { getByText, getByTestId } = renderWithRouter(
+    const { getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
     );
     expect(getByText(/All/i)).toBeDefined();
@@ -80,7 +80,7 @@ describe('Pokedex tests', () => {
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
     );
     pokemons.forEach(({ name }) => {
-      expect(getByText(name)).toBeDefined();
+      expect(getByText(name)).toBeInTheDocument();
       fireEvent.click(getByText(/Próximo pokémon/i));
     });
   });
