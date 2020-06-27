@@ -73,7 +73,7 @@ describe('Pokemon', () => {
     expect(link.pathname).toBe(`/pokemons/${pokemons[0].id}`);
     expect(history.location.pathname).toBe('/');
     fireEvent.click(link);
-    expect(history.location.pathname).toBe(`pokemons/${pokemons[0].id}`);
+    expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
 
   test('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
