@@ -26,7 +26,14 @@ describe('Must return information of specific pokemon/', () => {
       <Pokemon pokemon={pokemon} isFavorite={false} />,
     );
     const pokemonName = getByTestId('pokemon-name');
-    expect(pokemonName).toHaveTextContent('Pikachu');
+    expect(pokemonName).toHaveTextContent(pokemon.name);
+  });
+  test('correct type must be display', () => {
+    const { getByTestId } = renderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={false} />,
+    );
+    const pokemonType = getByTestId('pokemonType');
+    expect(pokemonType).toHaveTextContent(pokemon.type);
   });
   test('correct weight must be display', () => {
     const { getByTestId } = renderWithRouter(
