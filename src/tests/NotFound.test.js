@@ -19,7 +19,7 @@ describe('requisito 4', () => {
   });
 
   test('A página deve exibir a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
-    const { getByText } = render(
+    render(
       <MemoryRouter>
         <NotFound />
       </MemoryRouter>,
