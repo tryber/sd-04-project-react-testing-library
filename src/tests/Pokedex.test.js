@@ -33,10 +33,10 @@ describe('quinto requisito', () => {
     expect(getByTestId('pokemon-name')).toBeInTheDocument();
   });
 
-  it('o texto do botão deve ser o nome do tipo', () => {
+  it('o texto do botão deve ser o nome do tipo e ser dinamicamente gerados', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const buttonsList = getAllByTestId('pokemon-type-button').map(
-      (elem) => elem.firstChild.textContent,
+      (elem) => elem.firstChild.textContent
     );
     expect(buttonsList).toStrictEqual(Object.keys(pokeNamesandTypes));
   });
@@ -57,9 +57,12 @@ describe('quinto requisito', () => {
       fireEvent.click(btn);
       // salvando o tipo do pokemon que aparece na tela:
       const pokemonType = getByTestId('pokemonType').firstChild.textContent;
-      // SE VERIFICA SE O TIPO RENDERIZADO NA TELA É O MESMO DO BBOTÃO CLICADO ANTERIORMENTE:
+      // SE VERIFICA SE O TIPO RENDERIZADO NA TELA É O MESMO DO BOTÃO CLICADO ANTERIORMENTE:
       expect(pokemonType).toBe(buttonName);
-      fireEvent.click(nextButton);
+      // se tiver mais de um pokemon do mesmo tipos, clicar no nextButton, se não verificar se
+      // ele esta desativado:
+      if (pokeNamesandTypes[buttonName].length > 1) fireEvent.click(nextButton);
+      else expect(nextButton).toBeDisabled();
       // SE, AO CLICAR NO NEXT BUTTON, O POKEMON NÃO FOR O PRIMEIRO POKÉMON DAQUELE TIPO,
       // CONTINUA CLICANDO E VERIFICANDO OS TIPOS:
       const firstPokemon = pokeNamesandTypes[buttonName][0];
