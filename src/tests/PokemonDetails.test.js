@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, logDOM, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import pokemons from '../data';
@@ -67,6 +67,17 @@ describe('PokemonDetails', () => {
     console.log(imgs[imgs.length - 2].alt);
     expect(imgs[imgs.length - 2].src).toBe(pokemons[0].foundAt[0].map);
     expect(imgs[imgs.length - 2].alt).toBe(`${pokemons[0].name} location`);
-    logDOM();
+  });
+
+  test(' O label do checkbox deve ser `Pokémon favoritado?`', () => {
+    const { getByText, getByLabelText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText(/More details/i);
+    fireEvent.click(heading);
+    const input = getByLabelText('Pokémon favoritado?');
+    expect(input).toBeInTheDocument();
   });
 });
