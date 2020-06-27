@@ -14,7 +14,7 @@ describe('testes da pagina Pokemon', () => {
 
   test('testando o card de pokemon!', () => {
     const { getByTestId } = renderWithRouter(
-      <Pokemon pokemon={Data[2]} isFavorite={isPokemonFavoriteById[Data[2].id]} />;
+      <Pokemon pokemon={Data[2]} isFavorite={isPokemonFavoriteById[Data[2].id]} />,
     );
     const weight = Data[2].averageWeight.value;
     const measure = Data[2].averageWeight.measurementUnit;
@@ -26,7 +26,7 @@ describe('testes da pagina Pokemon', () => {
 
   test('Teste do src da imagem e do alt text', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={Data[2]} isFavorite={isPokemonFavoriteById[Data[2].id]} />;
+      <Pokemon pokemon={Data[2]} isFavorite={isPokemonFavoriteById[Data[2].id]} />,
     );
 
     expect(getByAltText(`${Data[2].name} sprite`)).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('testes da pagina Pokemon', () => {
 
   test('Testando a estrela de pokemon favoritado', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={Data[4]} isFavorite={isPokemonFavoriteById[Data[4].id]} />;
+      <Pokemon pokemon={Data[4]} isFavorite={isPokemonFavoriteById[Data[4].id]} />,
     );
 
     expect(getByAltText(`${Data[4].name} is marked as favorite`)).toBeInTheDocument();
