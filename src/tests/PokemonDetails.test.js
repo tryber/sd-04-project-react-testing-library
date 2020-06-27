@@ -74,7 +74,7 @@ describe('PokemonDetails tests', () => {
   test('There must be a name and an image of the location.', () => {
     const url1 = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
     const url2 = 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
-    const { getByText, getAllByAltText, container } = renderWithRouter(
+    const { getByText, getAllByAltText } = renderWithRouter(
       <PokemonDetails
         isPokemonFavoriteById={favorite}
         match={match}
