@@ -74,6 +74,7 @@ describe('quinto requisito', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText(/Próximo pokémon/i);
     const resetButton = getByText('All');
+    expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
     expect(resetButton).toBeInTheDocument();
     fireEvent.click(resetButton);
     // a cada clique do nextButton, verificar se o nome de todos os pokemons estão sendo mostrados:
