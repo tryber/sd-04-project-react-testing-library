@@ -8,6 +8,13 @@ afterEach(cleanup);
 
 describe('Pokedex tests', () => {
   const favorite = { 25: false };
+  test('Checks for the H2.', () => {
+    const { container } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
+    );
+    expect(container.querySelector('h2').innerHTML).toBe('Encountered pokémons');
+  });
+
   test('Checks for the "Next" button.', () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
@@ -15,7 +22,7 @@ describe('Pokedex tests', () => {
     expect(getByText(/Próximo pokémon/i)).toBeDefined();
   });
 
-  test('Checks for the "Next" button.', () => {
+  test('Advancing to the next pokemon.', () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
     );
