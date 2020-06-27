@@ -17,4 +17,19 @@ describe('requisito 4', () => {
     expect(heading).toBeInTheDocument();
     expect(h2).toBeInTheDocument();
   });
+
+  test('A página deve exibir a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <NotFound />
+      </MemoryRouter>,
+    );
+
+    const img = document.querySelector('img');
+
+    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
+
+
+
 });
