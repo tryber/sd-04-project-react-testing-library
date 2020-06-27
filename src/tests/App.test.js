@@ -1,18 +1,8 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { fireEvent } from '@testing-library/react';
+import renderWithRouter from './helpFunction';
 import App from '../App';
 
-
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
 
 describe('Test App component', () => {
   test('renders a reading with the text `Pokédex`', () => {
