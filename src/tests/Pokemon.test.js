@@ -66,7 +66,7 @@ test('check if  link to detail is correct', () => {
 describe('If pokemon is favorite check if there is an star as icon', () => {
   test('If pokemon is favorite check if alt as a text pokemon name is marked as favorite`', () => {
     const { getAllByRole } = renderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite={true} />,
+      <Pokemon pokemon={pokemon} isFavorite />,
     );
     const images = getAllByRole('img');
     let flag = false;
@@ -78,7 +78,7 @@ describe('If pokemon is favorite check if there is an star as icon', () => {
   });
   test('If pokemon is favorite check if src the correct link`', () => {
     const { getAllByRole } = renderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite={true} />,
+      <Pokemon pokemon={pokemon} isFavorite />,
     );
     const images = getAllByRole('img');
     let flag = false;
