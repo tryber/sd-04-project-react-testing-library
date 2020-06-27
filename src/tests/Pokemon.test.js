@@ -23,7 +23,8 @@ describe('Pokemon tests', () => {
     const { getByTestId } = renderWithRouter(
       <Pokemon pokemon={pok} isFavorite={favorite} />,
     );
-    expect(getByTestId('pokemon-name')).toBeDefined();
+    expect(getByTestId('pokemon-name').textContent).toBe(`${pok.name}`);
+    expect(getByTestId('pokemonType').textContent).toBe(`${pok.type}`);
   });
 
   test('Return the formatted weight value and unit of measure.', () => {
