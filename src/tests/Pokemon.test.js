@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../services/renderWithRouter';
 import Data from '../data';
@@ -40,5 +40,16 @@ describe('testes da pagina Pokemon', () => {
 
     expect(getByAltText(`${Data[4].name} is marked as favorite`)).toBeInTheDocument();
     expect(getByAltText(`${Data[4].name} is marked as favorite`).src).toBe('http://localhost/star-icon.svg');
+  });
+
+  test('Testando se o link encaminha para a página de detalhes', () => {
+    const { getByText, history } = renderWithRouter(
+      <Pokemon pokemon={Data[4]} isFavorite={isPokemonFavoriteById[Data[4].id]} />,
+    );
+
+    expect(getByText('More details')).toBeInTheDocument();
+
+    fireEvent.click(getByText('More details'));
+    expect(history.location.pathname).toBe(`/pokemons/${Data[4].id}`);
   });
 });
