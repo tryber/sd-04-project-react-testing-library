@@ -1,11 +1,8 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, getByText, getByTestId } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
-import { string } from 'prop-types';
 
-describe('testando pokedex', ()=> {
+describe('testando pokedex', () => {
   test('testando botao', () => {
     const { queryAllByTestId } = renderWithRouter(<App />);
     const botao = queryAllByTestId(/pokemon-type-button/i);
