@@ -36,7 +36,7 @@ describe('quinto requisito', () => {
   it('o texto do botão deve ser o nome do tipo e ser dinamicamente gerados', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const buttonsList = getAllByTestId('pokemon-type-button').map(
-      (elem) => elem.firstChild.textContent
+      (elem) => elem.firstChild.textContent,
     );
     expect(buttonsList).toStrictEqual(Object.keys(pokeNamesandTypes));
   });
