@@ -27,6 +27,12 @@ const pokeInfo = {
 };
 
 describe('Deve ser retornado um card com as informações de determinado pokémon', () => {
+  test('O tipo correto do pokemon deve ser exibido e possuir o data-testid pokemonType', () => {
+    const { getByTestId } = renderWithRouter(<Pokemon pokemon={pokeInfo} isFavorite={false} />);
+    const type = getByTestId('pokemonType');
+    expect(type.textContent).toBe(pokeInfo.type);
+  });
+
   test('O nome correto do pokémon deve aparecer na tela', () => {
     const { getByTestId } = renderWithRouter(<Pokemon pokemon={pokeInfo} isFavorite={false} />);
     const name = getByTestId('pokemon-name');
