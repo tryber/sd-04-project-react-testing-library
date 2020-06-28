@@ -82,7 +82,7 @@ describe('Requisito 6', () => {
   });
 
   test('O ícone deve ser uma imagem, com o atributo src igual /star-icon.svg', () => {
-    renderWithRouter(<Pokemon pokemon={pokeMock[0]} isFavorite={true} />);
+    renderWithRouter(<Pokemon pokemon={pokeMock[0]} isFavorite />);
     expect(document.querySelector('.favorite-icon').src.includes('/star-icon.svg')).toBeTruthy();
     expect(document.querySelector('.favorite-icon').alt).toBe(
       `${pokeMock[0].name} is marked as favorite`,
