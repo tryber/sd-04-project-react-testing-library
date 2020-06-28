@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
-import data from '../data';
 
 describe('sexto requisito', () => {
   it('deve ser retornado um card com as informações corretas de determinado pokémon', () => {
@@ -12,7 +11,9 @@ describe('sexto requisito', () => {
     expect(getByTestId('pokemon-weight')).toHaveTextContent(
       'Average weight:6.0kg',
     );
-    expect(getByAltText('Pikachu sprite')).toBeInTheDocument();
+    const pokeImage = getByAltText('Pikachu sprite');
+    expect(pokeImage).toBeInTheDocument();
+    expect(pokeImage).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   it('ao clicar em detalhes, URL exibida no navegador deve mudar para /pokemon/<id>', () => {
@@ -23,18 +24,20 @@ describe('sexto requisito', () => {
   });
 
   it('pokémons favoritados devem exibir um ícone de uma estrela', () => {
-    const { getByText, getByAltText } = renderWithRouter(<App />);
-    // pegando os ID's favoritados no localStorage:
-    const favoritesArr = JSON.parse(localStorage.getItem('favoritePokemonIds')) || [];
-    // buscando esses ID's no data para passar esse novo arr como props pro componente:
-    const dataFiltered = data.filter((pokemon) => favoritesArr.includes(pokemon.id));
-    // buscando os nomes de cada pokemon favoritado, para conferir iterar:
-    const namesArr = dataFiltered.map((element) => element.name);
-    namesArr.forEach((name) => {
-      if (getByText(name)) {
-        const image = getByAltText(`${name} is marked as favorite`);
-        expect(image).toHaveAttribute('src', '/star-icon.svg');
-      }
+    const { getByText, getByAltText } = renderWithRouter(<App />, {
+      route: '/pokemons/25',
     });
+    fireEvent.click(getByText(/Pokémon favoritado?/i));
+    const image = getByAltText('Pikachu is marked as favorite');
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('src', '/star-icon.svg');
+
+    // namesArr.forEach((name) => {
+    //   if (getByText(name)) {
+    //     const image = getByAltText(`${name} is marked as favorite`);
+    //     expect(image).toHaveAttribute('src', '/star-icon.svg');
+    //     expect(image).toHaveAttribute('src', '/star-icon.svg');
+    //   }
+    // });
   });
 });
