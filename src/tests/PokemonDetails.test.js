@@ -62,6 +62,7 @@ test('must render all location', () => {
   let count = 0;
   images.map((image) => {
     if (image.alt === `${pokemons[0].name} location`) count += 1;
+    return count;
   });
   expect(count).toBe(pokemons[0].foundAt.length);
 });
