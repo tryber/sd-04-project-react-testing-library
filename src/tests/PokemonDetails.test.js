@@ -53,7 +53,7 @@ test('renders a h2 with the text Game Locations of <name>', () => {
 });
 
 test('must render all location', () => {
-  const { getAllByRole } = renderWithRouter(
+  const { getAllByRole, getByText } = renderWithRouter(
     <App pokemons={pokemons} />,
   );
   const detailLink = getAllByRole('link');
@@ -61,7 +61,11 @@ test('must render all location', () => {
   const images = getAllByRole('img');
   let count = 0;
   images.map((image) => {
-    if (image.alt === `${pokemons[0].name} location`) count += 1;
+    if (image.alt === `${pokemons[0].name} location`) {
+      count += 1;
+      expect(image.src).toBe(pokemons[0].foundAt[count - 1].map);
+      expect(image.alt).toBe(`${pokemons[0].name} location`);
+    }
     return count;
   });
   expect(count).toBe(pokemons[0].foundAt.length);
