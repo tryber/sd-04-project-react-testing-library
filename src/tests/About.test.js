@@ -1,9 +1,8 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import About from '../components/About';
 import { createMemoryHistory } from 'history';
-import { func } from 'prop-types';
+import About from '../components/About';
 
 function renderWithRouter(ui, routeConfigs = {}) {
   const route = routeConfigs.route || '/';
