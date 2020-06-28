@@ -19,7 +19,7 @@ describe('sexto requisito', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/More details/i));
     const { pathname } = history.location;
-    expect(pathname).toBe('pokemons/25');
+    expect(pathname).toBe('/pokemons/25');
   });
 
   it('pokémons favoritados devem exibir um ícone de uma estrela', () => {
