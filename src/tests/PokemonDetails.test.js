@@ -1,7 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import renderWithRouter from '../helper/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 
 const pokeMock = [
@@ -48,40 +47,32 @@ describe('Requisito 7', () => {
     },
   };
   test('A página deve conter um texto <name> Details, onde <name> é o nome do pokémon', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
-      </MemoryRouter>,
+    const { getByText } = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
     );
     const heading = getByText(`${pokeMock[0].name} Details`);
     expect(heading).toBeInTheDocument();
   });
 
   test('Deve conter mais informações sobre apenas o pokémon selecionado;', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
-      </MemoryRouter>,
+    const { getByText } = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
     );
     const textDetail = getByText(pokeMock[0].summary);
     expect(textDetail).toBeInTheDocument();
   });
 
   test('O pokémon exibido na página de detalhes não deve conter um link de navegação para exibir detalhes deste pokémon;', () => {
-    render(
-      <MemoryRouter>
-        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
-      </MemoryRouter>,
+    const {} = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
     );
     expect(document.querySelector('a')).toBeNull();
     expect(document.querySelectorAll('container').textContent).not.toBe('More details');
   });
 
   test('A seção de detalhes deve conter um parágrafo com o resumo do pokémon específico sendo visualizado;', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
-      </MemoryRouter>,
+    const { getByText } = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
     );
 
     expect(getByText(pokeMock[0].summary)).toBeInTheDocument();
@@ -89,10 +80,8 @@ describe('Requisito 7', () => {
   });
 
   test('A seção de detalhes deve conter um heading h2 com o texto Summary', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
-      </MemoryRouter>,
+    const { getByText } = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
     );
 
     expect(getByText('Summary')).toBeInTheDocument();
