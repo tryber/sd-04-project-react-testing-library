@@ -3,17 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { PokemonDetails } from '../components';
 import pokemons from '../data';
 
-const favs = {
-  4: false,
-  10: false,
-  23: false,
-  25: true,
-  65: false,
-  78: false,
-  143: false,
-  148: false,
-  151: false,
-};
+const favs = { 25: true };
 
 const match = { params: { id: `${pokemons[0].id}` } };
 
