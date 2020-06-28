@@ -39,7 +39,7 @@ describe('Test Pokemon.js', () => {
     expect(namePokemon).toBeInTheDocument();
     expect(typePokemon).toBeInTheDocument();
 
-    data.forEach(({name, type}) => {
+    data.forEach(({ name, type }) => {
       expect(getByText(name)).toBeInTheDocument();
       expect(getAllByText(type)[1]).toBeInTheDocument();
       fireEvent.click(getByText('Próximo pokémon'));
