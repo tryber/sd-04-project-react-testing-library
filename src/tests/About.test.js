@@ -25,7 +25,7 @@ describe('Testando a rota', () => {
 });
 
 test('testing the content of image', () => {
-  const { getByLabelText } = renderWithRouter(<About />);
+  renderWithRouter(<About />);
   const image = document.querySelector('img');
   expect(image.src).toBe(
     'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
