@@ -36,7 +36,7 @@ test('renders a h2 with the text `pikachu Details`', () => {
   );
   const detailLink = getAllByRole('link');
   fireEvent.click(detailLink[3]);
-  const element = getByText(/Summary/);
+  const element = getByText(/Summary/i);
   expect(element).toBeInTheDocument();
   expect(element.tagName).toEqual('H2');
 });
@@ -69,4 +69,14 @@ test('must render all location', () => {
     return count;
   });
   expect(count).toBe(pokemons[0].foundAt.length);
+});
+
+test('renders the text `Pokémon favoritado?', () => {
+  const { getAllByRole, getByText } = renderWithRouter(
+    <App pokemons={pokemons} />,
+  );
+  const detailLink = getAllByRole('link');
+  fireEvent.click(detailLink[3]);
+  const element = getByText('Pokémon favoritado?');
+  expect(element).toBeInTheDocument();
 });
