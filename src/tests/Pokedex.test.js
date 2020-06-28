@@ -1,6 +1,7 @@
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
+import { fireEvent } from '@testing-library/react';
 
 describe('testando pokedex', () => {
   test('testando botao', () => {
@@ -23,4 +24,12 @@ describe('testando pokedex', () => {
     const cabecalho = getByText(/Encountered pokémons/i);
     expect(cabecalho).toBeInTheDocument();
   });
+  test('testando botao all', () => {
+    const { getByText, getByTestId } = renderWithRouter(<App />);
+    const allButton = getByText(/All/i);
+    expect(allButton).toBeInTheDocument();
+    fireEvent.click(allButton);
+    expect(getByTestId((/next-pokemon/i))).toBeInTheDocument();
+  });
+
 });
