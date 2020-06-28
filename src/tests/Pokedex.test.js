@@ -11,6 +11,12 @@ const pokemonTypes = [
 afterEach(cleanup);
 
 describe('Test Pokedex.js', () => {
+  test('Heading h2', () => {
+    const { getByText } = renderWithRouter(<App />, { route: '/' });
+    const title = getByText(/Encountered pokémons/i);
+
+    expect(title).toBeInTheDocument();
+  });
 
   test('Next pokemon button', () => {
     const { getByTestId } = renderWithRouter(<App />, { route: '/' });
