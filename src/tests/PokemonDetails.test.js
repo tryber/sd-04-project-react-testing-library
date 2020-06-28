@@ -1,10 +1,10 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
-import PokemonDetails from '../components/PokemonDetails';
+// import { MemoryRouter } from 'react-router-dom';
+import {fireEvent } from '@testing-library/react';
+// import PokemonDetails from '../components/PokemonDetails';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { logDOM } from '@testing-library/react';
+// import { logDOM } from '@testing-library/react';
 import pokemons from './mockPokemon';
 // import pokemons from '../data';
 
