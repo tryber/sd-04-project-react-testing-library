@@ -24,9 +24,7 @@ test('There must be no link to this pokemon detail page', () => {
   const linkHomePage = getAllByRole('link');
   fireEvent.click(linkHomePage[3]);
   const linksdetailpage = getAllByRole('link');
-  linksdetailpage.map((link) => {
-    expect(link.href).not.toBe('http://localhost/pokemons/25');
-  });
+  linksdetailpage.map((link) => expect(link.href).not.toBe('http://localhost/pokemons/25'));
 });
 
 test('renders a reading with the text `pikachu Details`', () => {
