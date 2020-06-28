@@ -17,7 +17,7 @@ describe('testando pokedex', () => {
   test('testando botao tipo', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const tipo = getAllByTestId(/pokemon-type-button/i);
-    expect(typeof tipo[1].innerHTML).toBe('string');
+    expect(tipo[0].innerHTML).toBe('Electric');
   });
   test('testando cabecalho', () => {
     const { getByText } = renderWithRouter(<App />);
