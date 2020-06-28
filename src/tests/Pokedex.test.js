@@ -56,9 +56,9 @@ describe('quinto requisito', () => {
       const buttonName = btn.firstChild.textContent;
       fireEvent.click(btn);
       // salvando o tipo do pokemon que aparece na tela:
-      const pokemonType = getByTestId('pokemonType').firstChild.textContent;
+      const pokemonType = getByTestId('pokemonType');
       // SE VERIFICA SE O TIPO RENDERIZADO NA TELA É O MESMO DO BOTÃO CLICADO ANTERIORMENTE:
-      expect(pokemonType).toBe(buttonName);
+      expect(pokemonType).toHaveTextContent(buttonName);
       // se tiver mais de um pokemon do mesmo tipos, clicar no nextButton, se não verificar se
       // ele esta desativado:
       if (pokeNamesandTypes[buttonName].length > 1) fireEvent.click(nextButton);
@@ -67,7 +67,7 @@ describe('quinto requisito', () => {
       // CONTINUA CLICANDO E VERIFICANDO OS TIPOS:
       const firstPokemon = pokeNamesandTypes[buttonName][0];
       while (!queryByText(firstPokemon)) {
-        expect(pokemonType).toBe(buttonName);
+        expect(pokemonType).toHaveTextContent(buttonName);
         fireEvent.click(nextButton);
       }
     });
