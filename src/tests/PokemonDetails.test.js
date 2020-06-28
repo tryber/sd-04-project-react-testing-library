@@ -80,3 +80,13 @@ test('renders the text `Pokémon favoritado?', () => {
   const element = getByText('Pokémon favoritado?');
   expect(element).toBeInTheDocument();
 });
+
+test('renders the text the summary', () => {
+  const { getAllByRole, getByText } = renderWithRouter(
+    <App pokemons={pokemons} />,
+  );
+  const detailLink = getAllByRole('link');
+  fireEvent.click(detailLink[3]);
+  const summary = getByText(pokemons[0].summary);
+  expect(summary).toBeInTheDocument();
+});
