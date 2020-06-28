@@ -32,14 +32,18 @@ afterEach(cleanup);
 
 describe('Test Pokemon.js', () => {
   test('Return information about a pokemon', () => {
-    const { getByTestId } = renderWithRouter(<App />, { route: '/' });
-    const name = getByTestId('pokemon-name');
-    const type = getByTestId('pokemonType');
-    const weight = getByTestId('pokemon-weight');
+    const { getByTestId, getByText, getAllByText } = renderWithRouter(<App />, { route: '/' });
+    const namePokemon = getByTestId('pokemon-name');
+    const typePokemon = getByTestId('pokemonType');
 
-    expect(name).toBeInTheDocument();
-    expect(type).toBeInTheDocument();
-    expect(weight).toBeInTheDocument();
+    expect(namePokemon).toBeInTheDocument();
+    expect(typePokemon).toBeInTheDocument();
+
+    data.forEach(({name, type}) => {
+      expect(getByText(name)).toBeInTheDocument();
+      expect(getAllByText(type)[1]).toBeInTheDocument();
+      fireEvent.click(getByText('Próximo pokémon'));
+    });
   });
 
   test('Text format - Average weight', () => {
