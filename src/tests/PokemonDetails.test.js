@@ -1,8 +1,7 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import renderWithRouter from '../helper/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 
 const pokeMock = [
@@ -49,24 +48,30 @@ describe('Requisito 7', () => {
     },
   };
   test('A página deve conter um texto <name> Details, onde <name> é o nome do pokémon', () => {
-    const { getByText } = renderWithRouter(
-      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
+    const { getByText } = render(
+      <MemoryRouter>
+        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
+      </MemoryRouter>,
     );
     const heading = getByText(`${pokeMock[0].name} Details`);
     expect(heading).toBeInTheDocument();
   });
 
   test('Deve conter mais informações sobre apenas o pokémon selecionado;', () => {
-    const { getByText } = renderWithRouter(
-      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
+    const { getByText } = render(
+      <MemoryRouter>
+        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
+      </MemoryRouter>,
     );
     const textDetail = getByText(pokeMock[0].summary);
     expect(textDetail).toBeInTheDocument();
   });
 
   test('O pokémon exibido na página de detalhes não deve conter um link de navegação para exibir detalhes deste pokémon;', () => {
-    const {} = renderWithRouter(
-      <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />,
+    render(
+      <MemoryRouter>
+        <PokemonDetails isPokemonFavoriteById={pokeMock[0].id} match={match} pokemons={pokeMock} />
+      </MemoryRouter>,
     );
     expect(document.querySelector('a')).toBeNull();
     expect(document.querySelectorAll('container').textContent).not.toBe('More details');
