@@ -6,7 +6,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 // import { logDOM } from '@testing-library/react';
 import pokemons from './mockPokemonDetail';
-import pokemon from './mockPokemon';
+// import pokemon from './mockPokemon';
 // import { Link } from 'react-router-dom';
 // import pokemons from '../data';
 
