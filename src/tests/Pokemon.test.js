@@ -49,7 +49,10 @@ describe('Requisito 6', () => {
   test('O nome correto do pokémon deve aparecer na tela;', () => {
     const { getByText } = renderWithRouter(<Pokemon pokemon={pokeMock[0]} />);
     const pokeName = getByText(pokeMock[0].name);
+    const pokeType = getByText(pokeMock[0].type);
+
     expect(pokeName).toBeInTheDocument();
+    expect(pokeType).toBeInTheDocument();
   });
 
   test('O peso médio do pokémon deve ser exibido com um texto no formato Average weight: <value> <measurementUnit>, onde <value> e <measurementUnit>', () => {
