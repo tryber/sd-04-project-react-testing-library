@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
-import { fireEvent } from '@testing-library/react';
 
 describe('testando pokedex', () => {
   test('testando botao', () => {
@@ -31,5 +31,4 @@ describe('testando pokedex', () => {
     fireEvent.click(allButton);
     expect(getByTestId((/next-pokemon/i))).toBeInTheDocument();
   });
-
 });
