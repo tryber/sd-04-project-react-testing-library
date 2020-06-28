@@ -53,7 +53,7 @@ test('renders a h2 with the text Game Locations of <name>', () => {
 });
 
 test('must render all location', () => {
-  const { getAllByRole, getByText } = renderWithRouter(
+  const { getAllByRole } = renderWithRouter(
     <App pokemons={pokemons} />,
   );
   const detailLink = getAllByRole('link');
