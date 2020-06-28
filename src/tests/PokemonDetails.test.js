@@ -9,7 +9,7 @@ import pokemons from './mockPokemonDetail';
 // import pokemons from '../data';
 
 test('renders a reading with the text `pikachu Details`', () => {
-  const { getAllByRole, getByText } = renderWithRouter(<App pokemons={ pokemons } />);
+  const { getAllByRole, getByText } = renderWithRouter(<App pokemons={pokemons} />);
   const detailLink = getAllByRole('link');
   console.log(pokemons);
   fireEvent.click(detailLink[3]);
