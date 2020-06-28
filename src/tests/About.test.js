@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { render, fireEvent, getByLabelText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import About from '../components/About';
 
