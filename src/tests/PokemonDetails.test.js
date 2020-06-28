@@ -25,7 +25,9 @@ test('There must be no link to this pokemon detail page', () => {
   const linkHomePage = getAllByRole('link');
   fireEvent.click(linkHomePage[3]);
   const linksdetailpage = getAllByRole('link');
-  linksdetailpage.map((link) => expect(link.href).not.toBe('http://localhost/pokemons/25'));
+  linksdetailpage.map((link) =>
+    expect(link.href).not.toBe('http://localhost/pokemons/25'),
+  );
 });
 
 test('renders a h2 with the text `pikachu Details`', () => {
@@ -48,4 +50,18 @@ test('renders a h2 with the text Game Locations of <name>', () => {
   const element = getByText(`Game Locations of ${pokemons[0].name}`);
   expect(element).toBeInTheDocument();
   expect(element.tagName).toEqual('H2');
+});
+
+test('must render all location', () => {
+  const { getAllByRole } = renderWithRouter(
+    <App pokemons={pokemons} />,
+  );
+  const detailLink = getAllByRole('link');
+  fireEvent.click(detailLink[3]);
+  const images = getAllByRole('img');
+  let count = 0;
+  images.map((image) => {
+    if (image.alt === `${pokemons[0].name} location`) count += 1;
+  });
+  expect(count).toBe(pokemons[0].foundAt.length);
 });
