@@ -2,6 +2,7 @@ import React from 'react';
 import { cleanup } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
+import pokemons from '../data';
 
 const pokeMock = [
   {
@@ -124,5 +125,29 @@ describe('Requisito 7', () => {
 
     expect(getByText('Summary')).toBeInTheDocument();
     expect(getByText('Summary').tagName).toBe('H2');
+  });
+  test('There must be a name and an image of the location.', () => {
+    const url1 = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+    const url2 = 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
+    const { getByText, getAllByAltText } = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={25} match={match} pokemons={pokemons} />,
+    );
+    expect(getAllByAltText(`${pokeMock[0].name} location`).length).toBe(2);
+    const imgs = getAllByAltText(`${pokeMock[0].name} location`);
+    imgs.forEach((mapa) => {
+      console.log(mapa.src);
+      expect(mapa.src === url1 || mapa.src === url2).toBe(true);
+    });
+    expect(getByText('Kanto Viridian Forest')).toBeDefined();
+    expect(getByText('Kanto Power Plant')).toBeDefined();
+  });
+
+  test('The checkbox label must be a "favorite Pokémon ?".', () => {
+    // const url1 = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+    // const url2 = 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
+    const { getByText } = renderWithRouter(
+      <PokemonDetails isPokemonFavoriteById={25} match={match} pokemons={pokemons} />,
+    );
+    expect(getByText('Pokémon favoritado?')).toBeDefined();
   });
 });
