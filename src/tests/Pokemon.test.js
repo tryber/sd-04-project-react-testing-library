@@ -23,7 +23,7 @@ test('The average weight of the Pokémon must be displayed with text in the desi
   const value = pokemons[0].averageWeight.value;
   const measurementUnit = pokemons[0].averageWeight.measurementUnit;
   expect(getByTestId('pokemon-weight')).toHaveTextContent(
-    `Average weight:${value}${measurementUnit}`
+    `Average weight:${value}${measurementUnit}`,
   );
 });
 
