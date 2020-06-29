@@ -30,8 +30,9 @@ it('should render the first pokemon when the button is clicked when the last pok
 })
 
 it('must render one pokemon at a time', () => {
-  const { getAllByTestId } = renderWithRouter(<App />);
+  const { getAllByTestId, getByText } = renderWithRouter(<App />);
   expect(getAllByTestId('pokemon-name').length).toBe(1);
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
 it('should only circulate through the Pokémon of the type from the selected type button, ', () => {
