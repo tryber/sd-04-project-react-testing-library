@@ -30,52 +30,52 @@ describe('Testando rotas', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const text = getByText(/Encountered pokémons/);
     expect(text).toBeInTheDocument();
-  })
+  });
 
   test('Testar Home em "/"', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const text = getByText(/Encountered pokémons/);
-    fireEvent.click(getByText(/Home/i))
+    fireEvent.click(getByText(/Home/i));
     expect(text).toBeInTheDocument();
-  })
+  });
 
   test('Testar About em "/about"', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const text = getByText(/About Pokédex/);
-    fireEvent.click(getByText(/^About$/))
+    fireEvent.click(getByText(/^About$/));
     expect(text).toBeInTheDocument();
-  })
+  });
 
   test('Testar Favorite Pokémons em "/favorites"', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const text = getByText(/Favorite pokémons/);
-    fireEvent.click(getByText(/Favorite Pokémons/))
+    fireEvent.click(getByText(/Favorite Pokémons/));
     expect(text).toBeInTheDocument();
-  })
+  });
 
   test('Testar "/not-found"', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/not-found']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const text = getByText(/Page requested not found/);
     expect(text).toBeInTheDocument();
-  })
+  });
 });
