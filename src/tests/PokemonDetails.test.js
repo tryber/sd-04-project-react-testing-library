@@ -53,7 +53,8 @@ const pokeMock = [
         map: 'https://cdn.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png',
       },
     ],
-    summary: 'Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes.',
+    summary:
+      'Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes.',
   },
   {
     id: 151,
@@ -71,9 +72,9 @@ const pokeMock = [
         map: 'https://cdn.bulbagarden.net/upload/e/e4/Hoenn_Faraway_Island_Map.png',
       },
     ],
-    summary: 'Apparently, it appears only to those people who are pure of heart and have a strong desire to see it.',
-
-  }
+    summary:
+      'Apparently, it appears only to those people who are pure of heart and have a strong desire to see it.',
+  },
 ];
 afterEach(cleanup);
 
