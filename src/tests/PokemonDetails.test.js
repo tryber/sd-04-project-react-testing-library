@@ -10,7 +10,6 @@ describe('sétimo requisito', () => {
         getByText,
         queryByText,
         queryAllByText,
-        getAllByAltText,
       } = renderWithRouter(<App />, {
         route: `/pokemons/${id}`,
       });
