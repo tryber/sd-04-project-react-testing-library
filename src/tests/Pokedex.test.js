@@ -1,19 +1,22 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter'
-import data from '../data'
+import renderWithRouter from '../renderWithRouter';
+import { fireEvent, getByText } from '@testing-library/react';
+import data from '../data';
 import App from '../App';
-import { fireEvent, getByText, getByTestId } from '@testing-library/react';
 
 
-test('When pressing the próximo button, the page should display the next pokémon', () => {
-  const { getByText } = renderWithRouter(<App />);
-
-  const btnProximo = getByText(/Próximo pokémon/i);
-  expect(btnProximo).toBeInTheDocument();
+const getName = (getByText) => {
   data.forEach(({ name }) => {
+    const btnProximo = getByText(/Próximo pokémon/i);
+    expect(btnProximo).toBeInTheDocument();
     expect(getByText(name)).toBeInTheDocument();
     fireEvent.click(btnProximo);
   });
+}
+
+test('When pressing the próximo button, the page should display the next pokémon', () => {
+  const { getByText } = renderWithRouter(<App />);
+  getName(getByText);
 });
 
 test('the Pokédex must return to the first Pokémon at the press...', () => {
@@ -34,12 +37,7 @@ test('The Pokédex must contain a button to reset the filter', () => {
   const todos = getByText(/All/i);
   expect(todos).toBeInTheDocument();
   fireEvent.click(todos);
-  const btnProximo = getByText(/Próximo pokémon/i);
-  expect(btnProximo).toBeInTheDocument();
-  data.forEach(({ name }) => {
-    expect(getByText(name)).toBeInTheDocument();
-    fireEvent.click(btnProximo);
-  });
+  getName(getByText);
   expect(getByText(data[0].name)).toBeInTheDocument();
 });
 
@@ -49,5 +47,4 @@ test('Thebutton should be disabled if the filtered ....', () => {
   const btnProximo = getByText(/Próximo pokémon/i);
   fireEvent.click(Poison);
   expect(btnProximo).toBeDisabled();
-})
-
+});
