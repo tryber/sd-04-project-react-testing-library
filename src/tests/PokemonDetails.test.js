@@ -22,7 +22,7 @@ describe('Testing PokemonDetails', () => {
       pokemon.foundAt.map(({ location, map }) => {
         expect(getByText(location)).toBeInTheDocument();
         expect(pokemonLoc.length).toBeGreaterThan(0);
-        expect(pokemonLoc.some(({ src }) => src === map)).toBeTruthy();
+        return expect(pokemonLoc.some(({ src }) => src === map)).toBeTruthy();
       });
     });
   });
