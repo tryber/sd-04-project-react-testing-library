@@ -1,6 +1,6 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
-import { fireEvent, getByText } from '@testing-library/react';
 import data from '../data';
 import App from '../App';
 
@@ -12,7 +12,7 @@ const getName = (getByText) => {
     expect(getByText(name)).toBeInTheDocument();
     fireEvent.click(btnProximo);
   });
-}
+};
 
 test('When pressing the próximo button, the page should display the next pokémon', () => {
   const { getByText } = renderWithRouter(<App />);
