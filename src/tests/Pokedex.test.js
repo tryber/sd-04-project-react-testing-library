@@ -14,6 +14,11 @@ const getName = (getByText) => {
   });
 };
 
+test('Header must be h2 tag', () => {
+  const { getByText } = renderWithRouter(<App />);
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
 test('When pressing the próximo button, the page should display the next pokémon', () => {
   const { getByText } = renderWithRouter(<App />);
   getName(getByText);
