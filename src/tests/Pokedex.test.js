@@ -33,13 +33,13 @@ test('Pokédex must display only one Pokémon at a time', () => {
 });
 
 // Pokemon.js 35/39
-const types = [
+const typesP = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
 ];
 
 test('The Pokédex must contain filter buttons', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
-    types.forEach((type, index) => {
+  typesP.forEach((type, index) => {
     const btn = getAllByTestId('pokemon-type-button')[index]; // l.54
     expect(btn).toBeInTheDocument();
     expect(btn).toHaveTextContent(type);
@@ -49,7 +49,7 @@ test('The Pokédex must contain filter buttons', () => {
 test('button, the Pokédex should only circulate through the Pokémon of that type', () => {
   const { getByText, getAllByTestId } = renderWithRouter(<App />);
   const btnProximo = getByText(/Próximo pokémon/i);
-  types.forEach((type, index) => {
+  typesP.forEach((type, index) => {
     const btn = getAllByTestId('pokemon-type-button')[index];
     fireEvent.click(btn);
     const filtred = data.filter((pokemon) => pokemon.type === type);
@@ -71,7 +71,7 @@ test('The Pokédex must contain a button to reset the filter', () => {
 
 test('The Pokédex should dynamically generate a filter button for each type of Pokémon', () => {
   const { getByText, getAllByText } = renderWithRouter(<App />);
-  types.forEach((type) => {
+  typesP.forEach((type) => {
     const button = getAllByText(type)[1] || getByText(type);
     expect(button).toBeInTheDocument();
   });
