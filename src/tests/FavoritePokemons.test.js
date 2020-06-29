@@ -5,8 +5,8 @@ import { createMemoryHistory } from 'history';
 import FavoritePokemons from '../components/FavoritePokemons';
 
 function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
+  const routing = routeConfigs.routing || '/';
+  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [routing] });
 
   return {
     ...render(<Router history={history}>{ui}</Router>),
