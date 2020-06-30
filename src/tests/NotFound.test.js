@@ -9,6 +9,7 @@ describe('Testes do arquivo NotFound.js', () => {
     const { getByText } = render(<NotFound />);
     const el = getByText(/Page requested not found/);
     expect(el.tagName).toBe('H2');
+    expect(el).toBeInTheDocument();
   });
 
   test('Exibir imagem', () => {
@@ -16,5 +17,6 @@ describe('Testes do arquivo NotFound.js', () => {
     const { getByAltText } = render(<NotFound />);
     const el = getByAltText(/^Pikachu crying/);
     expect(el.src).toBe(url);
-  })
-})
+    expect(el).toBeInTheDocument();
+  });
+});
