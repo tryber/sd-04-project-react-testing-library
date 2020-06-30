@@ -15,7 +15,7 @@ describe('Testes do arquivo FavoritePokemons.js', () => {
 
   test('A página não deve exibir nenhum card de pokémon não favoritado', () => {
     const idPikachu = 25;
-    
+
     const { getByLabelText, getByText } = render(
       <MemoryRouter initialEntries={[`/pokemons/${idPikachu}`]}>
         <App />
@@ -30,11 +30,11 @@ describe('Testes do arquivo FavoritePokemons.js', () => {
 
     const txNoFound = getByText(/No favorite pokemon found/);
     expect(txNoFound).toBeInTheDocument();
-  })
+  });
 
   test('A página deve exibir todos os cards de pokémons favoritados', () => {
     const idPikachu = 25;
-    
+
     const { getByLabelText, getByText, getByTestId } = render(
       <MemoryRouter initialEntries={[`/pokemons/${idPikachu}`]}>
         <App />
@@ -51,5 +51,5 @@ describe('Testes do arquivo FavoritePokemons.js', () => {
     const name = getByTestId('pokemon-name');
     expect(name).toHaveTextContent('Pikachu');
     expect(name).toBeInTheDocument();
-  })
+  });
 });
