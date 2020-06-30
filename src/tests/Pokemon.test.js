@@ -10,8 +10,7 @@ test('A card with the information of a specific Pokémon must be returned', () =
   expect(getByTestId('pokemon-name').innerHTML).toBe(data[0].name);
   expect(getByTestId('pokemonType').innerHTML).toBe(data[0].type);
   expect(getByTestId('pokemon-weight').innerHTML).toBe(
-    `Average weight:${data[0].averageWeight.value}${data[0].averageWeight.measurementUnit}`
-  );
+    `Average weight:${data[0].averageWeight.value}${data[0].averageWeight.measurementUnit}`);
   expect(getByAltText(`${data[0].name} sprite`)).toHaveAttribute('src', data[0].image);
   const moreDetails = getByText(/More details/i);
   expect(moreDetails.getAttribute('href')).toBe(`/pokemons/${data[0].id}`);
