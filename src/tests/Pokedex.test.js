@@ -44,8 +44,10 @@ const typesP = [
 
 test('The Pokédex must contain filter buttons', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
+  // console.log(getAllByTestId('pokemon-type-button'))
   typesP.forEach((type, index) => {
     const btn = getAllByTestId('pokemon-type-button')[index]; // l.54
+    // busco pelo index pq sao varios tipos o index me retorna o btn exato do tipo
     expect(btn).toBeInTheDocument();
     expect(btn).toHaveTextContent(type);
   });
