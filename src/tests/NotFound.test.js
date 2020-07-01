@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, screen, fireEvent } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
 
