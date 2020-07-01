@@ -89,6 +89,7 @@ test('Click in more detail', () => {
   const { id } = data[0];
 
   fireEvent.click(details);
+  console.log(expect(history));
   expect(history.location.pathname).toMatch(`pokemons/${id}`);
 });
 
