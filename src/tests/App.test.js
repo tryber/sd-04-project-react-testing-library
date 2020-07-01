@@ -1,20 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { fireEvent, cleanup } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 afterEach(cleanup);
-
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
 
 describe('1. Tests of the App.js file', () => {
   test('When loading the application in the URL path “/”, the main page of Pokédex should be shown.', () => {
