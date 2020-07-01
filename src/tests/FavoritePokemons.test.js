@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import { FavoritePokemons } from '../components';
 import data from '../data';
