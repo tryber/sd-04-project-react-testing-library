@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 describe('Test PokemonDetails.js', () => {
   data.forEach(({
-    name, id, summary, foundAt 
+    name, id, summary, foundAt,
   }) => {
     test(`Show ${name} details`, () => {
       const {
