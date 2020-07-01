@@ -38,10 +38,14 @@ const Caterpie = {
 };
 
 test('A card with the information of a specific Pokémon must be returned', () => {
-  const { getByTestId } = renderWithRouter(<App />);
+  const { getByTestId, getByText, getAllByText } = renderWithRouter(<App />);
   expect(getByTestId('pokemon-name')).toBeInTheDocument();
   expect(getByTestId('pokemonType')).toBeInTheDocument();
-  expect(getByTestId('pokemon-weight')).toBeInTheDocument();
+  data.forEach(({ name, type }) => {
+    expect(getByText(name)).toBeInTheDocument();
+    expect(getAllByText(type)[1]).toBeInTheDocument();
+    fireEvent.click(getByText('Próximo pokémon'));
+  });
 });
 
 test('Average weight', () => {
