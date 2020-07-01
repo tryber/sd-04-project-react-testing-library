@@ -37,7 +37,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
     const nextPokemonBtn = getByTestId('next-pokemon');
     const allPokemonTypes = getAllByTestId('pokemon-type-button');
-    allPokemonTypes.forEach(pokemonTypeButton => {
+    allPokemonTypes.forEach((pokemonTypeButton) => {
       fireEvent.click(pokemonTypeButton);
       for (let i = 0; i < pokemons.length; i += 1) {
         expect(getByTestId('pokemonType').innerHTML).toBe(pokemonTypeButton.innerHTML);
@@ -60,9 +60,9 @@ describe('Testes do arquivo Pokedex.js', () => {
   test('A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const allPokemonTypesBtns = getAllByTestId('pokemon-type-button');
-    const allPokemonTypes = pokemons.map(pokemon => pokemon.type);
-    allPokemonTypes.forEach(pokemonType => {
-      expect(allPokemonTypesBtns.some(btn => btn.innerHTML === pokemonType)).toBe(true);
+    const allPokemonTypes = pokemons.map((pokemon) => pokemon.type);
+    allPokemonTypes.forEach((pokemonType) => {
+      expect(allPokemonTypesBtns.some((btn) => btn.innerHTML === pokemonType)).toBe(true);
     });
   });
 
