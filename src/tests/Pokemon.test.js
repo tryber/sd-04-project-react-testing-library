@@ -38,7 +38,7 @@ const Caterpie = {
 };
 
 test('A card with the information of a specific Pokémon must be returned', () => {
-  const { getByText, getByTestId, getByAltText } = renderWithRouter(<App />);
+  const { getByTestId } = renderWithRouter(<App />);
   expect(getByTestId('pokemon-name')).toBeInTheDocument();
   expect(getByTestId('pokemonType')).toBeInTheDocument();
   expect(getByTestId('pokemon-weight')).toBeInTheDocument();
