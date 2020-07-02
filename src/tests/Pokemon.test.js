@@ -1,8 +1,8 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
 import renderWithRouter from '../components/renderWithRouter';
-import { getByText, getAllByTestId, fireEvent } from '@testing-library/react';
 
 describe('testando componente pokemon', () => {
   test('testando peso', () => {
