@@ -1,7 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
-import pokemons from '../data';
 import renderWithRouter from '../services/renderWithRouter';
 
 describe('Testes do arquivo PokemonDetails.js', () => {
