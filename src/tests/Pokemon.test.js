@@ -1,8 +1,7 @@
 import React from 'react';
-import { cleanup, screen, fireEvent } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import Pokemon from '../components/Pokemon';
 import data from '../data';
 
 afterEach(cleanup);
@@ -39,8 +38,6 @@ describe('6. Tests of the Pokemon.js file', () => {
     expect(pokemonsLink).toBeInTheDocument();
     expect(pokemonsLink).toHaveAttribute('href', `/pokemons/${data[0].id}`);
   });
-
-/*   test('When clicking on the pokemon navigation link, the application should be redirected to the pokemon details page.', () => {}); */
 
   test('Favorite Pokémon should display a star icon', () => {
     renderWithRouter(<App />);
