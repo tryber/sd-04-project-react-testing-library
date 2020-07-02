@@ -29,6 +29,9 @@ describe('5. Tests of the Pokedex.js file', () => {
 
     const moreDetails = screen.getAllByText('More details');
     expect(moreDetails.length).toBe(1);
+
+    const encounteredPok = screen.getByText('Encountered pokémons');
+    expect(encounteredPok).toBeInTheDocument();
   });
 
   test('The Pokédex must contain filter buttons.', () => {
