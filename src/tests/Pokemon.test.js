@@ -37,5 +37,10 @@ describe('testando componente pokemon', () => {
     expect(estrela).toHaveAttribute('src', '/star-icon.svg');
     expect(estrela).toBeInTheDocument();
   });
-  test('testando link', () => {});
+  test('testando link', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const botaoDetails = getByText(/More details/i);
+    fireEvent.click(botaoDetails);
+    expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
+  });
 });
