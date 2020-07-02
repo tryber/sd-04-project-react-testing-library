@@ -8,8 +8,8 @@ describe('testando pokemons details', () => {
     // const rout = `/pokemons/${pokemons[0].id}
     const { getByText, history } = renderWithRouter(<App />, { route: `/pokemons/${pokemons[0].id}` });
     history.push(`/pokemons/${pokemons[0].id}`);
-    const heading = getByText(`Game Locations of ${pokemons[0].name}`);    
-    expect(heading).toBeInTheDocument();    
+    const heading = getByText(`Game Locations of ${pokemons[0].name}`);
+    expect(heading).toBeInTheDocument();
   });
   test('testando img', () => {
     const { getAllByAltText, history } = renderWithRouter(<App />, { route: `/pokemons/${pokemons[0].id}` });
