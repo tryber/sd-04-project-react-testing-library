@@ -1,8 +1,7 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../services/renderWithRouter';
 
 // jest.mock('react-router-dom', () => {
 //   const moduloOriginal = jest.requireActual('react-router-dom');
@@ -11,15 +10,6 @@ import App from '../App';
 //     BrowserRouter: ({ children }) => (<div>{children}</div>),
 //   };
 // });
-
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
 
 afterEach(cleanup);
 
@@ -56,7 +46,8 @@ describe('Testando App', () => {
     expect(history.location.pathname).toBe('/favorites');
   });
   test('Entrar em uma URL desconhecida exibe a página Not Found', () => {
-    const { getByText } = renderWithRouter(<App />, { route: '/xablau' });
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/pagina/que-nao-existe/');
     const notFoundText = getByText(/Page requested not found/i);
     expect(notFoundText).toBeInTheDocument();
   });
