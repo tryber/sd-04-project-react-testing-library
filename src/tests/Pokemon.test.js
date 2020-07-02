@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, screen } from '@testing-library/react';
+import { cleanup, screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import data from '../data';
@@ -42,8 +42,15 @@ describe('6. Tests of the Pokemon.js file', () => {
   test('Favorite Pokémon should display a star icon', () => {
     renderWithRouter(<App />);
 
-    const pokemonsFavorite = screen.getAllByRole('img')[1];
-    expect(pokemonsFavorite).toHaveAttribute('src', '/star-icon.svg');
-    expect(pokemonsFavorite).toHaveAttribute('alt', `${data[0].name} is marked as favorite`);
+    const detailsLink = screen.getByText('More details');
+    fireEvent.click(detailsLink);
+
+    const pokFavorite = screen.getByLabelText('Pokémon favoritado?');
+    fireEvent.click(pokFavorite);
+
+    const imgPokFavorite = screen.getAllByRole('img');
+    expect(imgPokFavorite[1]).toBeInTheDocument();
+    expect(imgPokFavorite[1].src).toBe('http://localhost/star-icon.svg');
+    expect(imgPokFavorite[1].alt).toBe(`${data[0].name} is marked as favorite`);
   });
 });
