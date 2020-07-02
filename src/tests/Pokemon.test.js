@@ -32,12 +32,16 @@ describe('6. Tests of the Pokemon.js file', () => {
     expect(pokemonsImg.src).toBe(`${data[0].image}`);
   });
 
-  test('The Pokémon displayed on the Pokédex must contain a navigation link to view details of this Pokémon.', () => {
+  test('The Pokémon displayed on the Pokédex must contain a navigation link to view details and type of this Pokémon.', () => {
     renderWithRouter(<App />);
 
     const pokemonsLink = screen.getByText('More details');
     expect(pokemonsLink).toBeInTheDocument();
     expect(pokemonsLink).toHaveAttribute('href', `/pokemons/${data[0].id}`);
+
+    const pokemonType = screen.getByTestId('pokemonType');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType).toHaveTextContent(`${data[0].type}`);
   });
 
   test('Favorite Pokémon should display a star icon', () => {
