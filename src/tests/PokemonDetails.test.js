@@ -4,7 +4,7 @@ import renderWithRouter from '../services/renderWithRouter';
 import Data from '../data';
 
 describe('Teste da página de detalhes dos pokemons', () => {
-  Data.forEach(({ id, name, foundAt, summary, image }) => {
+  Data.forEach(({ id, name, foundAt, summary }) => {
     test('Testando a pagina', () => {
       const { getByText, getByAltText, getAllByRole } = renderWithRouter(<PokemonDetails />, { route: `/pokemon/${id}` });
 
@@ -15,7 +15,7 @@ describe('Teste da página de detalhes dos pokemons', () => {
       foundAt.forEach(({ location, map }) => {
         expect(getByText(location)).toBeInTheDocument();
         expect((getAllByRole('img').src).find((maps) => maps === map)).toBeInTheDocument();
-      })
+      });
     });
   });
 
