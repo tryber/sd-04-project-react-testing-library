@@ -26,4 +26,16 @@ describe('testando pokemons details', () => {
     const sumarioContent = getByText(`${pokemons[0].summary}`);
     expect(sumarioContent).toBeInTheDocument();
   });
+  test('testando favorito', () => {
+    const { getByText, history } = renderWithRouter(<App />, { route: `/pokemons/${pokemons[0].id}` });
+    history.push(`/pokemons/${pokemons[0].id}`);
+    const favorite = getByText(/Pokémon favoritado/i);
+    expect(favorite).toBeInTheDocument();
+  });
+  test('testando detales', () => {
+    const { getByText, history } = renderWithRouter(<App />, { route: `/pokemons/${pokemons[0].id}` });
+    history.push(`/pokemons/${pokemons[0].id}`);
+    const detales = getByText(`${pokemons[0].name} Details`);
+    expect(detales).toBeInTheDocument();
+  });
 });
