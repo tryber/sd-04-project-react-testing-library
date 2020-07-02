@@ -5,11 +5,11 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Testes do arquivo Pokedex.js', () => {
-  test('O titulo Encountered pokémons deve estar presente', ()=>{
-    const {queryByText} = renderWithRouter(<App/>);
+  test('O titulo Encountered pokémons deve estar presente', () => {
+    const { queryByText } = renderWithRouter(<App />);
     const title = queryByText('Encountered pokémons');
     expect(title).toBeInTheDocument();
-  })
+  });
   test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const nextPokemonBtn = getByText(/Próximo pokémon/);
