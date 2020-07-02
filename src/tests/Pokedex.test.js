@@ -30,9 +30,10 @@ describe('Ao apertar o botão de próximo, a página deve exibir o próximo pok�
 
 describe('A Pokédex deve exibir apenas um pokémon por vez', () => {
   test('A Pokédex deve exibir apenas um pokémon por vez', () => {
-    const { getAllByTestId } = renderWithRouter(<App />);
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const test = getAllByTestId('pokemon-name');
     expect(test.length).toBe(1);
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 });
 
