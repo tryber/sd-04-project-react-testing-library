@@ -39,4 +39,17 @@ describe('7. Tests of the PokemonDetails.js file', () => {
     const sumarioVar = getByText(`${pokemons[0].summary}`);
     expect(sumarioVar).toBeDefined();
   });
+
+  test('checking favorite pokemons', () => {
+    const { history, getByText } = renderWithRouter(<App />, {
+      route: `/pokemons/${pokemons[0].id}`,
+    });
+    history.push(`/pokemons/${pokemons[0].id}`);
+
+    const favoritePoke = getByText('Pokémon favoritado?');
+    expect(favoritePoke).toBeDefined();
+
+    const pokeName = getByText(`${pokemons[0].name} Details`);
+    expect(pokeName).toBeDefined();
+  });
 });
