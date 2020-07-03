@@ -35,9 +35,8 @@ describe('7. Tests of the PokemonDetails.js file', () => {
 
     const sumario = getByText('Summary');
     expect(sumario).toBeDefined();
-    
+
     const sumarioVar = getByText(`${pokemons[0].summary}`);
     expect(sumarioVar).toBeDefined();
-
   });
 });
