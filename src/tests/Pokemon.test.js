@@ -7,6 +7,17 @@ import App from '../App';
 describe('Testes do arquivo Pokemon.js', () => {
   afterEach(cleanup);
 
+  test('???', () => {
+    const { getAllByTestId } = render(
+      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
+    );
+    const el = getAllByTestId('pokemon-type-button');
+    el.forEach((but) => {
+      expect(but).toBeInTheDocument();
+      expect(but.textContent).not.toBe('');
+    });
+  });
+
   describe('Deve ser retornado um card com as informações de determinado pokémon', () => {
     test('O nome correto do pokémon deve aparecer na tela', () => {
       const { getByTestId } = render(
