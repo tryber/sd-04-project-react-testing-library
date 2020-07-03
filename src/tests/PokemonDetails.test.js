@@ -16,4 +16,14 @@ describe('7. Tests of the PokemonDetails.js file', () => {
     const phrase = getByText(`Game Locations of ${pokemons[0].name}`);
     expect(phrase).toBeDefined();
   });
+
+  test('testing image', () => {
+    const { history, getAllByAltText } = renderWithRouter(<App />, {
+      route: `/pokemons/${pokemons[0].id}`,
+    });
+    history.push(`/pokemons/${pokemons[0].id}`);
+    const poke = getAllByAltText(`${pokemons[0].name} location`);
+    expect(poke[0]).toBeDefined();
+    expect(poke[0]).toHaveAttribute('src', `${pokemons[0].foundAt[0].map}`);
+  });
 });
