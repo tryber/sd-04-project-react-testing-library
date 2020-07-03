@@ -7,6 +7,19 @@ import pokemons from '../data';
 describe('Testes do arquivo Pokedex.js', () => {
   afterEach(cleanup);
 
+  test('???', () => {
+    const { getByText, getAllByTestId } = render(
+      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
+    );
+    const el = getByText(/Encountered pokémons/);
+    const el2 = getAllByTestId('pokemon-type-button');
+    expect(el).toBeInTheDocument();
+    el2.forEach((but) => {
+      expect(but).toBeInTheDocument();
+      expect(but.textContent).not.toBe('');
+    });
+  })
+
   describe('Ao apertar "Próximo pokémon", exiba o próximo pokémon da lista', () => {
     test('O botão deve conter o texto Próximo pokémon', () => {
       const { getByText } = render(
@@ -25,8 +38,6 @@ describe('Testes do arquivo Pokedex.js', () => {
         expect(getByTestId('pokemon-name').textContent).toBe(pokemon.name);
         fireEvent.click(el);
       });
-      // fireEvent.click(el);
-      // expect(getByTestId('pokemon-name').textContent).not.toBe('Pikachu');
     });
 
     test('Do último pokemon deve ir para o primeiro', () => {
