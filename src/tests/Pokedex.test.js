@@ -5,6 +5,11 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Test Pokedex.js', () => {
+  test('it tests heading', () => {
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
+  });
+
   test('Next Pokemon Button', () => {
     const { getByTestId, getByText } = renderWithRouter(<App />);
     const btnNext = getByTestId('next-pokemon');
