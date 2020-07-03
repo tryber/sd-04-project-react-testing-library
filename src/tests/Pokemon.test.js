@@ -16,6 +16,7 @@ describe('Testes do arquivo Pokemon.js', () => {
   test('O nome correto do pokémon deve aparecer na tela', () => {
     const { getByTestId } = renderWithRouter(<App />);
     expect(getByTestId('pokemon-name').textContent).toBe(pokemons[0].name);
+    expect(getByTestId('pokemonType').textContent).toBe(pokemons[0].type);
   });
   test('O peso médio do pokémon deve ser exibido com um texto no formato correto', () => {
     const { getByTestId } = renderWithRouter(<App />);
