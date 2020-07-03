@@ -1,6 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom'
-import { render, cleanup, fireEvent, getByAltText, getAllByTestId } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
 
@@ -149,13 +149,5 @@ describe('Testes do arquivo Pokedex.js', () => {
         }
       });
     });
-    // const pokeTypes = [...new Set(pokemons.map((pokemon) => pokemon.type))];
-    // const pokeTypesButs = getAllByTestId('pokemon-type-button').map((button) => button.textContent);
-    // pokeTypes.forEach((type) => {
-    //   pokeTypesButs.forEach((but) => {
-    //     if (but === type) expect(type).toBe(but);
-    //     return expect(getByText(/All/)).toBeInTheDocument();
-    //   });
-    // });
   });
 });
