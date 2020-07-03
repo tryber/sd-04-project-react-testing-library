@@ -3,14 +3,6 @@ import { cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
-// jest.mock('react-router-dom', () => {
-//   const moduloOriginal = jest.requireActual('react-router-dom');
-//   return {
-//     ...moduloOriginal,
-//     BrowserRouter: ({ children }) => (<div>{children}</div>),
-//   };
-// });
-
 afterEach(cleanup);
 
 describe('Testando App', () => {
