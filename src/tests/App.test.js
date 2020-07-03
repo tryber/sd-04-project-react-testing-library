@@ -64,16 +64,16 @@ test('check if /favorites redirects to Favorite Pokemon', () => {
 
 test('page not found', () => {
   const history = createMemoryHistory();
-    const route = '/some route'
-    history.push(route);
-    const { getByText } = render(
-      <Router history={history}>
-        <App />
-      </Router>
-    );
+  const route = '/some route';
+  history.push(route);
+  const { getByText } = render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  );
 
-    const pageNotFound = getByText(/Page requested not found/i);
-    expect(pageNotFound).toBeInTheDocument();
+  const pageNotFound = getByText(/Page requested not found/i);
+  expect(pageNotFound).toBeInTheDocument();
 });
 
 // fireEvent.click(getByText(/about/i));
