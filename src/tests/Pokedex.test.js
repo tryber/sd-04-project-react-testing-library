@@ -51,3 +51,21 @@ test('One type pokemons', () => {
   fireEvent.click(getByText('Próximo pokémon'));
   expect(getByTestId('pokemonType').innerHTML).toBe(type);
 });
+
+test('testing `pokemon-type-button`', () => {
+  const { getAllByTestId } = renderWithRouter(<App />);
+  expect(getAllByTestId(/pokemon-type-button/i)).toBeDefined();
+});
+
+test('testing the reset button `all`', () => {
+  const { getByText } = renderWithRouter(<App />);
+  expect(getByText(/All/i)).toBeDefined();
+});
+
+test('testing `Encountered pokémons`', () => {
+  const favorite = { 25: false };
+  const { container } = renderWithRouter(
+    <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
+  );
+  expect(container.querySelector('h2').innerHTML).toBe('Encountered pokémons');
+});
