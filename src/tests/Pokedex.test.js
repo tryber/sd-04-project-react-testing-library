@@ -69,3 +69,12 @@ test('testing `Encountered pokémons`', () => {
   );
   expect(container.querySelector('h2').innerHTML).toBe('Encountered pokémons');
 });
+
+test("All button doesn't filter", () => {
+  const { getByText } = renderWithRouter(<App />);
+  fireEvent.click(getByText('All'));
+  pokemons.forEach(({ name }) => {
+    expect(getByText(name)).toBeInTheDocument();
+    fireEvent.click(getByText('Próximo pokémon'));
+  });
+});
