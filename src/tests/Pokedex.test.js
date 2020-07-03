@@ -1,10 +1,8 @@
 import React from 'react';
-import { cleanup, fireEvent, getByText } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
-
 import App from '../App';
-import { pokemonType } from '../types';
 import { Pokedex } from '../components';
 
 describe('Testing Pokedex Page', () => {
@@ -29,7 +27,7 @@ test('Show the next pokemon', () => {
 
 test('The screen should show just one pokemon', () => {
   const { container } = renderWithRouter(<App />);
-  expect(container.querySelectorAll('.pokemon').length).toBe(1);
+  expect(container.querySelectorAll('div.pokemon').length).toBe(1);
 });
 
 test('Filter buttons of Pokedex', () => {
@@ -43,11 +41,13 @@ test('Pokemon type button', () => {
 });
 
 test('One type pokemons', () => {
-  const favorite = { 25: false };
   const type = 'Psychic';
-  const { getByTestId, getByText } = renderWithRouter(
+  const favorite = { 25: false };
+  const { getByText, getByTestId } = renderWithRouter(
     <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorite} />,
   );
-  fireEvent.click(getByText(type));
+  fireEvent.click(getByText('Psychic'));
+  expect(getByTestId('pokemonType').innerHTML).toBe(type);
+  fireEvent.click(getByText('Próximo pokémon'));
   expect(getByTestId('pokemonType').innerHTML).toBe(type);
 });
