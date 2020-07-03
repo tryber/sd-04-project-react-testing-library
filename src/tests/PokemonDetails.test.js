@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
@@ -54,7 +54,7 @@ describe('Testes do arquivo PokemonDetails.js', () => {
       const elName = getByTestId('pokemon-name').textContent;
       const locations = pokemons.filter(({ name }) => name === elName)[0].foundAt
         .map(({ location }) => location);
-      locations.forEach((location) => expect(getByText(location)).toBeInTheDocument()); 
+      locations.forEach((location) => expect(getByText(location)).toBeInTheDocument());
     });
 
     test('Deve exibir o nome da localização e uma imagem do mapa da localização', () => {
@@ -70,10 +70,10 @@ describe('Testes do arquivo PokemonDetails.js', () => {
           if (img.src === map) {
             expect(img.src).toBe(map);
             expect(img).toBeInTheDocument();
-          };
-        })
+          }
+        });
       });
-    })
+    });
   });
 
   describe('A página de detalhes deve permitir favoritar um pokémon', () => {
