@@ -7,6 +7,14 @@ import pokemons from '../data';
 describe('Testes do arquivo PokemonDetails.js', () => {
   afterEach(cleanup);
 
+  test('???', () => {
+    const { getAllByAltText } = render(
+      <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
+    );
+    const mapImgs = getAllByAltText('Pikachu location');
+    mapImgs.forEach((img) => expect(img.src).not.toBe(''));
+  })
+
   describe('Deve conter mais informações sobre o pokémon selecionado', () => {
     test('A página deve conter um texto <name> Details, onde <name> é o nome do pokémon', () => {
       const { getByText } = render(
