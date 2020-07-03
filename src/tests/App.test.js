@@ -11,9 +11,8 @@ function renderWithRouter(ui, routeConfigs = {}) {
 
   return {
     ...render(<Router history={history}>{ui}</Router>),
-    history
-  }
-
+    history,
+  };
 }
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -61,7 +60,21 @@ test('check if /favorites redirects to Favorite Pokemon', () => {
 
   const favorite = getByText(/no favorite pokemon found/i);
   expect(favorite).toBeInTheDocument();
-})
+});
+
+test('page not found', () => {
+  const history = createMemoryHistory();
+    const route = '/some route'
+    history.push(route);
+    const { getByText } = render(
+      <Router history={history}>
+        <App />
+      </Router>
+    );
+
+    const pageNotFound = getByText(/Page requested not found/i);
+    expect(pageNotFound).toBeInTheDocument();
+});
 
 // fireEvent.click(getByText(/about/i));
 
