@@ -26,4 +26,18 @@ describe('7. Tests of the PokemonDetails.js file', () => {
     expect(poke[0]).toBeDefined();
     expect(poke[0]).toHaveAttribute('src', `${pokemons[0].foundAt[0].map}`);
   });
+
+  test('testing Summary', () => {
+    const { history, getByText } = renderWithRouter(<App />, {
+      route: `/pokemons/${pokemons[0].id}`,
+    });
+    history.push(`/pokemons/${pokemons[0].id}`);
+
+    const sumario = getByText('Summary');
+    expect(sumario).toBeDefined();
+    
+    const sumarioVar = getByText(`${pokemons[0].summary}`);
+    expect(sumarioVar).toBeDefined();
+
+  });
 });
