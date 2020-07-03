@@ -57,9 +57,9 @@ test('testing `pokemon-type-button`', () => {
   expect(getAllByTestId(/pokemon-type-button/i)).toBeDefined();
 });
 
-test('testing the reset button `all`', () => {
-  const { getByText } = renderWithRouter(<App />);
-  expect(getByText(/All/i)).toBeDefined();
+  test('There is filter buttons', () => {
+  const { getAllByTestId } = renderWithRouter(<App />);
+  expect(getAllByTestId('pokemon-type-button')).toBeTruthy();
 });
 
 test('testing `Encountered pokémons`', () => {
