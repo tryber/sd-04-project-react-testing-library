@@ -21,8 +21,12 @@ describe('Testes do arquivo Pokedex.js', () => {
         <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
       );
       const el = getByText(/Próximo pokémon/);
-      fireEvent.click(el);
-      expect(getByTestId('pokemon-name').textContent).not.toBe('Pikachu');
+      pokemons.forEach((pokemon) => {
+        expect(getByTestId('pokemon-name').textContent).toBe(pokemon.name);
+        fireEvent.click(el);
+      });
+      // fireEvent.click(el);
+      // expect(getByTestId('pokemon-name').textContent).not.toBe('Pikachu');
     });
 
     test('Do último pokemon deve ir para o primeiro', () => {
