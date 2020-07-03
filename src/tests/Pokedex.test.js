@@ -11,6 +11,7 @@ describe('Test Pokedex.js', () => {
     expect(btnNext.textContent).toBe('Próximo pokémon');
     pokemons.forEach((pokemon, i) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
+      fireEvent.click(btnNext);
       if (i === pokemons.length - 1) {
         expect(getByText(pokemons[0].name)).toBeInTheDocument();
       }
