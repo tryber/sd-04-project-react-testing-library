@@ -11,7 +11,7 @@ describe('Testes do arquivo Pokemon.js', () => {
     const { getAllByTestId } = render(
       <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
     );
-    const el = getAllByTestId('pokemon-type-button');
+    const el = getAllByTestId('pokemonType');
     el.forEach((but) => {
       expect(but).toBeInTheDocument();
       expect(but.textContent).not.toBe('');
