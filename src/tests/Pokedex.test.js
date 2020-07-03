@@ -18,7 +18,7 @@ describe('Testes do arquivo Pokedex.js', () => {
       expect(but).toBeInTheDocument();
       expect(but.textContent).not.toBe('');
     });
-  })
+  });
 
   describe('Ao apertar "Próximo pokémon", exiba o próximo pokémon da lista', () => {
     test('O botão deve conter o texto Próximo pokémon', () => {
