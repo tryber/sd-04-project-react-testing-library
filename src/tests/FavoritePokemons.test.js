@@ -4,6 +4,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { FavoritePokemons } from '../components';
 import App from '../App';
 
+afterEach(cleanup);
+
 describe('file "FavoritePokemons.js"', () => {
   test('Favorite Pokemon not Found', () => {
     const { getByText } = render(<FavoritePokemons pokemons={[]} />);
