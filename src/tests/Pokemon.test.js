@@ -9,9 +9,9 @@ afterEach(cleanup);
 describe('Testes do arquivo Pokemon.js', () => {
   test('Deve ser retornado um card com as informações de determinado pokémon;', () => {
     const { getByTestId } = renderWithRouter(<App />);
-    expect(getByTestId('pokemon-name')).tobeInTheDocument();
-    expect(getByTestId('pokemonType')).tobeInTheDocument();
-    expect(getByTestId('pokemon-weight')).tobeInTheDocument();
+    expect(getByTestId('pokemon-name')).toBeInTheDocument();
+    expect(getByTestId('pokemonType')).toBeInTheDocument();
+    expect(getByTestId('pokemon-weight')).toBeInTheDocument();
   });
   test('O nome correto do pokémon deve aparecer na tela', () => {
     const { getByTestId } = renderWithRouter(<App />);
