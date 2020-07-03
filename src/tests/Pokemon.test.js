@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, cleanup, fireEvent, getByAltText } from '@testing-library/react';
-import pokemons from '../data'
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import pokemons from '../data';
 import App from '../App';
 
 describe('Testes do arquivo Pokemon.js', () => {
@@ -22,7 +22,7 @@ describe('Testes do arquivo Pokemon.js', () => {
         <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
       );
       const { averageWeight: { value, measurementUnit } } = pokemons[0];
-      
+
       const pokeWeight = `Average weight:${value}${measurementUnit}`;
       const elWeight = getByTestId('pokemon-weight').textContent;
       expect(pokeWeight).toBe(elWeight);
@@ -37,7 +37,7 @@ describe('Testes do arquivo Pokemon.js', () => {
       const imageURL = pokemons[0].image;
       expect(elImage.src).toBe(imageURL);
     });
-    
+
     test('Deve existir um link de navegação para exibir detalhes do pokémon', () => {
       const { getByText } = render(
         <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
@@ -47,7 +47,7 @@ describe('Testes do arquivo Pokemon.js', () => {
       expect(elDetails).toBeInTheDocument();
       expect(elDetails.href.endsWith(`/pokemons/${pokeId}`)).toBe(true);
     });
-    
+
     test('Verificar redirecionamento para a página de detalhes do pokémon', () => {
       const { getByText } = render(
         <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
@@ -57,7 +57,7 @@ describe('Testes do arquivo Pokemon.js', () => {
       fireEvent.click(elDetails);
       expect(getByText(/Pikachu Details/)).toBeInTheDocument();
     });
-    
+
     describe('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
       test('O ícone deve ser uma imagem, com o atributo src igual /star-icon.svg', () => {
         const { getByText, getByAltText } = render(
