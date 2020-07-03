@@ -17,7 +17,7 @@ describe('file About.js', () => {
   });
 
   test('pokedex Image', () => {
-    const { getByAltText }=render(<About />);
+    const { getByAltText } = render(<About />);
     const img = getByAltText('Pokédex');
     expect(img).toBeInTheDocument();
     expect(img.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
