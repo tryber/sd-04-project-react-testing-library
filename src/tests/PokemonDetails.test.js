@@ -13,7 +13,7 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     );
     const mapImgs = getAllByAltText('Pikachu location');
     mapImgs.forEach((img) => expect(img.src).not.toBe(''));
-  })
+  });
 
   describe('Deve conter mais informações sobre o pokémon selecionado', () => {
     test('A página deve conter um texto <name> Details, onde <name> é o nome do pokémon', () => {
