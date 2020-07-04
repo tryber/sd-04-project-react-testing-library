@@ -16,10 +16,10 @@ describe('Testes da página About', () => {
     const { getByText } = renderWithRouter(<About />, { route: '/about' });
 
     const p1 = getByText(
-      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons'
+      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons',
     );
     const p2 = getByText(
-      'One can filter Pokémons by type, and see more details for each one of them'
+      'One can filter Pokémons by type, and see more details for each one of them',
     );
 
     expect(p1).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Testes da página About', () => {
     const srcImage = image.src;
 
     expect(srcImage).toBe(
-      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
     );
   });
 });
