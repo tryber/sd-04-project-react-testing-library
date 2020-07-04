@@ -59,3 +59,16 @@ test('reset filter', () => {
   const charmander = getByText(/Charmander/i);
   expect(charmander).toBeInTheDocument();
 });
+
+test('disable button if there just one pokemon', () => {
+  const { getByText } = renderWithRouter(<App />);
+
+  fireEvent.click(getByText(/Dragon/i));
+
+  const dragonair = getByText(/Dragonair/i);
+  expect(dragonair).toBeInTheDocument();
+
+  fireEvent.click(getByText(/Próximo pokémon/i));
+
+  expect(dragonair).toBeInTheDocument();
+});
