@@ -27,3 +27,35 @@ test('show next pokemon', () => {
   const caterpie = getByText(/Caterpie/i);
   expect(caterpie).toBeInTheDocument();
 });
+
+test('filter pokemon by type', () => {
+  const { getByText } = renderWithRouter(<App />);
+
+  fireEvent.click(getByText(/Psychic/i));
+
+  const alakazam = getByText(/Alakazam/i);
+  expect(alakazam).toBeInTheDocument();
+
+  fireEvent.click(getByText(/Próximo pokémon/i));
+
+  const mew = getByText(/Mew/i);
+  expect(mew).toBeInTheDocument();
+
+  fireEvent.click(getByText(/Próximo pokémon/i));
+
+  expect(alakazam).toBeInTheDocument();
+});
+
+test('reset filter', () => {
+  const { getByText } = renderWithRouter(<App />);
+
+  fireEvent.click(getByText(/All/i));
+
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+
+  fireEvent.click(getByText(/Próximo pokémon/i));
+
+  const charmander = getByText(/Charmander/i);
+  expect(charmander).toBeInTheDocument();
+});
