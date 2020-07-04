@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, getByAltText } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
@@ -34,3 +34,13 @@ test('show pokemon average weight', () => {
   expect(pokeWeight.textContent).toBe('Average weight:6.0kg');
 });
 
+test('show pokemon image', () => {
+  const { getByText, getAllByRole } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+
+  fireEvent.click(getByText(/More details/i));
+  const image = getAllByRole('img');
+  expect(image[0].src).toBe("https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png");
+  expect(image[0].alt).toBe('Pikachu sprite');
+});
