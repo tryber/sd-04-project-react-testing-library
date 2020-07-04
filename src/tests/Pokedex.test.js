@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  fireEvent,
-  cleanup,
-  render,
-  getAllByText,
-} from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import pokemons from '../data';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../tests/renderWithRouter';
