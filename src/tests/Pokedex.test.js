@@ -4,6 +4,15 @@ import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
+test('Encountered pokémons must be on the page', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
 test('show Próximo pokémon button', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
