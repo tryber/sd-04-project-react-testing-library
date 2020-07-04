@@ -69,7 +69,7 @@ describe('Testes - Pokemon', () => {
   it('Image', () => {
     const { getByAltText } = renderWithRouter(<App />);
 
-    const altText = pokemon.name + ' ' + 'sprite';
+    const altText = `${pokemon.name} sprite`;
 
     expect(getByAltText(altText)).toBeInTheDocument();
 
@@ -89,7 +89,7 @@ describe('Testes - Pokemon', () => {
 
     fireEvent.click(checkbox);
 
-    const altText = pokemon.name + ' ' + 'is marked as favorite';
+    const altText = `${pokemon.name} is marked as favorite`;
 
     expect(getByAltText(altText)).toBeInTheDocument();
 
