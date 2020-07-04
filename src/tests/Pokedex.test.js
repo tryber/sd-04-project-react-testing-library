@@ -29,9 +29,9 @@ test('show next pokemon', () => {
 });
 
 test('filter pokemon by type', () => {
-  const { getByText, getAllByTestId } = renderWithRouter(<App />);
+  const { getByText } = renderWithRouter(<App />);
   const pokemonType = screen.getByTestId('pokemonType');
-  const typeButton = getByText(/Psychic/i)
+  const typeButton = getByText(/Psychic/i);
   fireEvent.click(typeButton);
 
   expect(pokemonType).toHaveTextContent('Psychic');
