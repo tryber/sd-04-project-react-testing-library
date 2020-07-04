@@ -34,7 +34,7 @@ test('filter pokemon by type', () => {
   const typeButton = getByText(/Psychic/i);
   fireEvent.click(typeButton);
 
-  expect(pokemonType).toHaveTextContent('Psychic');
+  expect(pokemonType.textContent).toBe(typeButton.textContent);
 });
 
 test('reset filter', () => {
