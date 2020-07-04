@@ -30,7 +30,9 @@ describe('Requisito 6', () => {
       <Pokemon pokemon={information} isFavorite={false} />,
     );
     const peso = getByTestId('pokemon-weight');
-    expect(peso.textContent).toBe(`Average weight:${information.averageWeight.value}${information.averageWeight.measurementUnit}`);
+    expect(peso.textContent).toBe(
+      `Average weight:${information.averageWeight.value}${information.averageWeight.measurementUnit}`,
+    );
   });
 
   it('imagem pokemon', () => {
@@ -55,7 +57,9 @@ describe('Requisito 6', () => {
     );
     const link = getByText('More details');
     fireEvent.click(link);
-    const { location: { pathname } } = history;
+    const {
+      location: { pathname },
+    } = history;
     expect(pathname).toMatch(`/pokemons/${information.id}`);
   });
 
