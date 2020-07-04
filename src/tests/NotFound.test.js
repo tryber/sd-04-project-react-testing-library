@@ -1,7 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
-import renderWithRouter from '../RenderWithRouter';
+import { render } from '@testing-library/react';
 import App from '../App';
 
 test('shows the Not Found page when the route is `/something-else`', () => {
@@ -15,7 +14,7 @@ test('shows the Not Found page when the route is `/something-else`', () => {
 });
 
 test('shows sad image image', () => {
-  const { getByText, getByAltText } = render(
+  const { getByAltText } = render(
     <MemoryRouter initialEntries={['/something-else']}>
       <App />
     </MemoryRouter>,
