@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, screen, getAllByTestId } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
@@ -36,7 +36,6 @@ test('filter pokemon by type', () => {
     fireEvent.click(type);
     expect(pokemonType.textContent).toBe(type.textContent);
   });
-;
 });
 
 test('reset filter', () => {
