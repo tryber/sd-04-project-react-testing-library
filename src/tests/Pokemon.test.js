@@ -59,7 +59,7 @@ describe('Testes - Pokemon', () => {
     expect(averageWeightElement).toBeInTheDocument();
 
     const averageWeightDescription =
-      `Average weight:` +
+      'Average weight:' +
       `${pokemon.averageWeight.value}` +
       `${pokemon.averageWeight.measurementUnit}`;
 
@@ -69,7 +69,7 @@ describe('Testes - Pokemon', () => {
   it('Image', () => {
     const { getByAltText } = renderWithRouter(<App />);
 
-    const altText = `${pokemon.name} ` + `sprite`;
+    const altText = `${pokemon.name} ` + 'sprite';
 
     expect(getByAltText(altText)).toBeInTheDocument();
 
@@ -78,7 +78,7 @@ describe('Testes - Pokemon', () => {
 
   it('Image - Star', () => {
     const { getByText, getByLabelText, getByAltText } = renderWithRouter(
-      <App />
+      <App />,
     );
 
     const link = getByText(/More details/i);
@@ -89,12 +89,12 @@ describe('Testes - Pokemon', () => {
 
     fireEvent.click(checkbox);
 
-    const altText = `${pokemon.name} ` + `is marked as favorite`;
+    const altText = `${pokemon.name} ` + 'is marked as favorite';
 
     expect(getByAltText(altText)).toBeInTheDocument();
 
     // console.log(getByAltText(altText).src.slice(-14));
 
-    expect(getByAltText(altText).src.slice(-14)).toBe(`/star-icon.svg`);
+    expect(getByAltText(altText).src.slice(-14)).toBe('/star-icon.svg');
   });
 });
