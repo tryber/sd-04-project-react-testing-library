@@ -4,15 +4,6 @@ import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
-test('Encountered pokémons must be on the page', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
-
 test('show Próximo pokémon button', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
@@ -77,7 +68,23 @@ test('disable button if there just one pokemon', () => {
   const dragonair = getByText(/Dragonair/i);
   expect(dragonair).toBeInTheDocument();
 
+  const nxtBtn = getByText(/Próximo pokémon/i);
+  expect(nxtBtn.disabled).toBeTruthy();
+});
+
+test('last pokemon on the list return to the first', () => {
+  const { getByText } = renderWithRouter(<App />);
+
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  fireEvent.click(getByText(/Próximo pokémon/i));
   fireEvent.click(getByText(/Próximo pokémon/i));
 
-  expect(dragonair).toBeInTheDocument();
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
 });
