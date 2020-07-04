@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByAltText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
@@ -41,6 +41,6 @@ test('show pokemon image', () => {
 
   fireEvent.click(getByText(/More details/i));
   const image = getAllByRole('img');
-  expect(image[0].src).toBe("https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png");
+  expect(image[0].src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   expect(image[0].alt).toBe('Pikachu sprite');
 });
