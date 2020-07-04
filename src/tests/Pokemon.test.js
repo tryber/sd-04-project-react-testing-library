@@ -16,7 +16,6 @@ test('show pokemon name', () => {
 
 test('show pokemon type', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
-  
   const pikachu = getByText(/Pikachu/i);
   expect(pikachu).toBeInTheDocument();
 
@@ -27,7 +26,6 @@ test('show pokemon type', () => {
 
 test('show pokemon average weight', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
-  
   const pikachu = getByText(/Pikachu/i);
   expect(pikachu).toBeInTheDocument();
 
