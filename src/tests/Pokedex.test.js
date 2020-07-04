@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
@@ -29,21 +29,12 @@ test('show next pokemon', () => {
 });
 
 test('filter pokemon by type', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText, getAllByTestId } = renderWithRouter(<App />);
+  const pokemonType = screen.getByTestId('pokemonType');
+  const typeButton = getByText(/Psychic/i)
+  fireEvent.click(typeButton);
 
-  fireEvent.click(getByText(/Psychic/i));
-
-  const alakazam = getByText(/Alakazam/i);
-  expect(alakazam).toBeInTheDocument();
-
-  fireEvent.click(getByText(/Próximo pokémon/i));
-
-  const mew = getByText(/Mew/i);
-  expect(mew).toBeInTheDocument();
-
-  fireEvent.click(getByText(/Próximo pokémon/i));
-
-  expect(alakazam).toBeInTheDocument();
+  expect(pokemonType).toHaveTextContent('Psychic');
 });
 
 test('reset filter', () => {
@@ -72,19 +63,11 @@ test('disable button if there just one pokemon', () => {
   expect(nxtBtn.disabled).toBeTruthy();
 });
 
-test('last pokemon on the list return to the first', () => {
-  const { getByText } = renderWithRouter(<App />);
-
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-  fireEvent.click(getByText(/Próximo pokémon/i));
-
-  const pikachu = getByText(/Pikachu/i);
-  expect(pikachu).toBeInTheDocument();
+test('Encountered pokémons must be on the page', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
