@@ -25,3 +25,14 @@ test('show pokemon type', () => {
   expect(pokeType.textContent).toBe('Electric');
 });
 
+test('show pokemon average weight', () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
+  
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+
+  fireEvent.click(getByText(/More details/i));
+  const pokeWeight = getByTestId('pokemon-weight');
+  expect(pokeWeight.textContent).toBe('Average weight:6.0kg');
+});
+
