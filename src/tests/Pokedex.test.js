@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, getAllByTestId } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
@@ -29,12 +29,14 @@ test('show next pokemon', () => {
 });
 
 test('filter pokemon by type', () => {
-  const { getByText } = renderWithRouter(<App />);
-  const pokemonType = screen.getByTestId('pokemonType');
-  const typeButton = getByText(/Psychic/i);
-  fireEvent.click(typeButton);
-
-  expect(pokemonType.textContent).toBe(typeButton.textContent);
+  const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+  const typeButton = getAllByTestId('pokemon-type-button');
+  const pokemonType = getByTestId('pokemonType');
+  typeButton.forEach((type) => {
+    fireEvent.click(type);
+    expect(pokemonType.textContent).toBe(type.textContent);
+  });
+;
 });
 
 test('reset filter', () => {
