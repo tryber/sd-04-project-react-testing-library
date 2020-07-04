@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, fireEvent} from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 
 import App from '../App';
@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 describe('Testes da página Pokedex', () => {
   it('A Pokédex deve conter botões de filtro', () => {
-    const { getAllByTestId } = renderWithRouter(<App /> );
+    const { getAllByTestId } = renderWithRouter(<App />);
 
     const arrayBtnType = getAllByTestId(/pokemon-type-button/i);
 
