@@ -34,8 +34,8 @@ describe('Requisito 6, Pokemon', () => {
   });
   test('Verificando dados do Pokemon', () => {
     const { getByTestId } = renderWithRouter(<App />);
-    expect(getByTestId('pokemon-name')).toBe(pokemon.name);
-    expect(getByTestId('pokemonType')).toBe(pokemon.type);
+    expect(getByTestId('pokemon-name').textContent).toBe(pokemon.name);
+    expect(getByTestId('pokemonType').textContent).toBe(pokemon.type);
   });
   test('O peso médio do pokémon deve ser exibido com um texto no formato Average weight: <value> ', () => {
     const { getByTestId } = renderWithRouter(<App />);
