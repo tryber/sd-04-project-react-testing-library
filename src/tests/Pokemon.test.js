@@ -51,3 +51,14 @@ test('redirect to the correct page', () => {
   expect(pikachu).toBeInTheDocument();
   expect(getByText(/More details/i).href).toBe('http://localhost/pokemons/25');
 });
+
+test('favorite pokemon should have a star icon', () => {
+  const { getByText, getAllByRole } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+  fireEvent.click(getByText(/More details/i));
+  fireEvent.click(getByText(/Pokémon favoritado?/i));
+  const image = getAllByRole('img')[1];
+  expect(image.src).toBe('http://localhost/star-icon.svg');
+  expect(image.alt).toBe('Pikachu is marked as favorite');
+})
