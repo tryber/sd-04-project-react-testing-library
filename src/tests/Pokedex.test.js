@@ -9,8 +9,8 @@ describe('Requisito  5, Pokedex', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const btnNext = getByText('Próximo pokémon');
     expect(btnNext).toBeInTheDocument();
-    pokemons.forEach((e) => {
-      expect(getByTestId('pokemon-name').textContent).toBe(e.name);
+    pokemons.forEach((elemento) => {
+      expect(getByTestId('pokemon-name').textContent).toBe(elemento.name);
       fireEvent.click(btnNext);
     });
     expect(getByTestId('pokemon-name').textContent).toBe(pokemons[0].name);
