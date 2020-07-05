@@ -86,7 +86,7 @@ describe('Menu links redirections', () => {
 
 describe('Not found page', () => {
   test('should render NotFound component on invalid url', () => {
-    const { getByRole, history } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
 
     history.push('/WrongWayTurnBack');
 
