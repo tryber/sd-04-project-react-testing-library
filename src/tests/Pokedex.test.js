@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './services/renderWithRouter';
-import { fireEvent } from '@testing-library/react';
 import pokemons from '../data';
 
 describe('Requisito  5, Pokedex', () => {
