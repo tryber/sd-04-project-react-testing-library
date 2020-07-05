@@ -54,3 +54,14 @@ test('show if pokemon favorite is checked', () => {
   fireEvent.click(getByText(/More details/i));
   expect(getByText(/Pokémon favoritado?/i)).toBeInTheDocument();
 });
+
+test('show summary of pokemon', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+
+  fireEvent.click(getByText(/More details/i));
+  expect(getByText(
+    'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.'
+  )).toBeInTheDocument();
+});
