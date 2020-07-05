@@ -58,7 +58,7 @@ test('favorite pokemon should have a star icon', () => {
   expect(pikachu).toBeInTheDocument();
   fireEvent.click(getByText(/More details/i));
   fireEvent.click(getByText(/Pokémon favoritado?/i));
-  const image = getAllByRole('img')[1];
-  expect(image.src).toBe('http://localhost/star-icon.svg');
-  expect(image.alt).toBe('Pikachu is marked as favorite');
-})
+  const image = getAllByRole('img');
+  expect(image[1].src).toBe('http://localhost/star-icon.svg');
+  expect(image[1].alt).toBe('Pikachu is marked as favorite');
+});
