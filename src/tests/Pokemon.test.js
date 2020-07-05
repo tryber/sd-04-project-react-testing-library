@@ -44,3 +44,10 @@ test('show pokemon image', () => {
   expect(image[0].src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   expect(image[0].alt).toBe('Pikachu sprite');
 });
+
+test('redirect to the correct page', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+  expect(getByText(/More details/i).href).toBe('http://localhost/pokemons/25');
+});
