@@ -1,8 +1,7 @@
+import { fireEvent } from '@testing-library/react';
 import React from 'react';
 import renderWithRouter from './services/renderWithRouter';
 import App from '../App';
-import pokemons from '../data';
-import { fireEvent } from '@testing-library/react';
 
 const pokemon = {
   id: 25,
