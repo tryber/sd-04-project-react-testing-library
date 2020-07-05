@@ -21,7 +21,6 @@ test('show Summary', () => {
   expect(pikachu).toBeInTheDocument();
 
   fireEvent.click(getByText(/More details/i));
-  
   expect(getByText(/Summary/i)).toBeInTheDocument();
 });
 
@@ -32,7 +31,6 @@ test('show game location of pokemon', () => {
   expect(pikachu).toBeInTheDocument();
 
   fireEvent.click(getByText(/More details/i));
-  
   expect(getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
 });
 
@@ -51,11 +49,9 @@ test('show image location of pokemon', () => {
 
 test('show if pokemon favorite is checked', () => {
   const { getByText } = renderWithRouter(<App />);
-
   const pikachu = getByText(/Pikachu/i);
   expect(pikachu).toBeInTheDocument();
 
   fireEvent.click(getByText(/More details/i));
-  
   expect(getByText(/Pokémon favoritado?/i)).toBeInTheDocument();
 });
