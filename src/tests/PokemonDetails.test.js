@@ -41,7 +41,6 @@ test('show image location of pokemon', () => {
   expect(pikachu).toBeInTheDocument();
 
   fireEvent.click(getByText(/More details/i));
-  
   const image = getAllByRole('img');
   expect(image[2].src).toBe('https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   expect(image[2].alt).toBe('Pikachu location');
