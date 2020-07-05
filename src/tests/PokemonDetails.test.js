@@ -62,6 +62,6 @@ test('show summary of pokemon', () => {
 
   fireEvent.click(getByText(/More details/i));
   expect(getByText(
-    'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.'
+    'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
   )).toBeInTheDocument();
 });
