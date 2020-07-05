@@ -7,6 +7,8 @@ import pokemons from '../data';
 describe('Requisito  5, Pokedex', () => {
   test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
+    const encounterPokemons = getByText(/Encountered pokémons/i);
+    expect(encounterPokemons).toBeInTheDocument();
     const btnNext = getByText('Próximo pokémon');
     expect(btnNext).toBeInTheDocument();
     pokemons.forEach((elemento) => {
