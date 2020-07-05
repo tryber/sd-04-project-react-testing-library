@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 // import { cleanup, fireEvent, render, getByText } from '@testing-library/react';
-import { fireEvent, render, getByText } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -12,7 +12,7 @@ describe('Testes do arquivo App.js', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('Testes do arquivo App.js', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
@@ -45,7 +45,7 @@ describe('Testes do arquivo App.js', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(getByText('About Pokédex')).toBeInTheDocument();
   });
@@ -61,7 +61,7 @@ describe('Testes do arquivo App.js', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
@@ -70,7 +70,7 @@ describe('Testes do arquivo App.js', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/foo']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(getByText('Page requested not found')).toBeInTheDocument();
   });
