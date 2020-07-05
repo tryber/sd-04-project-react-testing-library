@@ -1,7 +1,7 @@
 import React from 'react';
 import App from '../App';
 import renderWithRouter from './services/renderWithRouter';
-import { fireEvent, getByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import pokemons from '../data';
 
 describe('Requisito  5, Pokedex', () => {
@@ -46,5 +46,29 @@ describe('A Pokédex deve conter um botão para resetar o filtro', () => {
       expect(getByTestId('pokemon-name').textContent).toBe(e.name);
       fireEvent.click(btnNext);
     });
+  });
+});
+
+describe('A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
+  test('Todos Tipos', () => {
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
+    const btnAllType = getAllByTestId('pokemon-type-button').map((e) => e.textContent);
+    const btnNext = getByText('Próximo pokémon');
+    const arr = [];
+    pokemons.forEach((e) => {
+      if (!arr.includes(e.type)) return arr.push(e.type);
+      fireEvent.click(btnNext);
+      return arr;
+    });
+    expect(btnAllType).toEqual(arr);
+  });
+});
+
+describe('Botão Desabilitado', () => {
+  test('Btn Desabilitado', () => {
+    const { getByText, getByTestId } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/Dragon/i));
+    expect(getByText(/Dragonair/i)).toBeInTheDocument();
+    expect(getByTestId('next-pokemon').disabled).toBeTruthy();
   });
 });
