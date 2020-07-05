@@ -34,3 +34,17 @@ describe('A partir da seleção de um botão de tipo, a Pokédex deve circular s
     expect(btnType.textContent).toBe(type);
   });
 });
+
+describe('A Pokédex deve conter um botão para resetar o filtro', () => {
+  test('Botões de Botão ALL', () => {
+    const { getByText, getByTestId } = renderWithRouter(<App />);
+    const btnAll = getByText(/All/i);
+    expect(btnAll).toBeInTheDocument();
+    const btnNext = getByText('Próximo pokémon');
+    fireEvent.click(btnAll);
+    pokemons.forEach((e) => {
+      expect(getByTestId('pokemon-name').textContent).toBe(e.name);
+      fireEvent.click(btnNext);
+    });
+  });
+});
