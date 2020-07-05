@@ -5,27 +5,24 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
 const pokemon = {
-  id: 25,
-  name: 'Pikachu',
-  type: 'Electric',
+  id: 23,
+  name: 'Ekans',
+  type: 'Poison',
   averageWeight: {
-    value: '6.0',
+    value: '6.9',
     measurementUnit: 'kg',
   },
-  image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+  image: 'https://cdn.bulbagarden.net/upload/1/18/Spr_5b_023.png',
+  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Ekans_(Pok%C3%A9mon)',
   foundAt: [
     {
-      location: 'Kanto Viridian Forest',
-      map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-    },
-    {
-      location: 'Kanto Power Plant',
-      map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+      location: 'Goldenrod Game Corner',
+      map:
+        'https://cdn.bulbagarden.net/upload/e/ec/Johto_Goldenrod_City_Map.png',
     },
   ],
   summary:
-    'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+    'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
 };
 
 afterEach(cleanup);
@@ -33,6 +30,14 @@ afterEach(cleanup);
 describe('Testes da página Pokemon Details', () => {
   it('Summary Section', () => {
     const { getByText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText(/Próximo pokémon/i);
+
+    expect(nextPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
 
     const linkToDetails = getByText(/More details/i);
 
@@ -50,6 +55,14 @@ describe('Testes da página Pokemon Details', () => {
   it('Pokémon Favoritado', () => {
     const { getByText, getByLabelText } = renderWithRouter(<App />);
 
+    const nextPokemon = getByText(/Próximo pokémon/i);
+
+    expect(nextPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
+
     const linkToDetails = getByText(/More details/i);
 
     expect(linkToDetails).toBeInTheDocument();
@@ -61,6 +74,14 @@ describe('Testes da página Pokemon Details', () => {
 
   it('Game Locations', () => {
     const { getByText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText(/Próximo pokémon/i);
+
+    expect(nextPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
 
     const linkToDetails = getByText(/More details/i);
 
@@ -74,7 +95,15 @@ describe('Testes da página Pokemon Details', () => {
   });
 
   it('Maps', () => {
-    const { getByText, getAllByAltText } = renderWithRouter(<App />);
+    const { getByText, getByAltText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText(/Próximo pokémon/i);
+
+    expect(nextPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
 
     const linkToDetails = getByText(/More details/i);
 
@@ -84,18 +113,21 @@ describe('Testes da página Pokemon Details', () => {
 
     const altText = `${pokemon.name} location`;
 
-    // console.log(getAllByAltText(altText));
+    expect(getByAltText(altText)).toBeInTheDocument();
 
-    getAllByAltText(altText).forEach((img) => {
-      expect(img).toBeInTheDocument();
-    });
-
-    expect(getAllByAltText(altText)[0].src).toBe(pokemon.foundAt[0].map);
-    expect(getAllByAltText(altText)[1].src).toBe(pokemon.foundAt[1].map);
+    expect(getByAltText(altText).src).toBe(pokemon.foundAt[0].map);
   });
 
   it('Pokémon Details Title', () => {
     const { getByText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText(/Próximo pokémon/i);
+
+    expect(nextPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
+    fireEvent.click(nextPokemon);
 
     const linkToDetails = getByText(/More details/i);
 
