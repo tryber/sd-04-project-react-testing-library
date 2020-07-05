@@ -1,7 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../services/renderwithRouter';
 import About from '../components/About';
-import { render } from 'react-dom';
 
 describe('About page', () => {
   test('should render about component', () => {
