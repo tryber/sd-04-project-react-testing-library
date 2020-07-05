@@ -86,10 +86,11 @@ describe('Menu links redirections', () => {
 
 describe('Not found page', () => {
   test('should render NotFound component on invalid url', () => {
-    const { getByTestId, history } = renderWithRouter(<App />);
+    const { getByRole, history } = renderWithRouter(<App />);
 
     history.push('/WrongWayTurnBack');
 
-    expect(getByTestId('not-found')).toHaveTextContent('Page requested not found');
+    const element = document.querySelector('.not-found');
+    expect(element).toHaveTextContent('Page requested not found');
   });
 });
