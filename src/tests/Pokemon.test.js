@@ -1,9 +1,9 @@
 import React from 'react';
 // import { fireEvent, getByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import pokemons from '../data';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { fireEvent } from '@testing-library/react';
 // test('', () => {});
 
 describe('Testes do arquivo Pokemon.js', () => {
@@ -19,7 +19,7 @@ describe('Testes do arquivo Pokemon.js', () => {
     const { getByTestId } = renderWithRouter(<App />);
     const weight = getByTestId('pokemon-weight');
     expect(weight.innerHTML).toMatch(
-      `Average weight:${pokemons[0].averageWeight.value}${pokemons[0].averageWeight.measurementUnit}`
+      `Average weight:${pokemons[0].averageWeight.value}${pokemons[0].averageWeight.measurementUnit}`,
     );
   });
 
