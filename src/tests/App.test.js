@@ -23,7 +23,6 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 describe('1. testes do arquivos App.js', () => {
-
   test('testado `Home` e se redireciona corretamente', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
@@ -37,7 +36,7 @@ describe('1. testes do arquivos App.js', () => {
 
     fireEvent.click(Home);
     const { location: { pathname } } = history;
-    expect(pathname).toBe("/");
+    expect(pathname).toBe('/');
   });
 
   test('testado `About` e se redireciona corretamente', () => {
@@ -53,7 +52,7 @@ describe('1. testes do arquivos App.js', () => {
 
     fireEvent.click(About);
     const { location: { pathname } } = history;
-    expect(pathname).toBe("/about");
+    expect(pathname).toBe('/about');
   });
 
   test('testando `Favorite Pokémon` e se redirecionan corretamente', () => {
@@ -61,7 +60,7 @@ describe('1. testes do arquivos App.js', () => {
     const { getByText } = render(
       <Router history={history}>
         <App />
-      </Router>
+      </Router>,
     );
 
     const FavPok = getByText(/Favorite Pokémons/i);
