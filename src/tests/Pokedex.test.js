@@ -7,6 +7,16 @@ import Pokemons from '../data';
 
 const pokemonsNames = Pokemons.map((pokemon) => pokemon.name);
 
+describe('Header', () => {
+  test('should render a header with text "Encountered pokémons"', () => {
+    const { getByText } = renderWithRouter(<App />, { route: '/' });
+    const header = getByText(/Encountered pokémons/i);
+
+    expect(header).toBeInTheDocument();
+    expect(header.tagName).toBe('H2');
+  });
+});
+
 describe('Next Button', () => {
   test('should contain "Próximo pokemon" button', () => {
     const { getByTestId } = renderWithRouter(<App />, { route: '/' });
