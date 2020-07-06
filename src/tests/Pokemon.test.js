@@ -62,17 +62,6 @@ describe('Pokemon card', () => {
 });
 
 describe('Favorite pokemon', () => {
-  // test('should render a start on favorite pokemons', () => {
-  //   const { container } = renderWithRouter(<Pokemon pokemon={pokemons[0]} isfavorite />);
-  //   const { name } = pokemons[0];
-  //   console.log(container)
-  //   const fevoriteStar = container.querySelector('.pokemon').querySelectorAll('.favorite-icon');
-
-  //   expect(fevoriteStar).toBeInTheDocument();
-  //   expect(fevoriteStar).toHaveAttribute('src', '/star-icon.svg');
-  //   expect(fevoriteStar).toHaveAttribute('alt', `${name} is marked as favorite`);
-  // });
-
   test('Favorite Pokémon should display a star icon', () => {
     const { getByAltText } = renderWithRouter(<Pokemon pokemon={pokemons[0]} isFavorite />);
     const fevoriteIcon = getByAltText(`${pokemons[0].name} is marked as favorite`);
