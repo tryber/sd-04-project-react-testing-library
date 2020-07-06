@@ -1,7 +1,7 @@
+import { fireEvent } from '@testing-library/react';
 import React from 'react';
 import renderWithRouter from './services/renderWithRouter';
 import App from '../App';
-import { fireEvent, getByRole } from '@testing-library/react';
 import pokemons from '../data';
 
 describe('Requisito 7 Pokemons Details', () => {
