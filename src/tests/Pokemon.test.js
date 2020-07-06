@@ -3,7 +3,39 @@ import { cleanup } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import App from '../App';
-import Pokemons from '../data';
+
+const Pokemons = [
+  {
+    id: 25,
+    name: 'Pikachu',
+    type: 'Electric',
+    averageWeight: { value: '6.0', measurementUnit: 'kg' },
+    image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+    foundAt: [[Object], [Object]],
+    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+  },
+  {
+    id: 4,
+    name: 'Charmander',
+    type: 'Fire',
+    averageWeight: { value: '8.5', measurementUnit: 'kg' },
+    image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
+    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)',
+    foundAt: [[Object], [Object], [Object], [Object]],
+    summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+  },
+  {
+    id: 23,
+    name: 'Ekans',
+    type: 'Poison',
+    averageWeight: { value: '6.9', measurementUnit: 'kg' },
+    image: 'https://cdn.bulbagarden.net/upload/1/18/Spr_5b_023.png',
+    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Ekans_(Pok%C3%A9mon)',
+    foundAt: [[Object]],
+    summary: 'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
+  },
+];
 
 afterEach(cleanup);
 
@@ -22,17 +54,16 @@ describe('Testando pagina Pokemon', () => {
   });
 
   test('Testando peso médio do pokémon deve ser no formato `Average weight', () => {
-    const { getByTestId } = renderWithRouter(<App />);
-    Pokemons.forEach((poke) => {
-      expect(getByTestId('pokemon-weight')).toBeInTheDocument(`Average weight:${poke.averageWeight.value}${poke.averageWeight.measurementUnit}`);
-    });
+    const { getByText } = renderWithRouter(<Pokemon pokemon={Pokemons[0]} />);
+    const weightPoke = getByText(`Average weight:${Pokemons[0].averageWeight.value}${Pokemons[0].averageWeight.measurementUnit}`);
+    expect(weightPoke).toBeInTheDocument();
   });
 
   test('Testandoo imagem pokémon', () => {
-    const { getByAltText } = renderWithRouter(<App />);
-
-    expect(getByAltText(`${Pokemons[0].name} sprite`)).toHaveAttribute('src', Pokemons[0].image);
-    expect(getByAltText(`${Pokemons[0].name} sprite`)).toHaveAttribute('alt', `${Pokemons[0].name} sprite`);
+    renderWithRouter(<Pokemon pokemon={Pokemons[0]} />);
+    const img = document.querySelector('img');
+    expect(img.alt).toBe(`${Pokemons[0].name} sprite`);
+    expect(img.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   test('Testando link Detalhes pokémon', () => {
