@@ -25,7 +25,7 @@ describe('Favorite Pokemons', () => {
     );
     const renderedIds = getPokemonsIdsByNames(renderedPokemonsNames);
 
-    expect(renderedIds).toEqual(mokeFavoritePokemons());
+    expect(renderedIds).not.toEqual(mokeFavoritePokemons());
   });
 
   test('should render all favorite pokemons', () => {
