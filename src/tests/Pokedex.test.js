@@ -19,7 +19,7 @@ describe('Testing file Pokedex.js', () => {
     pokemons.forEach((pokemon, i) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(nextButton);
-      i === pokemons.length - 1 ? expect(getByText(pokemons[0].name)).toBeInTheDocument() : null;
+      if (i === pokemons.length - 1) expect(getByText(pokemons[0].name)).toBeInTheDocument();
     });
   });
 
