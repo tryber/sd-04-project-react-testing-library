@@ -19,5 +19,7 @@ describe('Tests about component', () => {
     const images = getAllByRole('img');
     expect(images[1].alt).toBe(`${pokemon[0].name} location`);
     expect(images[2].alt).toBe(`${pokemon[0].name} location`);
+    expect(images[1].src).toBe(pokemon[0].foundAt[0].map);
+    expect(images[2].src).toBe(pokemon[0].foundAt[1].map);
   });
 });
