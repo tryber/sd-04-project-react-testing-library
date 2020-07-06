@@ -4,11 +4,11 @@ import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 
 function renderWithRouter(
-  ui,
+  rendRouter,
   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) {
   return {
-    ...render(<Router history={history}>{ui}</Router>),
+    ...render(<Router history={history}>{rendRouter}</Router>),
     history,
   };
 }
