@@ -14,8 +14,10 @@ describe('Testando pagina Home', () => {
 
   test('O botão (Próximo pokémon) deve mostrar o proximo pokmeon da lista', () => {
     const { getByText } = renderWithRouter(<App />);
+    // const heading = getByText('Encountered pokémons');
     Pokemons.forEach((nomes) => {
       expect(getByText(nomes.name)).toBeInTheDocument();
+      expect(getByText('Encountered pokémons')).toBeInTheDocument();
       fireEvent.click(getByText(/Próximo pokémon/i).closest('button'));
     });
   });
