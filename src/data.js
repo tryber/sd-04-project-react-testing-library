@@ -191,7 +191,7 @@ const pokemons = [
         map: 'https://cdn.bulbagarden.net/upload/2/21/Johto_Route_45_Map.png',
       },
       {
-        location: 'Johto Dragon\'s Den',
+        location: "Johto Dragon's Den",
         map: 'https://cdn.bulbagarden.net/upload/1/1e/Johto_Dragons_Den_Map.png',
       },
     ],
