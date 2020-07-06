@@ -31,6 +31,15 @@ describe('Pokemon card', () => {
     expect(pokemonWeight.textContent).toBe(`Average weight:${value}${measurementUnit}`);
   });
 
+  test('should have information about pokemon type', () => {
+    const { getByTestId } = renderWithRouter(<App />, { route: '/' });
+    const { type } = pokemons[0];
+    const pokemonType = getByTestId('pokemonType');
+
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.textContent).toBe(`${type}`);
+  });
+
   test('should render correct pokemon sprite', () => {
     const { container } = renderWithRouter(<App />, { route: '/' });
     const { name, image } = pokemons[0];
