@@ -14,6 +14,6 @@ describe('Tests Pokedex component', () => {
     fireEvent.click(allButton);
     expect(getByTestId('pokemonType').innerHTML).toBe(pokemons[0].type);
     expect(getByTestId('next-pokemon')).toBeInTheDocument();
-    expect(getAllByTestId('pokemon-type-button')[1]).toBeInTheDocument();
+    getAllByTestId('pokemon-type-button').forEach((type) => (expect(type).toBeInTheDocument()));
   });
 });
