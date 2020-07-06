@@ -6,7 +6,7 @@ import App from '../App';
 
 describe('Tests Pokedex component', () => {
   test('test states and props', () => {
-    const { getByText, getByTestId, getAllByTestId } = renderWithRouter(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<App />);
     expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
     expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
     const allButton = getByText(/All/i);
