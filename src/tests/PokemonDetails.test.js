@@ -4,7 +4,9 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
 
+
 afterEach(cleanup);
+
 
 describe('Test PokemonDetails.js', () => {
   data.forEach(({
