@@ -67,8 +67,10 @@ describe('Testando pagina Home', () => {
 
   test('Quando a página carregar, o filtro selecionado deve ser o All', () => {
     const { getByTestId, getByText } = renderWithRouter(<App />);
-    fireEvent.click(getByText('All'));
-    expect(getByTestId('next-pokemon').closest('button')).not.toBeDisabled('disabled');
+    Pokemons.forEach((item) => {
+      expect(getByText(item.name)).toBeInTheDocument();
+      fireEvent.click(getByTestId('next-pokemon'));
+    });
   });
 
   test('Gerar dinamicamente um botão de filtro para cada tipo de pokémon', () => {
