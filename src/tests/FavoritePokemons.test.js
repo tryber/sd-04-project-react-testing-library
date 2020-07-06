@@ -6,7 +6,7 @@ import App from '../App';
 
 describe('requirement 3', () => {
   test('no favorite pokemons found', () => {
-    const { getByText } = render(<FavoritePokemons pokmeons={[]} />);
+    const { getByText } = render(<FavoritePokemons pokemons={[]} />);
     const sentence = getByText(/no favorite pokemon found/i);
     expect(sentence).toBeInTheDocument();
   });
