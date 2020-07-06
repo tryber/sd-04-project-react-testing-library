@@ -4,32 +4,32 @@ import { createMemoryHistory } from 'history';
 import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
-jest.mock("react-router-dom", () => {
-  const moduloOriginal = jest.requireActual("react-router-dom");
+jest.mock('react-router-dom', () => {
+  const moduloOriginal = jest.requireActual('react-router-dom');
   return {
     ...moduloOriginal,
-    BrowserRouter: ({ Children }) => <div>{Children}</div>,
+    BrowserRouter: ({ children }) => (<div>{children}</div>),
   };
 });
 
-test("renders a reading with the text `Pokédex`", () => {
+test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
 
-describe("1. testes do arquivos App.js", () => {
+describe('1. testes do arquivos App.js', () => {
 
-  test("testado `Home` e se redireciona corretamente", () => {
+  test('testado `Home` e se redireciona corretamente', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
       <Router history={history}>
         <App />
-      </Router>
+      </Router>,
     );
 
     const Home = getByText(/Home/i);
@@ -40,12 +40,12 @@ describe("1. testes do arquivos App.js", () => {
     expect(pathname).toBe("/");
   });
 
-  test("testado `About` e se redireciona corretamente", () => {
+  test('testado `About` e se redireciona corretamente', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
       <Router history={history}>
         <App />
-      </Router>
+      </Router>,
     );
 
     const About = getByText(/About/i);
@@ -68,9 +68,8 @@ describe("1. testes do arquivos App.js", () => {
     expect(FavPok).toBeInTheDocument();
 
     fireEvent.click(FavPok);
-    const { location: {pathname} } = history;
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
-    
-  })
 
+  });
 });
