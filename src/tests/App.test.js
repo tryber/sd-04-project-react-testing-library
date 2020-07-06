@@ -63,5 +63,5 @@ describe('1. testes do arquivos App.js', () => {
     fireEvent.click(FavPok);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
-  })
+  });
 });
