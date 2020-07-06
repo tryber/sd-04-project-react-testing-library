@@ -14,10 +14,9 @@ describe('Details card', () => {
   });
 
   test('shouldt have a link to details page', () => {
-    const { getByText } = renderWithRouter(<App />, { route: `/pokemons/${pokemons[0].id}` });
-    const detailsButton = getByText(/More details/i);
+    const { queryByText } = renderWithRouter(<App />, { route: `/pokemons/${pokemons[0].id}` });
 
-    expect(detailsButton).not.toBeInTheDocument();
+    expect(queryByText('More details')).not.toBeInTheDocument();
   });
 
   test('should have a Summary "H2" subtitle', () => {
