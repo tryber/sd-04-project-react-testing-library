@@ -4,14 +4,6 @@ import { createMemoryHistory } from 'history';
 import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
-jest.mock('react-router-dom', () => {
-  const moduloOriginal = jest.requireActual('react-router-dom');
-  return {
-    ...moduloOriginal,
-    BrowserRouter: ({ children }) => (<div>{children}</div>),
-  };
-});
-
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
