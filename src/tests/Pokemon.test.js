@@ -42,9 +42,9 @@ describe('Testando pagina Pokemon', () => {
   });
 
   test('Testando link de navegação do pokémon, para a página de detalhes de pokémon', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/More details/i));
-    expect(history.location.pathname).toBe(`pokemons/${Pokemons[0].id}`);
+    renderWithRouter(<Pokemon pokemon={Pokemons[0]} />);
+    const path = `/pokemons/${Pokemons[0].id}`;
+    expect(document.querySelector('a').href.includes(path)).toBeTruthy();
   });
 
   test('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
