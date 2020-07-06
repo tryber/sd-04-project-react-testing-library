@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './utils';
+import renderWithRouter from './resource';
 
 afterEach(cleanup);
 
