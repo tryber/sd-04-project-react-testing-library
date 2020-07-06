@@ -30,10 +30,8 @@ describe('1. testes do arquivos App.js', () => {
         <App />
       </Router>,
     );
-
     const Home = getByText(/Home/i);
     expect(Home).toBeInTheDocument();
-
     fireEvent.click(Home);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/');
@@ -46,10 +44,8 @@ describe('1. testes do arquivos App.js', () => {
         <App />
       </Router>,
     );
-
     const About = getByText(/About/i);
     expect(About).toBeInTheDocument();
-
     fireEvent.click(About);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
@@ -62,13 +58,10 @@ describe('1. testes do arquivos App.js', () => {
         <App />
       </Router>,
     );
-
     const FavPok = getByText(/Favorite Pokémons/i);
     expect(FavPok).toBeInTheDocument();
-
     fireEvent.click(FavPok);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
-
-  });
+  })
 });
