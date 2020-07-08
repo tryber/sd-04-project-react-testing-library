@@ -22,3 +22,11 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+describe('Requirement 1', () => {
+  test('O primeiro link deve possuir o texto Home com a URL /', () => {
+    const { getByText } = render(<App />);
+    const text = getByText(/Home/i);
+    expect(text).toBeInTheDocument();
+  });
+});
