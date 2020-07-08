@@ -29,7 +29,7 @@ describe('Tests on the about page', () => {
   test('A page contain a image', () => {
     const { container } = render(<About />);
     const image = container.querySelector('img');
-    const imageUrl = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+    const imageUrl = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
 
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', imageUrl);
