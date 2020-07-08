@@ -12,10 +12,10 @@ afterEach(cleanup);
 
 describe('Test Pokedex.js', () => {
   test('Heading h2', () => {
-      const { getByText } = renderWithRouter(<App />, { route: '/' });
-      const title = getByText(/Encountered pokémons/i);
+    const { getByText } = renderWithRouter(<App />, { route: '/' });
+    const title = getByText(/Encountered pokémons/i);
 
-      expect(title).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
   });
 
   test('Next pokemon button', () => {
