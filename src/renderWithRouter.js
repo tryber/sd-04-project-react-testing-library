@@ -8,8 +8,6 @@ function renderWithRouter(
   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
   ) {
   return {
-    ...render(<Router history={history}>{component}</Router>),
-    history,
     ...render(<Router history={history}>{ui}</Router>),
     history,
   };
