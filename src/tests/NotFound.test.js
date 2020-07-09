@@ -9,8 +9,8 @@ describe('Tests on NotFound page', () => {
   });
 
   test('The page should display a gif', () => {
-    const { queryByRole } = renderWithRouter(<NotFound />);
-    const img = queryByRole('img');
-    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    const { queryAllByRole } = renderWithRouter(<NotFound />);
+    const img = queryAllByRole('img');
+    expect(img[1].src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
