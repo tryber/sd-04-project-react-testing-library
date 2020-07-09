@@ -31,7 +31,7 @@ describe('testando as rotas', () => {
         <App />
       </MemoryRouter>,
     );
-    const text = getByText(/Encountered pokemons/);
+    const text = getByText(/Encountered pokémons/);
     expect(text).toBeInTheDocument();
   });
 
@@ -74,7 +74,7 @@ describe('testando as rotas', () => {
         <App />
       </MemoryRouter>,
     );
-    const text = getByText(/page requested not found/);
+    const text = getByText(/Page requested not found/);
     expect(text).toBeInTheDocument();
   });
 });
