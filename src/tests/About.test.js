@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, getByTestId } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { About } from '../components';
 
 describe('Tests on About.js file', () => {
@@ -42,6 +42,6 @@ describe('Tests on About.js file', () => {
     const img = document.querySelector('img');
     expect(img.src).toBe(
       'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
-    )
+    );
   });
 });
