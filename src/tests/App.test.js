@@ -1,9 +1,9 @@
-import React from "react";
-import { MemoryRouter } from "react-router-dom";
-import { render, cleanup, getByText, fireEvent } from "@testing-library/react";
-import App from "../App";
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import App from '../App';
 
-test("renders a reading with the text `Pokédex`", () => {
+test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -13,21 +13,21 @@ test("renders a reading with the text `Pokédex`", () => {
   expect(heading).toBeInTheDocument();
 });
 
-test("shows the Pokédex when the route is `/`", () => {
+test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries={["/"]}>
+    <MemoryRouter initialEntries={['/']}>
       <App />
     </MemoryRouter>,
   );
 
-  expect(getByText("Encountered pokémons")).toBeInTheDocument();
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-describe("testando as rotas", () => {
+describe('testando as rotas', () => {
   afterEach(cleanup);
-  test("testar a pag principal", () => {
+  test('testar a pag principal', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>,
     );
@@ -37,7 +37,7 @@ describe("testando as rotas", () => {
 
   test('testar a pag Home na rota "/"', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>,
     );
@@ -48,7 +48,7 @@ describe("testando as rotas", () => {
 
   test('testar a pag About na rota "about"', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={["/about"]}>
+      <MemoryRouter initialEntries={['/about']}>
         <App />
       </MemoryRouter>,
     );
@@ -59,7 +59,7 @@ describe("testando as rotas", () => {
 
   test('testar a pag Favorite Pokémons em "/favorites/"', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={["favorites"]}>
+      <MemoryRouter initialEntries={['favorites']}>
         <App />
       </MemoryRouter>,
     );
@@ -68,9 +68,9 @@ describe("testando as rotas", () => {
     expect(text).toBeInTheDocument();
   });
 
-  test('testar pag nao encontrada "/not-foubd"', () => {
+  test('testar pag nao encontrada "/not-found"', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={["/not-found"]}>
+      <MemoryRouter initialEntries={['/not-found']}>
         <App />
       </MemoryRouter>,
     );
