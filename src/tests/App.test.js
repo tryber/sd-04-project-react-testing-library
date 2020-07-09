@@ -4,26 +4,25 @@ import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../utils/renderWithRouter';
 import App from '../App';
 
-test('renders a reading with the text "Pokédex"', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Tests on App.js file', () => {
+  test('renders a reading with the text "Pokédex"', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText('Pokédex');
+    expect(heading).toBeInTheDocument();
+  });
 
-test('Shows the Pokédex when the route is "/"', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
-
-describe('Testing links', () => {
+  test('Shows the Pokédex when the route is "/"', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
 
   test('Shows Home link when route is "/"', () => {
     const { getByText } = render(
@@ -56,8 +55,7 @@ describe('Testing links', () => {
   });
 });
 
-describe('Testing Rutes', () => {
-
+describe('Testing Routes', () => {
   test('Navigating to Home page', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
