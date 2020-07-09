@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { element } from 'prop-types';
 import About from '../components/About';
 
 describe('A página "About" deve exibir informações sobre a Pokédex', () => {
@@ -8,9 +7,9 @@ describe('A página "About" deve exibir informações sobre a Pokédex', () => {
 
   test('A página deve conter um heading `h2` com o texto "About Pokédex"', () => {
     const { getByText } = render(<About />);
-    const element = getByText(/About Pokédex/);
-    expect(element.tagName).toBe('H2');
-    expect(element).toBeInTheDocument();
+    const elem = getByText(/About Pokédex/);
+    expect(elem.tagName).toBe('H2');
+    expect(elem).toBeInTheDocument();
   });
 
   test('A página deve conter dois parágrafos com texto sobre a Pokédex', () => {
