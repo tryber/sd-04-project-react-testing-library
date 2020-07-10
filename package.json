@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.1.2",
     "eslint": "^6.7.2",
     "eslint-config-airbnb": "^18.0.1",
@@ -47,6 +46,7 @@
   "devDependencies": {
     "@stryker-mutator/core": "^3.2.3",
     "@stryker-mutator/javascript-mutator": "^3.2.3",
-    "@stryker-mutator/jest-runner": "^3.2.3"
+    "@stryker-mutator/jest-runner": "^3.2.3",
+    "@testing-library/react": "^9.5.0"
   }
 }
