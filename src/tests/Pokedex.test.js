@@ -5,7 +5,7 @@ import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
-test(`O botão 'Próximo pokémon'deve conter o texto 'Próximo pokémon'`, () => {
+test('O botão [Próximo pokémon] deve conter o texto "Próximo pokémon"', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
       <App />
@@ -15,7 +15,7 @@ test(`O botão 'Próximo pokémon'deve conter o texto 'Próximo pokémon'`, () =
   expect(getByText('Próximo pokémon')).toBeInTheDocument();
 });
 
-test(`Cliques sucessivos no botão devem mostrar o próximo pokémon da lista`, () => {
+test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista', () => {
   const { getByText } = renderWithRouter(<App />);
 
   fireEvent.click(getByText(/Próximo pokémon/i));
@@ -33,7 +33,7 @@ test('Filtrar pokémons por tipo', () => {
   const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
   const typeButton = getAllByTestId('pokemon-type-button');
   const pokemonType = getByTestId('pokemonType');
-  typeButton.forEach(type => {
+  typeButton.forEach((type) => {
     fireEvent.click(type);
     expect(pokemonType.textContent).toBe(type.textContent);
   });
