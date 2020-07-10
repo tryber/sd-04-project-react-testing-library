@@ -85,3 +85,11 @@ test('The "Próximo pokémon" button should be disabled if the filtered list of 
   expect(getByText(/Dragonair/i)).toBeInTheDocument();
   expect(getByTestId('next-pokemon').disabled).toBeTruthy();
 });
+
+test('The page must to have a h2 element with the "Encountered pokémons" text', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const h2 = document.querySelector('h2');
+  const heading = getByText('Encountered pokémons');
+  expect(h2).toBeInTheDocument();
+  expect(heading).toBeInTheDocument();
+});
