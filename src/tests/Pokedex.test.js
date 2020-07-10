@@ -62,7 +62,7 @@ test('Com apenas um pokémon, botão proximo pokemon é desablilitado', () => {
   expect(nxtBtn.disabled).toBeTruthy();
 });
 
-test('Encountered pokémons', () => {
+test('Encountered Pokémons', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
       <App />
