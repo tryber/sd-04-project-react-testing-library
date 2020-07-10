@@ -55,12 +55,9 @@ test('Resetar filtro', () => {
 
 test('Com apenas um pokémon, botão proximo pokemon é desablilitado', () => {
   const { getByText } = renderWithRouter(<App />);
-
   fireEvent.click(getByText(/Dragon/i));
-
   const dragonair = getByText(/Dragonair/i);
   expect(dragonair).toBeInTheDocument();
-
   const nxtBtn = getByText(/Próximo pokémon/i);
   expect(nxtBtn.disabled).toBeTruthy();
 });
