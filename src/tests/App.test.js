@@ -36,13 +36,13 @@ describe('Testes do arquivo App.js', () => {
     fireEvent.click(getByText(/About/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
-    const headingAbout = getByText(/About/i);
+    const headingAbout = getByText(/About Pokédex/i);
     expect(headingAbout).toBeInTheDocument();
   });
 
   test('Link "Favorite Pokémons" redireciona para a página de pokémons favoritados, na URL "/favorites"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/Favorite Pokémons/i));
+    fireEvent.click(getByText(/Favorite pokémons/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
     const headingFavorites = getByText(/Favorite pokémons/i);
