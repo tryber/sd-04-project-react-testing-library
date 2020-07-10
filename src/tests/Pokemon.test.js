@@ -61,7 +61,7 @@ test('favorite pokemon star icon', () => {
 
   fireEvent.click(getByText(/More details/i));
   fireEvent.click(getByText(/Pokémon favoritado?/i));
-  
+
   const image = getAllByRole('img');
   expect(image[1].src).toBe('http://localhost/star-icon.svg');
   expect(image[1].alt).toBe('Pikachu is marked as favorite');
