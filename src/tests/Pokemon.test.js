@@ -40,7 +40,7 @@ test('The Pokémon displayed on the Pokédex must contain a navigation link to v
 test('When clicking on the pokémon navigation link, the application should be redirected to the pokemon details page', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/More Details/i));
-  expect(history.location.pathname).toBe(`pokemons/${pokemons[0].id}`);
+  expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
 });
 
 test('Favorite Pokémon should display a star icon', () => {
