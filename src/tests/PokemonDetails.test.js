@@ -37,7 +37,7 @@ describe('The details page should display a section with the maps with the locat
     const imgs = getAllByAltText(`${pokemons[0].name} location`);
     imgs.forEach((mapa) => {
       expect(
-        mapa.src === 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' ||mapa.src === 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+        mapa.src === 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' || mapa.src === 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       ).toBe(true);
     });
     expect(getByText('Kanto Viridian Forest')).toBeDefined();
