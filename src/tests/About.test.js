@@ -24,7 +24,7 @@ describe('Requirement 2', () => {
     expect(p2).toBeInTheDocument();
   });
   it('A página deve conter a seguinte imagem de uma Pokédex:...', () => {
-    const { getByText } = renderWithRouter(<App />, { route: '/about' });
+    renderWithRouter(<App />, { route: '/about' });
     const img = document.querySelector('img');
     expect(img.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
