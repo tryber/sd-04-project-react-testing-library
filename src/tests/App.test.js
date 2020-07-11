@@ -6,14 +6,6 @@ import App from '../App';
 
 afterEach(cleanup);
 
-jest.mock('react-router-dom', () => {
-  const moduloOriginal = jest.requireActual('react-router-dom');
-  return {
-    ...moduloOriginal,
-    BrowserRouter: ({ children }) => (<div>{children}</div>),
-  };
-});
-
 function renderWithRouter(ui, routeConfigs = {}) {
   const route = routeConfigs.route || '/';
   const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
