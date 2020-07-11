@@ -9,7 +9,7 @@ describe('Requirement 2', () => {
   it('A página "About" deve exibir informações sobre a Pokédex', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
-    const heading = getByText(/Pokédex/i);
+    const heading = getByText(/About Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
 });
