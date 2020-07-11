@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { fireEvent, cleanup, getAllByTestId } from '@testing-library/react';
 import renderWithRouter from '../utils/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
@@ -10,6 +10,7 @@ test('A card with the information of a specific Pokémon must be returned', () =
   const { getByTestId } = renderWithRouter(<App />);
   expect(getByTestId('pokemon-name')).toBeInTheDocument();
   expect(getByTestId('pokemonType')).toBeInTheDocument();
+  expect(getByTestId('pokemonType')).toHaveTextContent(`${pokemons[0].type}`);
   expect(getByTestId('pokemon-weight')).toBeInTheDocument();
 });
 
