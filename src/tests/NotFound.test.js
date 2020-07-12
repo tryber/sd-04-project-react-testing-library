@@ -1,23 +1,26 @@
 import React from 'react';
-import { cleanup } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
-import NotFound from '../components/NotFound';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import App from '../App';
 
-afterEach(cleanup);
+test('Page request - not found `/url-aleatoria-inexistente`', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/url-aleatoria-inexistente']}>
+      <App />
+    </MemoryRouter>,
+  );
 
-describe('Test on the NotFound page', () => {
-  test('Heading h2 includes "Page requested not found 😭"', () => {
-    const { getByText } = renderWithRouter(<NotFound />, { route: '/bad/route' });
-    const h2 = getByText(/Page requested not found/i);
+  expect(getByText('Page requested not found')).toBeInTheDocument();
+});
 
-    expect(h2.tagName).toBe('H2');
-    expect(h2).toBeInTheDocument();
-  });
-  test('Must have an image', () => {
-    const { container } = renderWithRouter(<NotFound />, { route: '/bad/route' });
-    const imageUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const image = container.querySelector('img');
+test('A página deve exibir a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
+  const { getByAltText } = render(
+    <MemoryRouter initialEntries={['/url-aleatoria-inexistente']}>
+      <App />
+    </MemoryRouter>,
+  );
 
-    expect(image).toHaveAttribute('src', imageUrl);
-  });
+  const alt = getByAltText(/not found/i);
+  expect(alt).toBeInTheDocument();
+  expect(alt.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
 });

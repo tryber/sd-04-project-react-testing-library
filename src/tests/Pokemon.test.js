@@ -1,104 +1,68 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
-import data from '../data';
-import Pokemon from '../components/Pokemon';
+import { fireEvent } from '@testing-library/react';
+
+import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
-const pikachu = {
-  id: 25,
-  name: 'Pikachu',
-  type: 'Electric',
-  averageWeight: {
-    value: '6.0',
-    measurementUnit: 'kg',
-  },
-  image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-  foundAt: [
-    {
-      location: 'Kanto Viridian Forest',
-      map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-    },
-    {
-      location: 'Kanto Power Plant',
-      map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-    },
-  ],
-  summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-};
+test('O nome correto do pokémon deve aparecer na tela', () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
 
-afterEach(cleanup);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
 
-describe('Test Pokemon.js', () => {
-  test('Return information about a pokemon', () => {
-    const { getByTestId, getByText, getAllByText } = renderWithRouter(<App />, { route: '/' });
-    const namePokemon = getByTestId('pokemon-name');
-    const typePokemon = getByTestId('pokemonType');
+  fireEvent.click(getByText(/More details/i));
+  const pokeName = getByTestId('pokemon-name');
+  expect(pokeName.textContent).toBe('Pikachu');
+});
 
-    expect(namePokemon).toBeInTheDocument();
-    expect(typePokemon).toBeInTheDocument();
+test(`O peso médio do pokémon deve ser exibido com um texto no formato 'Average weight: <value> <measurementUnit>',
+  onde '<value>' e '<measurementUnit>' são, respectivamente, o peso médio do pokémon e sua unidade de medida`, () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
 
-    data.forEach(({ name, type }) => {
-      expect(getByText(name)).toBeInTheDocument();
-      expect(getAllByText(type)[1]).toBeInTheDocument();
-      fireEvent.click(getByText('Próximo pokémon'));
-    });
-  });
+  fireEvent.click(getByText(/More details/i));
+  const pokeWeight = getByTestId('pokemon-weight');
+  expect(pokeWeight.textContent).toBe('Average weight:6.0kg');
+});
 
-  test('Text format - Average weight', () => {
-    const { getByText } = renderWithRouter(<App />, { route: '/' });
+test('show pokemon type', () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
 
-    const button = getByText('Próximo pokémon');
+  fireEvent.click(getByText(/More details/i));
+  const pokeType = getByTestId('pokemonType');
+  expect(pokeType.textContent).toBe('Electric');
+});
 
-    data.forEach(({ averageWeight: { value, measurementUnit } }) => {
-      const averageWeight = getByText(
-        `Average weight:${value}${measurementUnit}`,
-      );
-      expect(averageWeight).toBeInTheDocument();
-      fireEvent.click(button);
-    });
-  });
+test('pokemon image', () => {
+  const { getByText, getAllByRole } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
 
-  test('Must have an image', () => {
-    const { container, getByAltText, getByText } = renderWithRouter(<App />, { route: '/' });
-    const img = container.querySelector('img');
-    const button = getByText('Próximo pokémon');
+  fireEvent.click(getByText(/More details/i));
+  const image = getAllByRole('img');
+  expect(image[0].src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+  expect(image[0].alt).toBe('Pikachu sprite');
+});
 
-    data.forEach(({ name, image }) => {
-      const alt = getByAltText(`${name} sprite`);
-      expect(alt).toBeInTheDocument();
-      expect(img).toHaveAttribute('src', `${image}`);
-      fireEvent.click(button);
-    });
-  });
+test('redirect', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+  expect(getByText(/More details/i).href).toBe('http://localhost/pokemons/25');
+});
 
-  test('Pokédex must contain a navigation link to view details of this pokémon', () => {
-    const { getByText } = renderWithRouter(<App />, { route: '/' });
-    const button = getByText(/Próximo pokémon/i);
-    const moreInfo = getByText(/More details/i);
+test('favorite pokemon star icon', () => {
+  const { getByText, getAllByRole } = renderWithRouter(<App />);
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
 
-    data.forEach(({ id }) => {
-      expect(moreInfo.href).toMatch(`pokemons/${id}`);
-      fireEvent.click(button);
-    });
-  });
+  fireEvent.click(getByText(/More details/i));
+  fireEvent.click(getByText(/Pokémon favoritado?/i));
 
-  test('Click in more details should redirect for `/pokemons/id`', () => {
-    const { getByText, history } = renderWithRouter(<App />, { route: '/' });
-
-    const moreInfo = getByText('More details');
-    const { id } = data[0];
-
-    fireEvent.click(moreInfo);
-    expect(history.location.pathname).toMatch(`pokemons/${id}`);
-  });
-
-  test('Favorite Pokémon should display a star icon', () => {
-    const { getByAltText } = renderWithRouter(<Pokemon pokemon={pikachu} isFavorite />);
-    const img = getByAltText(`${pikachu.name} is marked as favorite`);
-
-    expect(img).toBeInTheDocument();
-    expect(img.src).toMatch(/\/star-icon.svg/);
-  });
+  const image = getAllByRole('img');
+  expect(image[1].src).toBe('http://localhost/star-icon.svg');
+  expect(image[1].alt).toBe('Pikachu is marked as favorite');
 });

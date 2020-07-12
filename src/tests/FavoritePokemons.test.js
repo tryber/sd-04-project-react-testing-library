@@ -1,51 +1,16 @@
 import React from 'react';
-import { cleanup } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
-import FavoritePokemons from '../components/FavoritePokemons';
-import data from '../data';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 
-afterEach(cleanup);
+import App from '../App';
 
-const pokemonFavorite = {
-  25: false,
-  4: true,
-  10: true,
-  23: false,
-  65: false,
-  78: true,
-  151: false,
-  145: false,
-  148: true,
-};
+test(`Caso a pessoa não tenha pokémons favoritos,
+a mensagem 'No favorite pokemon found' deve aparecer na tela.`, () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/favorites']}>
+      <App />
+    </MemoryRouter>,
+  );
 
-const pokemonsFavored = data.filter(({ id }) => pokemonFavorite[id]);
-const pokemonsNotFavored = data.filter(({ id }) => !pokemonFavorite[id]);
-
-describe('Test on the FavoritePokemons page', () => {
-  test('The message that appears if there are no favorite pokemons', () => {
-    const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[]} />, { route: '/favorites' });
-    const text = getByText(/No favorite pokemon found/i);
-
-    expect(text).toBeInTheDocument();
-  });
-  test('The page should display all favorite Pokémon cards', () => {
-    const { getByText } = renderWithRouter(
-      <FavoritePokemons pokemons={pokemonsFavored} />,
-      { route: '/favorites' },
-    );
-
-    pokemonsFavored.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
-    });
-  });
-  test('A page should not display any non-favorite Pokémon cards', () => {
-    const { queryByText } = renderWithRouter(
-      <FavoritePokemons pokemons={pokemonsFavored} />,
-      { route: '/favorites' },
-    );
-
-    pokemonsNotFavored.forEach(({ name }) => {
-      expect(queryByText(name)).not.toBeInTheDocument();
-    });
-  });
+  expect(getByText('No favorite pokemon found')).toBeInTheDocument();
 });
