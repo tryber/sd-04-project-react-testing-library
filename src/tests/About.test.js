@@ -36,4 +36,3 @@ describe('Tests on the about page', () => {
     expect(image).toHaveAttribute('src', imageUrl);
   });
 });
-w
