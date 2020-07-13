@@ -76,4 +76,9 @@ describe('Requirement 5 - Ao apertar o botão de próximo, a página deve exibir
       expect(nextButton.disabled).toBe(true);
     }
   });
+  it('Requisito surpresa: "Encountered pokémons" deve ser um h2', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const encounteredPokémons = getByText(/Encountered pokémons/i);
+    expect(encounteredPokémons.tagName).toBe('H2');
+  });
 });
