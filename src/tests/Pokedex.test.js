@@ -1,6 +1,5 @@
-//test('', () => {});
 import React from 'react';
-import { cleanup, fireEvent, getAllByAltText } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
