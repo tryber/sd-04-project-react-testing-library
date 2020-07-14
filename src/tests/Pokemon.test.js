@@ -50,7 +50,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     );
     fireEvent.click(getByText('More details'));
     const { pathname } = history.location;
-    expect(pathname).toBe(`pokemons/${testPokemon.id}`);
+    expect(pathname).toBe(`/pokemons/${testPokemon.id}`);
   });
 
   test('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
