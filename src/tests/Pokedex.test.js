@@ -73,25 +73,4 @@ describe('Testes do arquivo Pokedex.js', () => {
     const pokeBtns = getAllByTestId('pokemon-type-button').map((poke) => poke.textContent);
     expect(pokeTypes).toEqual(expect.arrayContaining(pokeBtns));
   });
-
-  /* test('Link "About" redireciona para a página de About, na URL "/about"', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/About/i));
-    const { pathname } = history.location;
-    expect(pathname).toBe('/about');
-  });
-
-  test('Link "Favorite Pokémons" redireciona para a página de pokémons favoritados, na URL "/favorites"', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/Favorite pokémons/i));
-    const { pathname } = history.location;
-    expect(pathname).toBe('/favorites');
-  });
-
-  test('Entrar em uma URL desconhecida exibe a página "Not Found"', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('/pagina/que-nao-existe/');
-    const noMatch = getByText(/Page requested not found/i);
-    expect(noMatch).toBeInTheDocument();
-  }); */
 });
