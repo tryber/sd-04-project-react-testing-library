@@ -13,8 +13,10 @@ describe('Testes do arquivo Pokedex.js', () => {
     const { getByTestId } = renderWithRouter(
       <Pokemon pokemon={testPokemon} isFavorite />,
     );
-    const poke = getByTestId('pokemon-name');
-    expect(poke).toHaveTextContent(testPokemon.name);
+    const pokeName = getByTestId('pokemon-name');
+    expect(pokeName).toHaveTextContent(testPokemon.name);
+    const pokeType = getByTestId('pokemonType');
+    expect(pokeType).toHaveTextContent(testPokemon.type);
   });
 
   test('A pagina exibe o peso e unidade de medida do pokemon passado', () => {
