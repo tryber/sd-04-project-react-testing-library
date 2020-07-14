@@ -199,4 +199,17 @@ const pokemons = [
   },
 ];
 
+
+// const filterPoke = (select) => {
+//   pokemons.filter(({ type }) => {
+//     console.log(`Type of Current pokemon: ${type}`);
+//     console.log(`Type of selection: ${select}`);
+//     return type === select;
+//   });
+// };
+
+// console.log(filterPoke('Electric'));
+
+console.log();
+pokemons.filter(({ type }) => type === 'Electric');
 export default pokemons;

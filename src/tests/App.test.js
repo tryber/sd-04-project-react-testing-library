@@ -50,7 +50,3 @@ describe('Testes do arquivo App.js', () => {
     expect(noMatch).toBeInTheDocument();
   });
 });
-
-/* fireEvent.click(getByText(/Sobre/i));
-const pathname = history.location.pathname;
-expect(pathname).toBe('/about'); */
