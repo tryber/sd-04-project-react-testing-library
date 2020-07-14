@@ -21,6 +21,14 @@ const favoritePokemons = {
 const pokeTypes = [...new Set(pokemons.reduce((types, { type }) => [...types, type], []))];
 
 describe('Testes do arquivo Pokedex.js', () => {
+  test('A pagina carrega', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePokemons} />,
+    );
+    const h2 = getByText('Encountered pokémons');
+    expect(h2).toBeInTheDocument();
+  });
+
   test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
     const { getByTestId } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePokemons} />,
@@ -31,9 +39,10 @@ describe('Testes do arquivo Pokedex.js', () => {
   });
 
   test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista', () => {
-    const { getByTestId } = renderWithRouter(
+    const { getByTestId, getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePokemons} />,
     );
+    fireEvent.click(getByText('All'));
     pokemons.forEach(({ name }) => {
       const pokeName = getByTestId('pokemon-name');
       expect(pokeName).toHaveTextContent(name);
