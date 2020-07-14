@@ -1,10 +1,10 @@
 import React from 'react';
-import { cleanup, fireEvent, getByRole } from '@testing-library/react';
-import renderWithRouter from '../helpers/renderWithRouter';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import App from '../App';
+import { cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import renderWithRouter from '../helpers/renderWithRouter';
+import App from '../App';
 
 describe('Testing the bagaça of the APP', () => {
   afterEach(cleanup);
@@ -31,7 +31,7 @@ describe('Testing the bagaça of the APP', () => {
   });
 
   it('Should redirect to "/" by landing page', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     const pathName = history.location.pathname;
     expect(pathName).toBe('/');
   });
