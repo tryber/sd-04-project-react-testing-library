@@ -6,7 +6,8 @@ import pokemons from '../data';
 
 describe('Testes do arquivo Pokedex.js', () => {
   afterEach(cleanup);
-  describe('Ao apertar 'Próximo pokémon', exiba o próximo pokémon da lista', () => {
+
+  describe('Ao apertar Próximo pokémon, exiba o próximo pokémon da lista', () => {
     test('O botão deve conter o texto Próximo pokémon', () => {
       const { getByText } = render(
         <MemoryRouter initialEntries={['/']}>
@@ -141,7 +142,7 @@ describe('Testes do arquivo Pokedex.js', () => {
       });
     });
   });
-  test('Desabilitar botão 'Próximo pokémon' caso haja somente um', () => {
+  test('Desabilitar botão Próximo pokémon caso haja somente um', () => {
     const { getByText, getAllByRole } = render(
       <MemoryRouter initialEntries={['/']}>
         <App />
