@@ -78,8 +78,7 @@ describe('Testes do arquivo Pokedex.js', () => {
       );
       pokemons.forEach((pokemon) => {
         getAllByRole('button').forEach((button) => {
-          if (button.textContent === pokemon.type)
-            expect(button.textContent).toBe(pokemon.type);
+          if (button.textContent === pokemon.type) expect(button.textContent).toBe(pokemon.type);
         });
       });
     });
@@ -106,7 +105,7 @@ describe('Testes do arquivo Pokedex.js', () => {
           if (button.textContent === pokemon.type) {
             fireEvent.click(button);
             expect(getByTestId('pokemonType').textContent).toBe(
-              button.textContent
+              button.textContent,
             );
             fireEvent.click(a);
             expect(getByTestId('pokemon-name').textContent).toBe('Pikachu');
