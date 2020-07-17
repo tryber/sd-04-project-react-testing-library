@@ -25,26 +25,38 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('O primeiro link deve possuir o texto `Home` com a URL `/`', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  const home = getByText(/Home/i);
+  fireEvent.click(home);
+
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
+  expect(home).toBeInTheDocument();
+});
+
+  test('O segundo link deve possuir o texto `About` com a URL `/about`', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const home = getByText(/Home/i);
-    fireEvent.click(home);
+
+    const about = getByText(/About/i);
+    fireEvent.click(about);
 
     const { pathname } = history.location;
-    expect(pathname).toBe('/');
-    expect(home).toBeInTheDocument();
+    expect(pathname).toBe('/about');
+    expect(about).toBeInTheDocument();
   });
 
+  test('O terceiro link deve possuir o texto `Favorite Pokémons` com a URL `/favorites`', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
-/*
+    const favorite = getByText(/Favorite Pokémons/i);
+    fireEvent.click(favorite);
 
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+    expect(favorite).toBeInTheDocument();
+  });
 
-- No topo da aplicação, deve haver um conjunto fixo de links de navegação
-
-
-  - O segundo link deve possuir o texto `About` com a URL `/about`;
-
-  - O terceiro link deve possuir o texto `Favorite Pokémons` com a URL `/favorites`.
-
+  /*
 - Ao clicar no link "Home" na barra de navegação, a aplicação deve ser redirecionada para a página inicial, na URL "/"
 
 - Ao clicar no link "About" na barra de navegação, a aplicação deve ser redirecionada para a página de `About`, na URL "/about"
