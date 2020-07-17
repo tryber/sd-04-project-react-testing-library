@@ -18,3 +18,10 @@ test('A página deve conter um heading `h2` com o texto `About Pokédex`', () =>
   const heading = getByText(/About Pokédex/i);
   expect(h2).toBe(heading);
 });
+
+test('A página deve conter dois parágrafos com texto sobre a Pokédex', () => {
+  const { container } = renderWithRouter(<About />);
+
+  const paragraph = container.querySelectorAll('p');
+  expect(paragraph.length).toBe(2);
+});
