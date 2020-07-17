@@ -1,7 +1,11 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { /*Router,*/ MemoryRouter } from 'react-router-dom';
+// import { createMemoryHistory } from 'history';
+import { render, fireEvent } from '@testing-library/react';
+
+import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
+
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -14,6 +18,16 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 test('shows the Pokédex when the route is `/`', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>,
+  );
+
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
+test('Ao carregar a aplicação no caminho de URL “/”, a página principal da Pokédex deve ser mostrada.', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
       <App />
