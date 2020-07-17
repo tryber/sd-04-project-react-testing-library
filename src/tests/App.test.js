@@ -25,13 +25,14 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('O primeiro link deve possuir o texto `Home` com a URL `/`', () => {
-  const { getByText } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
+    const home = getByText(/Home/i);
+    fireEvent.click(home);
 
-  fireEvent.click(getByText(/Home/i));
-
-  const home = getByText(/Encountered pokémons/i);
-  expect(home).toBeInTheDocument();
-});
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+    expect(home).toBeInTheDocument();
+  });
 
 
 /*
