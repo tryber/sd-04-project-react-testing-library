@@ -34,7 +34,7 @@ test('O primeiro link deve possuir o texto `Home` com a URL `/`', () => {
   expect(home).toBeInTheDocument();
 });
 
-  test('O segundo link deve possuir o texto `About` com a URL `/about`', () => {
+test('O segundo link deve possuir o texto `About` com a URL `/about`', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const about = getByText(/About/i);
@@ -45,7 +45,7 @@ test('O primeiro link deve possuir o texto `Home` com a URL `/`', () => {
     expect(about).toBeInTheDocument();
   });
 
-  test('O terceiro link deve possuir o texto `Favorite Pokémons` com a URL `/favorites`', () => {
+test('O terceiro link deve possuir o texto `Favorite Pokémons` com a URL `/favorites`', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const favorite = getByText(/Favorite Pokémons/i);
@@ -57,11 +57,14 @@ test('O primeiro link deve possuir o texto `Home` com a URL `/`', () => {
   });
 
   /*
-- Ao clicar no link "Home" na barra de navegação, a aplicação deve ser redirecionada para a página inicial, na URL "/"
+- Ao clicar no link "Home" na barra de navegação,
+a aplicação deve ser redirecionada para a página inicial, na URL "/"
 
-- Ao clicar no link "About" na barra de navegação, a aplicação deve ser redirecionada para a página de `About`, na URL "/about"
+- Ao clicar no link "About" na barra de navegação, a aplicação deve ser
+redirecionada para a página de `About`, na URL "/about"
 
-- Ao clicar no link "Favorite Pokémons" na barra de navegação, a aplicação deve ser redirecionada para a página de pokémons favoritados, na URL "/favorites"
+- Ao clicar no link "Favorite Pokémons" na barra de navegação,
+a aplicação deve ser redirecionada para a página de pokémons favoritados, na URL "/favorites"
 
 - Entrar em uma URL desconhecida exibe a página `Not Found`
 */
