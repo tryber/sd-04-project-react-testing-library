@@ -25,3 +25,12 @@ test('A página deve conter dois parágrafos com texto sobre a Pokédex', () => 
   const paragraph = container.querySelectorAll('p');
   expect(paragraph.length).toBe(2);
 });
+
+test('A página deve conter a seguinte imagem de uma Pokédex', () => {
+  const { container } = renderWithRouter(<About />);
+  const image = container.querySelector('img');
+  const imageUrl = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+
+  expect(image).toBeInTheDocument();
+  expect(image).toHaveAttribute('src', imageUrl);
+});
