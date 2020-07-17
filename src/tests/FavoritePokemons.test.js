@@ -1,8 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
-
-import App from '../App';
 
 const mock = () => [10];
 
@@ -11,4 +7,20 @@ test('Caso a pessoa não tenha pokémons favoritos, a mensagem `No favorite poke
   const text = getByText(/No favorite pokemon found/i);
 
   expect(text).toBeInTheDocument();
+});
+
+test('A página não deve exibir nenhum card de pokémon não favoritado', () => {
+  const { queryByText } = renderWithRouter(
+    <FavoritePokemons pokemons={mock()} />,
+    { route: '/favorites' },
+  );
+  expect(queryByText).not.toEqual(mock());
+});
+
+test('A página deve exibir todos os cards de pokémons favoritados', () => {
+  const { getByText } = renderWithRouter(
+    <FavoritePokemons pokemons={mock} />,
+    { route: '/favorites' },
+  );
+  expect(getByText).toBeInTheDocument();
 });
