@@ -8,3 +8,13 @@ test('A página "About" deve exibir informações sobre a Pokédex', () => {
 
   expect(info).toBeInTheDocument();
 });
+
+test('Should render text for h2', () => {
+  const { getByText, container } = renderWithRouter(<About />);
+
+  const h2 = container.querySelector('h2');
+  expect(h2).toBeInTheDocument();
+
+  const heading = getByText(/About Pokédex/i);
+  expect(h2).toBe(heading);
+});
