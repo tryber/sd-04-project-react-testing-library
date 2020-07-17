@@ -2,14 +2,14 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import About from '../components/About';
 
-test('A página "About" deve exibir informações sobre a Pokédex', () => {
+test('Information about pokemons', () => {
   const { getByText } = renderWithRouter(<About />, '/about');
   const info = getByText(/digital encliclopedia containing all Pokémons/i);
 
   expect(info).toBeInTheDocument();
 });
 
-test('Should render text for h2', () => {
+test('A página deve conter um heading `h2` com o texto `About Pokédex`', () => {
   const { getByText, container } = renderWithRouter(<About />);
 
   const h2 = container.querySelector('h2');
