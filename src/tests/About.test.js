@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import About from '../components/About';
 
-test('Information about pokemons', () => {
+test('A página "About" deve exibir informações sobre a Pokédex', () => {
   const { getByText } = renderWithRouter(<About />, '/about');
   const info = getByText(/digital encliclopedia containing all Pokémons/i);
 
