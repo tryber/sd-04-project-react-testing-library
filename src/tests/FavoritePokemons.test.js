@@ -1,4 +1,6 @@
 import React from 'react';
+import renderWithRouter from '../renderWithRouter';
+import FavoritePokemons from '../components/FavoritePokemons';
 
 const mock = () => [10];
 
