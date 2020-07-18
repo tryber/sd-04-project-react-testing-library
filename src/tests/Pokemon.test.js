@@ -37,4 +37,9 @@ describe('Requirement 6', () => {
     expect(img.src).toMatch('star-icon.svg');
     expect(img.alt).toBe(`${data[0].name} is marked as favorite`);
   });
+  it('Requisito Extra (não está no Read Me), pokemon type', () => {
+    const { getByTestId } = renderWithRouter(<App />);
+    const type = getByTestId('pokemonType').innerHTML;
+    expect(type).toBe(`${data[0].type}`);
+  });
 });
