@@ -34,7 +34,7 @@ describe('Requirement 6', () => {
     fireEvent.click(getByText('More details'));
     fireEvent.click(getByText('Pokémon favoritado?'));
     const img = document.querySelector('.favorite-icon');
-    expect(img.src).toBe('/star-icon.svg');
+    expect(img.src).toMatch('star-icon.svg');
     expect(img.alt).toBe(`${data[0].name} is marked as favorite`);
   });
 });
