@@ -2,24 +2,24 @@ import React from 'react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
-test('The "About" page should display information about Pokédex', () => {
+test('A página "About" deve exibir informações sobre a Pokédex', () => {
   const { getByText } = renderWithRouter(<App />, { route: '/about' });
   expect(getByText(/About Pokédex/i)).toBeInTheDocument();
 });
 
-test('The page must contain an heading h2 with the text About Pokédex', () => {
+test('A página deve conter um heading h2 com o texto About Pokédex', () => {
   const { getByText } = renderWithRouter(<App />, { route: '/about' });
   const h2 = getByText(/About Pokédex/i);
   expect(h2.tagName).toBe('H2');
 });
 
-test('The page must contain two paragraphs with text about Pokédex;', () => {
+test('A página deve conter dois parágrafos com texto sobre a Pokédex;', () => {
   const { container } = renderWithRouter(<App />, { route: '/about' });
   const p = container.getElementsByTagName('p');
   expect(p.length).toBe(2);
 });
 
-test('The page should contain the following image of a Pokédex', () => {
+test('A página deve conter a seguinte imagem de uma Pokédex', () => {
   const { getByRole } = renderWithRouter(<App />, { route: '/about' });
   const img = getByRole('img');
   const src =

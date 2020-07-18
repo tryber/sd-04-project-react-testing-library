@@ -14,7 +14,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('shows the Pokédex when the route is `/`', () => {
+test('Ao carregar a aplicação no caminho de URL “/”, a página principal da Pokédex deve ser mostrada.', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={['/']}>
       <App />
@@ -24,8 +24,8 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-describe('Testing links', () => {
-  test('shows link with text `Home` when the route is `/`', () => {
+describe('Testando links', () => {
+  test('O primeiro link deve possuir o texto Home com a URL /', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/']}>
         <App />
@@ -35,7 +35,7 @@ describe('Testing links', () => {
     expect(getByText('Home')).toBeInTheDocument();
   });
 
-  test('shows link with text `About` when the route is `/about`', () => {
+  test('Ao clicar no link "About" na barra de navegação, a aplicação deve ser redirecionada para a página de About, na URL "/about', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
@@ -45,7 +45,7 @@ describe('Testing links', () => {
     expect(getByText('About')).toBeInTheDocument();
   });
 
-  test('shows link with text `Favorite Pokémons` when the route is `/favorites`', () => {
+  test('O terceiro link deve possuir o texto Favorite Pokémons com a URL /favorites`', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <App />
@@ -56,7 +56,7 @@ describe('Testing links', () => {
   });
 });
 
-describe('Testing routes', () => {
+describe('Testando routes', () => {
   test('Navigating to `Home`', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
