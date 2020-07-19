@@ -41,6 +41,8 @@ describe('Requirement 7', () => {
     const locationsDetails = data[0].foundAt[0];
     expect(locationsDetails.location).toBe('Kanto Viridian Forest');
     expect(locationsDetails.map).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    const imgAlt = document.querySelectorAll('img');
+    expect(imgAlt[1].alt).toBe(`${data[0].name} location`);
   });
   it('A página de detalhes deve permitir favoritar um pokémon', () => {
     const { getByText } = renderWithRouter(<App />);
