@@ -3,8 +3,6 @@ import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
-import { pokemonType } from '../types';
-import { PokemonDetails } from '../components';
 
 afterEach(cleanup);
 
