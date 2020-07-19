@@ -3,6 +3,8 @@ import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
+import { pokemonType } from '../types';
+import { PokemonDetails } from '../components';
 
 afterEach(cleanup);
 
@@ -34,6 +36,8 @@ describe('Requirement 7', () => {
   it('A página de detalhes deve exibir uma seção com os mapas com as localizações do pokémon', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('More details'));
+    const pokeDetails = getByText(`${data[0].name} Details`);
+    expect(pokeDetails).toBeInTheDocument();
     const gameLoc = getByText(`Game Locations of ${data[0].name}`).tagName;
     expect(gameLoc).toBe('H2');
     const locations = data[0].foundAt.length;
