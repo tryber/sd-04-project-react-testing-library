@@ -49,8 +49,8 @@ describe('Testes do arquivo Pokedex.js', () => {
     fireEvent.click(button);
     const Pikachu = getByText(/Pikachu/i);
     expect(Pikachu).toBeInTheDocument();
-    /* Ao se chegar ao último pokémon da lista, 
-    a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
+/* Ao se chegar ao último pokémon da lista,
+a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
   });
 
   it('A Pokédex deve exibir apenas um pokémon por vez', () => {
