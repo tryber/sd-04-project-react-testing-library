@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  cleanup,
-  fireEvent,
-} from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import pokemons from '../data';
 import renderWithRouter from '../helpers/renderWithRouter';
@@ -26,7 +23,7 @@ const buscarTodosPokemons = (nextButton, getByText) => {
     expect(pokemonName).toBeInTheDocument();
     fireEvent.click(nextButton);
   });
-}
+};
 
 describe('Testes do arquivo Pokedex.js', () => {
   afterEach(cleanup);
@@ -40,9 +37,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     ).toBeInTheDocument(); /* O botão deve conter o texto Próximo pokémon */
     fireEvent.click(button);
     const Charmander = getByText(/Charmander/i);
-    expect(
-      Charmander,
-    ).toBeInTheDocument(); 
+    expect(Charmander).toBeInTheDocument();
     /* Cliques sucessivos no botão devem mostrar o próximo pokémon da lista */
     fireEvent.click(button);
     fireEvent.click(button);
@@ -53,9 +48,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     fireEvent.click(button);
     fireEvent.click(button);
     const Pikachu = getByText(/Pikachu/i);
-    expect(
-      Pikachu,
-    ).toBeInTheDocument(); 
+    expect(Pikachu).toBeInTheDocument();
     /* Ao se chegar ao último pokémon da lista, 
     a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
   });
