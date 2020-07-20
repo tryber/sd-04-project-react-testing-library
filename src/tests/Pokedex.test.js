@@ -2,14 +2,11 @@ import React from 'react';
 import {
   cleanup,
   fireEvent,
-  getByTestId,
-  getByText,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import pokemons from '../data';
 import renderWithRouter from '../helpers/renderWithRouter';
 import Pokedex from '../components/Pokedex';
-import { Button } from '../components';
 
 const favorites = {
   4: false,
@@ -22,6 +19,14 @@ const favorites = {
   148: false,
   151: false,
 };
+
+const buscarTodosPokemons = (nextButton, getByText) => {
+  pokemons.forEach((pokemon) => {
+    const pokemonName = getByText(pokemon.name);
+    expect(pokemonName).toBeInTheDocument();
+    fireEvent.click(nextButton);
+  });
+}
 
 describe('Testes do arquivo Pokedex.js', () => {
   afterEach(cleanup);
@@ -37,7 +42,8 @@ describe('Testes do arquivo Pokedex.js', () => {
     const Charmander = getByText(/Charmander/i);
     expect(
       Charmander,
-    ).toBeInTheDocument(); /* Cliques sucessivos no botão devem mostrar o próximo pokémon da lista */
+    ).toBeInTheDocument(); 
+    /* Cliques sucessivos no botão devem mostrar o próximo pokémon da lista */
     fireEvent.click(button);
     fireEvent.click(button);
     fireEvent.click(button);
@@ -49,7 +55,9 @@ describe('Testes do arquivo Pokedex.js', () => {
     const Pikachu = getByText(/Pikachu/i);
     expect(
       Pikachu,
-    ).toBeInTheDocument(); /* Ao se chegar ao último pokémon da lista, a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
+    ).toBeInTheDocument(); 
+    /* Ao se chegar ao último pokémon da lista, 
+    a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
   });
 
   it('A Pokédex deve exibir apenas um pokémon por vez', () => {
@@ -81,11 +89,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     const allButton = getByText(/All/i);
     const fireButton = getByText(/Fire/i);
     const nextButton = getByTestId('next-pokemon');
-    pokemons.forEach((pokemon) => {
-      const pokemonName = getByText(pokemon.name);
-      expect(pokemonName).toBeInTheDocument;
-      fireEvent.click(nextButton);
-    });
+    buscarTodosPokemons(nextButton, getByText);
     fireEvent.click(fireButton);
     const typeOne = getByTestId('pokemonType');
     expect(typeOne.innerHTML).toBe('Fire');
@@ -93,11 +97,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     const typeTwo = getByTestId('pokemonType');
     expect(typeTwo.innerHTML).toBe('Fire');
     fireEvent.click(allButton);
-    pokemons.forEach((pokemon) => {
-      const pokemonName = getByText(pokemon.name);
-      expect(pokemonName).toBeInTheDocument;
-      fireEvent.click(nextButton);
-    });
+    buscarTodosPokemons(nextButton, getByText);
   });
 
   it('A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
