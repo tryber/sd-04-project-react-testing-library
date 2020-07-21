@@ -13,7 +13,7 @@ data.forEach(({ name, id, summary, foundAt }) => {
     );
     expect(getByText(`${name} Details`)).toBeInTheDocument();
     expect(queryByText('More details')).not.toBeInTheDocument();
-    
+
     foundAt.forEach(({ location, map }) => {
       expect(getByText(location)).toBeInTheDocument();
       expect(getAllByAltText(`${name} location`).some(({ src }) => src === map)).toBeTruthy();
@@ -27,7 +27,7 @@ data.forEach(({ name, id, summary, foundAt }) => {
 
     expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
     expect(getByText(`Game Locations of ${name}`).tagName).toBe('h2');
-    
+
     expect(getByLabelText(/pokémon favoritado/i)).toBeInTheDocument();
     expect(getByLabelText(/pokémon favoritado/i).type).toBe('checkbox');
   });
