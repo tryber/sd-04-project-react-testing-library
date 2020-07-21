@@ -8,9 +8,8 @@ data.forEach(({ name, id, summary, foundAt }) => {
     const {
       getByText, queryByText, getByLabelText, getAllByAltText,
     } = renderWithRouter(
-    <App />,
-    { route: `/pokemons/${id}` }
+      <App />,
+      { route: `/pokemons/${id}` },
     );
-   
   });
 });
