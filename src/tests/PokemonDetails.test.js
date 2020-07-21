@@ -24,5 +24,11 @@ data.forEach(({ name, id, summary, foundAt }) => {
 
     expect(getByText(summary)).toBeInTheDocument();
     expect(getByText(summary).tagName).toBe('p');
+
+    expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
+    expect(getByText(`Game Locations of ${name}`).tagName).toBe('h2');
+    
+    expect(getByLabelText(/pokémon favoritado/i)).toBeInTheDocument();
+    expect(getByLabelText(/pokémon favoritado/i).type).toBe('checkbox');
   });
 });
