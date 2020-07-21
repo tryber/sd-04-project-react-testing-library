@@ -20,10 +20,10 @@ data.forEach(({ name, id, summary, foundAt }) => {
     });
 
     expect(queryByText('Summary')).toBeInTheDocument();
-    expect(queryByText('Summary').tagName).toBe('h2');
+    expect(queryByText('Summary').tagName).toBe('H2');
 
     expect(getByText(summary)).toBeInTheDocument();
-    expect(getByText(summary).tagName).toBe('p');
+    expect(getByText(summary).tagName).toBe('P');
 
     expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
     expect(getByText(`Game Locations of ${name}`).tagName).toBe('h2');
