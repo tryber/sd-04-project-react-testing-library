@@ -11,5 +11,8 @@ data.forEach(({ name, id, summary, foundAt }) => {
       <App />,
       { route: `/pokemons/${id}` },
     );
+    expect(getByText(`${name} Details`)).toBeInTheDocument();
+    expect(queryByText('More details')).not.toBeInTheDocument();
+
   });
 });
