@@ -8,4 +8,4 @@ export default function renderWithRouter(component) {
   return {
     ...render(<Router history={history} >{component}</Router>), history,
   };
-};
+}
