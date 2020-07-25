@@ -2,7 +2,6 @@ import React from 'react';
 import renderWithRouter from '../RenderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import Data from '../data';
-import { queryByText } from '@testing-library/react';
 
 const FavoriteById = {
   4: false,
@@ -18,27 +17,27 @@ const FavoriteById = {
 const isFavorite = Data.filter(({ id }) => FavoriteById[id]);
 const isNotFavorite = Data.filter(({ id }) => !FavoriteById[id]);
 
-describe("Testando favoritos", () => {
-  test("Nao tem pokemon favorito", () => {
+describe('Testando favoritos', () => {
+  test('Nao tem pokemon favorito', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[]} />);
     const noFavorite = getByText(/No favorite pokemon found/i);
 
     expect(noFavorite).toBeInTheDocument();
   });
 
-  test("Nao deve exibir card", () => {
+  test('Nao deve exibir card', () => {
     const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={isFavorite} />);
-    
+
     isNotFavorite.forEach(({ name }) => {
       expect(queryByText(name)).toBeNull();
     });
   });
 
-  test("Exibir todos os cards favoritos", () => {
+  test('Exibir todos os cards favoritos', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={isFavorite} />);
     
     isFavorite.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument()
+      expect(getByText(name)).toBeInTheDocument();
     });
 
     expect(isFavorite.length).toBe(4);

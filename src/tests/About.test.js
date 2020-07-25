@@ -29,7 +29,7 @@ describe('Testando About', () => {
     const img = container.querySelector('IMG');
     const url = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
 
-    expect(img).toBe(img)
+    expect(img).toBe(img);
     expect(img.src).toBe(url);
   });
 });
