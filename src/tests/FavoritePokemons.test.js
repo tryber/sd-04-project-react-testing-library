@@ -35,7 +35,7 @@ describe('Testando favoritos', () => {
 
   test('Exibir todos os cards favoritos', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={isFavorite} />);
-    
+
     isFavorite.forEach(({ name }) => {
       expect(getByText(name)).toBeInTheDocument();
     });

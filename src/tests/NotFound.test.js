@@ -15,7 +15,7 @@ describe('Testando NotFound', () => {
     const img = container.querySelector('IMG');
     const url = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
 
-    expect(img).toBe(img)
+    expect(img).toBe(img);
     expect(img.src).toBe(url);
   });
 });
