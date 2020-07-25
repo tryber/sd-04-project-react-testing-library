@@ -53,7 +53,7 @@ describe('Testando App', () => {
   });
 
   test('Testando os link favorita', () => {
-    const { getByText } = renderWithRouter(<App />, { route:'/rotaTestNotFound' });    
+    const { getByText } = renderWithRouter(<App />, { route: '/rotaTestNotFound' });  
     const palavraFromPageNotFound = getByText('Page requested not found');
 
     expect(palavraFromPageNotFound).toBeInTheDocument();
