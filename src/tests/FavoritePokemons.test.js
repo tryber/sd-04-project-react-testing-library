@@ -18,6 +18,5 @@ describe('Tests FavoritePokemons.js', () => {
     const text = getByText('No favorite pokemon found');
     expect(text).toBeInTheDocument();
   });
-  // test('should ', () => {});
-  
+  // test('Favorites Pokemons ', () => {});
 });
