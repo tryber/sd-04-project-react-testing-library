@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
@@ -10,7 +10,7 @@ describe('Testando App', () => {
 
     expect(heading).toBeInTheDocument();
   });
-  
+
   test('Testando os links', () => {
     const { getByText } = renderWithRouter(<App />);
     const home = getByText('Home');
@@ -53,10 +53,9 @@ describe('Testando App', () => {
   });
 
   test('Testando os link favorita', () => {
-    const { getByText } = renderWithRouter(<App />, {route:'/rotaTestNotFound'});    
+    const { getByText } = renderWithRouter(<App />, { route:'/rotaTestNotFound' });    
     const palavraFromPageNotFound = getByText('Page requested not found');
 
     expect(palavraFromPageNotFound).toBeInTheDocument();
   });
 });
-
