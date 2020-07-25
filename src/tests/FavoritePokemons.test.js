@@ -12,10 +12,12 @@ A página não deve exibir nenhum card de pokémon não favoritado.
 A página deve exibir todos os cards de pokémons favoritados;
 */
 
-describe('Favorite Pokemons', () => {
-  const { getByText } = renderWithRouter(<FavoritePokemons />);
-  const text = getByText('No favorite pokemon found');
-  expect(text).toBeInTheDocument();
+describe('Tests FavoritePokemons.js', () => {
+  test('No favorite pokemon found', () => {
+    const { getByText } = renderWithRouter(<FavoritePokemons />);
+    const text = getByText('No favorite pokemon found');
+    expect(text).toBeInTheDocument();
+  });
+  // test('should ', () => {});
+  
 });
-
-// test('', () => {});
