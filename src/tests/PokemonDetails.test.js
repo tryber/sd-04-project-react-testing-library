@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, fireEvent, getByAltText } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import renderWithRouter from '../helpers/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
@@ -10,6 +10,7 @@ const match = { params: { id: `${data[0].id}` } };
 const onUpdate = jest.fn();
 
 describe('Testes do arquivo PokemonDetails.js', () => {
+  afterEach(cleanup);
   it('A página deve conter um texto <name> Details, onde <name> é o nome do pokémon', () => {
     const { getByText } = renderWithRouter(
       <PokemonDetails
