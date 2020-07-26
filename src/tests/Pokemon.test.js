@@ -47,7 +47,9 @@ describe('Testes do arquivo Pokemon.js', () => {
     const {
       averageWeight: { value, measurementUnit },
     } = pokemonInfo;
-    expect(averageWeight.innerHTML).toBe(`Average weight:${value}${measurementUnit}`);
+    expect(averageWeight.innerHTML).toBe(
+      `Average weight:${value}${measurementUnit}`,
+    );
   });
 
   test('A imagem deve conter um atributo src com a URL da imagem do pokémon. A imagem deverá ter também um atributo alt com o texto <name> sprite, onde <name> é o nome do pokémon', () => {
@@ -79,7 +81,7 @@ describe('Testes do arquivo Pokemon.js', () => {
     const { getByAltText } = renderWithRouter(
       <Pokemon pokemon={pokemonInfo} isFavorite />,
     );
-    const starImage = getByAltText('Pikachu is marked as favorite');
-    expect(starImage).toBeInTheDocument();
+    const starImage = getByAltText(`${pokemonInfo.name} is marked as favorite`);
+    expect(starImage).toMatch(/\/star-icon.svg/);
   });
 });
