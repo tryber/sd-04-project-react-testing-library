@@ -35,30 +35,37 @@ describe('Testes do arquivo Pokedex.js', () => {
     const texto = getByText(/Encountered pokémons/i);
     expect(texto).toBeInTheDocument();
   });
-  it('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
-    const { getByTestId, getByText } = renderWithRouter(
+
+  it('O botão deve conter o texto Próximo pokémon', () => {
+    const { getByTestId } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorites} />,
     );
     const button = getByTestId('next-pokemon');
-    expect(
-      button,
-    ).toBeInTheDocument(); /* O botão deve conter o texto Próximo pokémon */
-    fireEvent.click(button);
-    const Charmander = getByText(/Charmander/i);
-    expect(Charmander).toBeInTheDocument();
-    /* Cliques sucessivos no botão devem mostrar o próximo pokémon da lista */
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    const Pikachu = getByText(/Pikachu/i);
-    expect(Pikachu).toBeInTheDocument();
-    /* Ao se chegar ao último pokémon da lista,
-a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
+    expect(button).toBeInTheDocument();
+  });
+
+  it('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista', () => {
+    const { getByTestId } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorites} />,
+    );
+    const button = getByTestId('next-pokemon');
+    pokemons.forEach((pokemon) => {
+      const pokemonName = getByTestId(/pokemon-name/i);
+      expect(pokemonName.innerHTML).toBe(pokemon.name);
+      fireEvent.click(button);
+    });
+  });
+
+  it('Ao se chegar ao último pokémon da lista, a Pokédex deve voltar para o primeiro pokémon no apertar do botão', () => {
+    const { getByTestId } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorites} />,
+    );
+    const button = getByTestId('next-pokemon');
+    pokemons.forEach(() => {
+      fireEvent.click(button);
+    });
+    const pokemonFound = getByTestId(/pokemon-name/i);
+    expect(pokemonFound.innerHTML).toBe(pokemons[0].name);
   });
 
   it('A Pokédex deve exibir apenas um pokémon por vez', () => {
