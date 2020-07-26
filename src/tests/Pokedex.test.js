@@ -27,6 +27,14 @@ const buscarTodosPokemons = (nextButton, getByText) => {
 
 describe('Testes do arquivo Pokedex.js', () => {
   afterEach(cleanup);
+
+  it('Render Encountered pokémons', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorites} />,
+    );
+    const texto = getByText(/Encountered pokémons/i);
+    expect(texto).toBeInTheDocument();
+  });
   it('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon da lista', () => {
     const { getByTestId, getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorites} />,
@@ -49,7 +57,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     fireEvent.click(button);
     const Pikachu = getByText(/Pikachu/i);
     expect(Pikachu).toBeInTheDocument();
-/* Ao se chegar ao último pokémon da lista,
+    /* Ao se chegar ao último pokémon da lista,
 a Pokédex deve voltar para o primeiro pokémon no apertar do botão. */
   });
 
