@@ -73,6 +73,9 @@ describe('Testes do arquivo PokemonDetails.js', () => {
         onUpdateFavoritePokemons={onUpdate}
       />,
     );
+    const heading = getByText(`Game Locations of ${data[0].name}`);
+    expect(heading.tagName).toBe('H2');
+    expect(heading).toBeInTheDocument();
     const allImages = getAllByAltText(`${data[0].name} location`);
     data[0].foundAt.forEach(({ location, map }) => {
       expect(getByText(location)).toBeInTheDocument();
