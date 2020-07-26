@@ -1,7 +1,7 @@
+import { within } from '@testing-library/react';
 import React from 'react';
 import NotFound from '../components/NotFound';
 import renderWithRouter from './renderWithRouter';
-import { within } from '@testing-library/react';
 
 describe('test NotFound.js', () => {
   test('h2 - Page requested not found', () => {
@@ -10,7 +10,6 @@ describe('test NotFound.js', () => {
     expect(header).toBeInTheDocument();
     within(header).getByText('Page requested not found');
     within(header).getByText('😭');
-
   });
 
   test('Image Pikachu Crying', () => {
