@@ -82,6 +82,6 @@ describe('Testes do arquivo Pokemon.js', () => {
       <Pokemon pokemon={pokemonInfo} isFavorite />,
     );
     const starImage = getByAltText(`${pokemonInfo.name} is marked as favorite`);
-    expect(starImage.getAttribute('src')).toMatch(/\/star-icon.svg/);
+    expect(starImage).toMatch(/\/star-icon.svg/);
   });
 });
