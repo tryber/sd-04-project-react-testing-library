@@ -37,6 +37,8 @@ describe('Testes do arquivo Pokemon.js', () => {
     );
     const pokemonName = getByTestId('pokemon-name');
     expect(pokemonName.innerHTML).toBe(pokemonInfo.name);
+    const pokemonType = getByTestId('pokemonType');
+    expect(pokemonType.innerHTML).toBe(`${pokemonInfo.type}`);
   });
 
   test('O peso médio do pokémon deve ser exibido com um texto no formato Average weight: <value> <measurementUnit>, onde <value> e <measurementUnit> são, respectivamente, o peso médio do pokémon e sua unidade de medida', () => {
