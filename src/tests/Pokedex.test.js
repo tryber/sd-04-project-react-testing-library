@@ -125,11 +125,11 @@ describe('Testes do arquivo Pokedex.js', () => {
   });
 
   it('O botão de Próximo pokémon deve ser desabilitado se a lista filtrada de pokémons tiver um só pokémon', () => {
-    const { getByTestId, getByText } = renderWithRouter(
+    const { getAllByTestId, getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favorites} />,
     );
-    const poisonButton = getByText(/Poison/i);
-    const nextButton = getByTestId('next-pokemon');
+    const poisonButton = getAllByTestId('pokemon-type-button')[3];
+    const nextButton = getByText(/Próximo pokémon/i);
     fireEvent.click(poisonButton);
     expect(nextButton.getAttributeNames().includes('disabled')).toBe(true);
   });
