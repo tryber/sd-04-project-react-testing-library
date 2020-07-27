@@ -47,7 +47,9 @@ test('A seção de detalhes deve conter um heading `h2` com o texto `Game Locati
 
 test('A seção de detalhes deve exibir todas as localizações do pokémon', () => {
   const { getByText, getByTestId } = render(
-    <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
+    <MemoryRouter initialEntries={['/pokemons/25']}>
+      <App />
+    </MemoryRouter>,
   );
   const nameLocation = getByTestId('pokemon-name').textContent;
   const locations = pokemons.filter(({ name }) => name === nameLocation)[0].foundAt
@@ -57,7 +59,9 @@ test('A seção de detalhes deve exibir todas as localizações do pokémon', ()
 
 test('Deve exibir o nome da localização e uma imagem do mapa da localização', () => {
   const { getByTestId, getAllByAltText } = render(
-    <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
+    <MemoryRouter initialEntries={['/pokemons/25']}>
+      <App />
+    </MemoryRouter>,
   );
   const nameLocation = getByTestId('pokemon-name').textContent;
   const maps = pokemons.filter(({ name }) => name === nameLocation)[0].foundAt
@@ -76,7 +80,9 @@ test('Deve exibir o nome da localização e uma imagem do mapa da localização'
 
 test('O label do checkbox deve ser `Pokémon favoritado?`', () => {
   const { getByText, getByTestId, getByLabelText } = render(
-    <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
+    <MemoryRouter initialEntries={['/pokemons/25']}>
+      <App />
+    </MemoryRouter>,
   );
   const checkboxPokemon = getByLabelText(/Pokémon favoritado?/);
   expect(checkboxPokemon).toBeInTheDocument();
