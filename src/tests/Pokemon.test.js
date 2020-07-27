@@ -57,7 +57,7 @@ describe('Testes do arquivo Pokemon.js', () => {
       <Pokemon pokemon={pokemonInfo} isFavorite={false} />,
     );
     const nome = getByAltText(`${pokemonInfo.name} sprite`);
-    expect(nome.getAttribute('alt')).toBe(`${pokemonInfo.name} sprite`);
+    expect(nome.src).toBe(`${pokemonInfo.image}`);
   });
 
   test('O pokémon exibido na Pokédex deve conter um link de navegação para exibir detalhes deste pokémon. O link deve possuir a URL /pokemons/<id>, onde <id> é o id do pokémon exibido', () => {
