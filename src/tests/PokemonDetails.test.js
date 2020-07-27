@@ -49,8 +49,8 @@ test('A seção de detalhes deve exibir todas as localizações do pokémon', ()
   const { getByText, getByTestId } = render(
     <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
   );
-  const name = getByTestId('pokemon-name').textContent;
-  const locations = pokemons.filter(({ name }) => name === name)[0].foundAt
+  const nameLocation = getByTestId('pokemon-name').textContent;
+  const locations = pokemons.filter(({ name }) => name === nameLocation)[0].foundAt
     .map(({ location }) => location);
   locations.forEach((location) => expect(getByText(location)).toBeInTheDocument());
 });
