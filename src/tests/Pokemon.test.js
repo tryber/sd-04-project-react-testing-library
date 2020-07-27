@@ -3,7 +3,7 @@ import { fireEvent, cleanup } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import Pokemon from '../components/Pokemon';
-import data from '../data';
+import Data from '../data';
 
 afterEach(cleanup);
 
@@ -20,7 +20,7 @@ describe('Pokemon card tests', () => {
     const { getByTestId, getByText } = renderWithRouter(<App />);
     const nextButton = getByText('Próximo pokémon');
 
-    data.forEach(({ name }) => {
+    Data.forEach(({ name }) => {
       expect(getByTestId('pokemon-name').textContent).toBe(name);
       fireEvent.click(nextButton);
     });
@@ -30,7 +30,7 @@ describe('Pokemon card tests', () => {
     const { getByTestId, getByText } = renderWithRouter(<App />);
     const nextButton = getByText('Próximo pokémon');
 
-    data.forEach(({ type }) => {
+    Data.forEach(({ type }) => {
       expect(getByTestId('pokemonType').textContent).toBe(type);
       fireEvent.click(nextButton);
     });
@@ -40,7 +40,7 @@ describe('Pokemon card tests', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText('Próximo pokémon');
 
-    data.forEach(({ averageWeight: { value, measurementUnit } }) => {
+    Data.forEach(({ averageWeight: { value, measurementUnit } }) => {
       expect(getByText(`Average weight:${value}${measurementUnit}`)).toBeInTheDocument();
       fireEvent.click(nextButton);
     });
@@ -51,7 +51,7 @@ describe('Pokemon card tests', () => {
     const nextButton = getByText('Próximo pokémon');
     const img = container.querySelector('IMG');
 
-    data.forEach(({ name, image }) => {
+    Data.forEach(({ name, image }) => {
       expect(img.src).toBe(image);
       expect(img.alt).toBe(`${name} sprite`);
       fireEvent.click(nextButton);
@@ -63,14 +63,14 @@ describe('Pokemon card tests', () => {
     const nextButton = getByText('Próximo pokémon');
     const detailsButton = getByText('More details');
 
-    data.forEach(({ id }) => {
+    Data.forEach(({ id }) => {
       expect(detailsButton.href).toBe(`http://localhost/pokemons/${id}`);
       fireEvent.click(nextButton);
     });
   });
 
   test('Verify the path from the pokemon detail', () => {
-    const { getByText, history } = renderWithRouter(<App pokemon={data[0]} />);
+    const { getByText, history } = renderWithRouter(<App pokemon={Data[0]} />);
     const detailsButton = getByText('More details');
 
     fireEvent.click(detailsButton);
@@ -80,7 +80,7 @@ describe('Pokemon card tests', () => {
 
   test('Should contain favorite icon with correct alt', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={data[0]} isFavorite />,
+      <Pokemon pokemon={Data[0]} isFavorite />,
     );
     const favIcon = getByAltText('Pikachu is marked as favorite');
     expect(favIcon).toBeInTheDocument();
