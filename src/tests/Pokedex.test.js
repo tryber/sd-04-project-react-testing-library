@@ -130,16 +130,17 @@ describe('Tests Pokedex.js', () => {
   });
 
   test('A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, getAllByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
         isPokemonFavoriteById={pkmFavorite}
       />);
     const btnAll = getByText('All');
-    // const btnTypes = getAllByTestId('pokemon-type-button');
+    const btnTypes = getAllByTestId('pokemon-type-button');
+    console.log(btnTypes);
     expect(btnAll).toBeInTheDocument();
-    // expect(btnTypes).toBeInTheDocument();
-    // console.log(btnTypes);
+    expect(btnTypes).toBeTruthy();
+    
   });
 
   test('O botão de Próximo pokémon deve ser desabilitado se a lista filtrada de pokémons tiver um só pokémon', () => {
