@@ -130,7 +130,7 @@ describe('Tests Pokedex.js', () => {
   });
 
   test('A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
-    const { getByText, getAllByTestId } = renderWithRouter(
+    const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
         isPokemonFavoriteById={pkmFavorite}
