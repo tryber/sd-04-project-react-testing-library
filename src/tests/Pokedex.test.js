@@ -16,7 +16,7 @@ const pkmFavorite = {
   148: false,
 };
 
-const pkmList = pokemons.reduce((acc, pokemon) => {
+const pkmList = pokemons.reduce(function(acc, pokemon) {
   return [...acc, pokemon.name];
 }, []);
 // console.log(pkmList);
@@ -37,7 +37,8 @@ describe('Tests Pokedex.js', () => {
     const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const text = getByText('Encountered pokémons');
     expect(text).toBeInTheDocument();
   });
@@ -46,7 +47,8 @@ describe('Tests Pokedex.js', () => {
     const { getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const btnNext = getByTestId('next-pokemon');
     within(btnNext).getByText('Próximo pokémon');
     expect(btnNext).toBeInTheDocument();
@@ -56,7 +58,8 @@ describe('Tests Pokedex.js', () => {
     const { getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const btnNext = getByTestId('next-pokemon');
     const pkmName = getByTestId('pokemon-name');
     within(pkmName).getByText(pkmList[0]);
@@ -70,7 +73,8 @@ describe('Tests Pokedex.js', () => {
     const { getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const btnNext = getByTestId('next-pokemon');
     const pkmName = getByTestId('pokemon-name');
     pkmList.forEach((pokemon) => {
@@ -84,7 +88,8 @@ describe('Tests Pokedex.js', () => {
     const { getAllByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const pkmName = getAllByTestId('pokemon-name');
     expect(pkmName.length).toBe(1);
   });
@@ -93,7 +98,8 @@ describe('Tests Pokedex.js', () => {
     const { getByText, getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const pkmType = getByTestId('pokemonType');
 
     const btnPsychic = getByText('Psychic');
@@ -109,7 +115,8 @@ describe('Tests Pokedex.js', () => {
     const { getByText, getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const btnAll = getByText('All');
     const btnNext = getByTestId('next-pokemon');
     const pkmName = getByTestId('pokemon-name');
@@ -126,9 +133,12 @@ describe('Tests Pokedex.js', () => {
     const { getByText, getAllByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const btnAll = getByText('All');
     const btnTypes = getAllByTestId('pokemon-type-button');
+    expect(btnAll).toBeInTheDocument();
+    expect(btnTypes).toBeInTheDocument();
     // console.log(btnTypes);
   });
 
@@ -136,7 +146,8 @@ describe('Tests Pokedex.js', () => {
     const { getByText, getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={pokemons}
-        isPokemonFavoriteById={pkmFavorite} />);
+        isPokemonFavoriteById={pkmFavorite}
+      />);
     const btnBug = getByText('Bug');
     fireEvent.click(btnBug);
     const btnNext = getByTestId('next-pokemon');
