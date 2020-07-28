@@ -25,15 +25,15 @@ test('renders a reading with the text `Pokédex`', () => {
 
 test('testing Home Link', () => {
   const { getByText } = renderWithRouter(<App />);
-  const home = getByText(/Home/i)
-  expect(home).toBeInTheDocument(); 
+  const home = getByText(/Home/i);
+  expect(home).toBeInTheDocument();
   fireEvent.click(home);
-  expect(getByText(/Home/i)).toBeInTheDocument()
+  expect(getByText(/Home/i)).toBeInTheDocument();
 });
 
 test('testing About Link', () => {
   const { getByText } = renderWithRouter(<App />);
-  const about = getByText(/About/i)
+  const about = getByText(/About/i);
   expect(about).toBeInTheDocument();
   fireEvent.click(about);
   expect(getByText(/About/i)).toBeInTheDocument();
@@ -41,7 +41,7 @@ test('testing About Link', () => {
 
 test('testing Favorite Pokémons Link', () => {
   const { getByText, getAllByText } = renderWithRouter(<App />);
-  const favPokemon = getByText(/Favorite Pokémons/i)
+  const favPokemon = getByText(/Favorite Pokémons/i);
   expect(favPokemon).toBeInTheDocument();
   fireEvent.click(favPokemon);
   expect(getAllByText(/Favorite Pokémons/i));
