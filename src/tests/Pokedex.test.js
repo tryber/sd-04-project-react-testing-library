@@ -16,7 +16,7 @@ const pkmFavorite = {
   148: false,
 };
 
-const pkmList = pokemons.reduce(function(acc, pokemon) {
+const pkmList = pokemons.reduce(function (acc, pokemon) {
   return [...acc, pokemon.name];
 }, []);
 // console.log(pkmList);
