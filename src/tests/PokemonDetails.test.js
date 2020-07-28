@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
 
 describe('Tests - PokemonDetails.js', () => {
-  test('Pokemon', () => {
+  test('PokemonDetails', () => {
     pokemons.forEach(({ id, name, foundAt: [{ map: map1 }], summary }) => {
       const { getByText, getAllByAltText, container, getAllByText } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
       expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
