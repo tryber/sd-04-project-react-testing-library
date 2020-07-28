@@ -13,7 +13,7 @@ describe('Tests - PokemonDetails.js', () => {
       expect(getAllByText('Summary')).toBeTruthy();
       expect(getByText(summary)).toBeInTheDocument();
       expect(getByText(`${name} Details`)).toBeInTheDocument();
-      expect(container.querySelector('form.favorite-form label').textContent).toBe(`Pokémon favoritado?`);
+      expect(container.querySelector('form.favorite-form label').textContent).toBe('Pokémon favoritado?');
     });
-  }); 
+  });
 });
