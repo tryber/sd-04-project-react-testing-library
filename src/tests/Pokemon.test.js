@@ -10,9 +10,11 @@ describe('Testar a página Pokemon,', () => {
 
   test('teste botao não retorna nada', () => {
     const { getAllByTestId } = render(
-      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
     );
-    getAllByTestId('pokemon-type-button').forEach((elementButton) => {
+    getAllByTestId('pokemonType').forEach((elementButton) => {
       expect(elementButton).toBeInTheDocument();
       expect(elementButton.textContent).not.toBe('');
     });
