@@ -18,4 +18,10 @@ describe('About page tests', () => {
     expect(heading).toBeInTheDocument();
   });
 
+  it('should render two paragraphs about the Pokédex', () => {
+    const { container } = renderWithRouter(<About />);
+    const paragraphs = container.querySelectorAll('p');
+    expect(paragraphs.length).toBe(2);
+  });
+
 });
