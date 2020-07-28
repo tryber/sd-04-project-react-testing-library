@@ -6,12 +6,12 @@ import pokemons from '../data';
 
 describe('Tests - PokemonDetails.js', () => {
   test('Pokemon', () => {
-    pokemons.forEach(({ id, name }) => {
-      const { getByText, queryAllByText } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
-      const summary = queryAllByText('Summary');
-      const pkm = getByText(name);
-      expect(summary).toBeTruthy();
-      expect(pkm).toBeInTheDocument();
+    pokemons.forEach(({ id, name, foundAt: [{map: map1}] }) => {
+      const { getByText, getByAltText, getAllByAltText, container } = renderWithRouter(<App />, { route: `/pokemons/${id}` });
+      expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
+      expect(getAllByAltText(`${name} location`)).toBeTruthy();
+      expect(container.querySelector('div.pokemon-habitat img').src).toBe(`${map1}`);
+
     });
   });
 });
