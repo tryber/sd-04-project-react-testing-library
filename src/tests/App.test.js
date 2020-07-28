@@ -44,12 +44,12 @@ test('testing Favorite Pokémons Link', () => {
   const favPokemon = getByText(/Favorite Pokémons/i)
   expect(favPokemon).toBeInTheDocument();
   fireEvent.click(favPokemon);
-  expect(getAllByText((/Favorite Pokémons/i).length).toBe(2));
+  expect(getAllByText(/Favorite Pokémons/i));
 });
 
 test('Verify if it is a valid page', () => {
   const history = createMemoryHistory();
-  const route = '/any-route';
+  const route = '/route X';
   history.push(route);
   const { getByText } = render(
     <Router history={history}>
