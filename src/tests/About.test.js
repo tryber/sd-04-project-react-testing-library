@@ -7,10 +7,10 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('About page tests', () => {
-  it.skip('shows info about Pokedéx', () => {
+/*   it.skip('shows info about Pokedéx', () => {
     const { getByText } = renderWithRouter(<About />);
     expect(getByText('Pokédex')).toBeInTheDocument();
-  });
+  }); */
 
   it('should render h2 heading `About Pokédex`', () => {
     const { getByText } = renderWithRouter(<About />);
@@ -24,4 +24,9 @@ describe('About page tests', () => {
     expect(paragraphs.length).toBe(2);
   });
 
+  it('should render a Pokédex image', () => {
+    const { getByAltText } = renderWithRouter(<About />);
+    const { src } = getByAltText('Pokédex');
+    expect(src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  });
 });
