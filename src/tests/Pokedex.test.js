@@ -140,7 +140,6 @@ describe('Tests Pokedex.js', () => {
     console.log(btnTypes);
     expect(btnAll).toBeInTheDocument();
     expect(btnTypes).toBeTruthy();
-    
   });
 
   test('O botão de Próximo pokémon deve ser desabilitado se a lista filtrada de pokémons tiver um só pokémon', () => {
