@@ -17,6 +17,7 @@ import {
 import pokemons from './data';
 
 import './App.css';
+//  xablau
 
 class App extends Component {
   static setIsPokemonFavoriteById() {
