@@ -8,6 +8,16 @@ import App from '../App';
 describe('Testar a página Pokemon,', () => {
   afterEach(cleanup);
 
+  test('teste botao não retorna nada', () => {
+    const { getAllByTestId } = render(
+      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
+    );
+    getAllByTestId('pokemon-type-button').forEach((elementButton) => {
+      expect(elementButton).toBeInTheDocument();
+      expect(elementButton.textContent).not.toBe('');
+    });
+  });
+
   describe('Deve ser retornado um card com as informações de determinado pokémon', () => {
     test('O nome correto do pokémon deve aparecer na tela', () => {
       const { getByTestId } = render(
@@ -47,22 +57,24 @@ describe('Testar a página Pokemon,', () => {
           <App />
         </MemoryRouter>,
       );
-      const elDetails = getByText(/More details/);
+      const detail = getByText(/More details/);
       const pokeId = pokemons[0].id;
-      expect(elDetails).toBeInTheDocument();
-      expect(elDetails.href.endsWith(`/pokemons/${pokeId}`)).toBe(true);
+      expect(detail).toBeInTheDocument();
+      expect(detail.href.endsWith(`/pokemons/${pokeId}`)).toBe(true);
     });
+
     test('Ao clicar no link de navegação do pokémon, a aplicação deve ser redirecionada para a página de detalhes de pokémon. A URL exibida no navegador deve mudar para `/pokemon/<id>`, onde `<id>` é o id do pokémon cujos detalhes se deseja ver', () => {
       const { getByText } = render(
         <MemoryRouter initialEntries={['/']}>
           <App />
         </MemoryRouter>,
       );
-      const elDetails = getByText(/More details/);
+      const detail = getByText(/More details/);
       expect(getByText(/Encountered pokémons/)).toBeInTheDocument();
-      fireEvent.click(elDetails);
+      fireEvent.click(detail);
       expect(getByText(/Pikachu Details/)).toBeInTheDocument();
     });
+
     describe('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
       test('O ícone deve ser uma imagem, com o atributo src igual /star-icon.svg', () => {
         const { getByText, getByAltText } = render(
@@ -70,11 +82,11 @@ describe('Testar a página Pokemon,', () => {
             <App />
           </MemoryRouter>,
         );
-        const elCheckFav = getByText(/Pokémon favoritado?/);
-        fireEvent.click(elCheckFav);
-        const img = getByAltText(/Pikachu is marked as favorite/);
-        expect(img).toBeInTheDocument();
-        expect(img.src.endsWith('/star-icon.svg')).toBe(true);
+        const a = getByText(/Pokémon favoritado?/);
+        fireEvent.click(a);
+        const imagem = getByAltText(/Pikachu is marked as favorite/);
+        expect(imagem).toBeInTheDocument();
+        expect(imagem.src.endsWith('/star-icon.svg')).toBe(true);
       });
     });
     test('A imagem deve ter o atributo `alt` igual a `<pokemon> is marked as favorite`, onde `<pokemon>` é o nome do pokémon cujos detalhes estão sendo exibidos', () => {
