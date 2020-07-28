@@ -1,7 +1,17 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { Router, MemoryRouter } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import App from '../App';
+
+function renderWithRouter(ui, routeConfigs = {}) {
+  const route = routeConfigs.route || '/';
+  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
+  return {
+    ...render(<Router history={history}>{ui}</Router>),
+    history,
+  };
+}
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -16,17 +26,36 @@ test('renders a reading with the text `Pokédex`', () => {
 test('testing Home Link', () => {
   const { getByText } = renderWithRouter(<App />);
   const home = getByText(/Home/i)
-  expect(getByText).toBeInTheDocument(); 
+  expect(home).toBeInTheDocument(); 
+  fireEvent.click(home);
+  expect(getByText(/Home/i)).toBeInTheDocument()
 });
 
 test('testing About Link', () => {
   const { getByText } = renderWithRouter(<App />);
   const about = getByText(/About/i)
-  expect(getByText).toBeInTheDocument(); 
+  expect(about).toBeInTheDocument();
+  fireEvent.click(about);
+  expect(getByText(/About/i)).toBeInTheDocument();
 });
 
 test('testing Favorite Pokémons Link', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText, getAllByText } = renderWithRouter(<App />);
   const favPokemon = getByText(/Favorite Pokémons/i)
-  expect(getByText).toBeInTheDocument(); 
+  expect(favPokemon).toBeInTheDocument();
+  fireEvent.click(favPokemon);
+  expect(getAllByText((/Favorite Pokémons/i).length).toBe(2));
+});
+
+test('Verify if it is a valid page', () => {
+  const history = createMemoryHistory();
+  const route = '/any-route';
+  history.push(route);
+  const { getByText } = render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  );
+  const pageNotFound = getByText(/Page requested not found/i);
+  expect(pageNotFound).toBeInTheDocument();
 });
