@@ -16,7 +16,7 @@ describe('Pokedex component tests', () => {
     });
 
     it('subsequent clicks to button should always display the next pokémon', () => {
-      const { getByTestId, getByText } = renderWithRouter(<App />);
+      const { getByTestId } = renderWithRouter(<App />);
       const nextBtn = getByTestId('next-pokemon');
 
       pokemons.forEach((pokemon) => {
@@ -26,7 +26,7 @@ describe('Pokedex component tests', () => {
     });
 
     it('on the last pokémon, clicking the button should display the first pokémon', () => {
-      const { getByTestId, getByText } = renderWithRouter(<App />);
+      const { getByTestId } = renderWithRouter(<App />);
       const nextBtn = getByTestId('next-pokemon');
 
       pokemons.forEach((pokemon, i) => {
@@ -63,7 +63,7 @@ describe('Pokedex component tests', () => {
             expect(button.textContent).toBe(pokemon.type);
           }
         });
-      })
+      });
     });
   });
 
