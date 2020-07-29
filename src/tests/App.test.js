@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, cleanup, fireEvent, getByText } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 
@@ -21,8 +21,8 @@ function renderWithRouter(ui, routeConfigs = {}) {
 
   return {
     ...render(<Router history={history}> {ui}</Router>),
-    history
-  }
+    history,
+  };
 }
 
 const arrayTest = [{ sequence: 'Primeiro', text: 'Home', url: '/' },
@@ -30,7 +30,7 @@ const arrayTest = [{ sequence: 'Primeiro', text: 'Home', url: '/' },
 { sequence: 'Terceiro', text: 'Favorite Pokémons', url: '/favorites' }];
 
 describe('Testando links de navegação', () => {
-  arrayTest.forEach(element => {
+  arrayTest.forEach((element) => {
     const { sequence, url, text } = element;
     test(`${sequence} Link, deve possuir o texto ${text}, URL ${url}`, () => {
       const { getByText, history } = renderWithRouter(<App />);
@@ -40,16 +40,13 @@ describe('Testando links de navegação', () => {
       const { pathname } = history.location;
       expect(pathname).toBe(url);
       expect(page).toBeInTheDocument();
-    })
+    });
   });
 
   test('Navegando para uma rota que não existe', () => {
-    // const history2 = createMemoryHistory();
-    // const route = '/NotFound'
-    // history2.push(route);
-    const { getByText, history } = renderWithRouter(<App />, { route: '/PageNotFound' });
+    const { getByText } = renderWithRouter(<App />, { route: '/PageNotFound' });
 
     const pageNotFound = getByText(/Page requested not found/i);
     expect(pageNotFound).toBeInTheDocument();
-  })
-})
+  });
+});
