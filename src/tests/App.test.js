@@ -10,14 +10,14 @@ test('Verificando paths', () => {
   expect(getByText('About').closest('a')).toHaveAttribute('href', '/about');
   expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute(
     'href',
-    '/favorites'
+    '/favorites',
   );
 });
 test('Verificando rota', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   // bla
   const incio = getByText(/About/i);
@@ -30,7 +30,7 @@ test('Outro teste2', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   const pokemonFavorito = getByText(/Favorite/i);
   expect(pokemonFavorito).toBeInTheDocument();
@@ -40,7 +40,7 @@ test('Outro teste', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   const pokemon = getByText(/favorite pokémons/i);
