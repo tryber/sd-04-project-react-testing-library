@@ -6,8 +6,8 @@ import pokemons from '../data';
 
 describe('Testes do FavoritePokemons', () => {
   const newPokemons = pokemons.filter((pokemon, index) => {
-		if (index > 0) return pokemon;
-		return null;
+    if (index > 0) return pokemon;
+    return null;
   });
 
   test('Certeza que não ha nenhum outro pokemon favorito?', () => {
