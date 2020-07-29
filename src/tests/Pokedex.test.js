@@ -15,7 +15,7 @@ describe('Pokedex component tests', () => {
     expect(button).toBeInTheDocument();
     expect(button.textContent).toBe('Próximo pokémon');
 
-    pokemonNames.forEach((name, i)=> {
+    pokemonNames.forEach((name, i) => {
       expect(getByText(name)).toBeInTheDocument();
       fireEvent.click(button);
 
@@ -23,7 +23,10 @@ describe('Pokedex component tests', () => {
         expect(getByText(pokemonNames[0])).toBeInTheDocument();
       }
     })
+  });
 
-
+  it('should render only one pokémon at a time', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    expect(getAllByTestId('pokemon-name').length).toBe(1);
   });
 });
