@@ -31,7 +31,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { isPokemonFavoriteById: App.setIsPokemonFavoriteById() };
+    this.state = { isPokemonFavoriteById: App.setIsPokemonFavoriteById(), email: '', saveEmail: '', };
   }
 
   onUpdateFavoritePokemons(pokemonId, isFavorite) {
@@ -101,6 +101,20 @@ class App extends Component {
       </div>
     );
   }
+  render() {
+    return (
+      <div className="App">
+        <h1>Pokédex</h1>
+        <nav>
+          <Link className="link" to="/">{`Home`}</Link>
+          <Link className="link" to="/about">{`About`}</Link>
+          <Link className="link" to="/favorites">{`Favorite Pokémons`}</Link>
+        </nav>
+        {this.renderRoutes()}
+      </div>
+    );
+  }
+
 }
 
 export default App;
