@@ -1,34 +1,34 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
-import App from '../App';
 import { render, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 
 
-  test('Verificando paths', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText('Home').closest('a')).toHaveAttribute('href', '/')
-    expect(getByText('About').closest('a')).toHaveAttribute('href', '/about')
-    expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute('href', '/favorites')
+test('Verificando paths', () => {
+  const { getByText } = renderWithRouter(<App />);
+  expect(getByText('Home').closest('a')).toHaveAttribute('href', '/');
+  expect(getByText('About').closest('a')).toHaveAttribute('href', '/about');
+  expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute('href', '/favorites');
   });
-  test('Verificando rota', ()=> {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+test('Verificando rota', () => {
+  const { getByText } = render(
+  <MemoryRouter>
+    <App />
+  </MemoryRouter>,
+  );
 
-  const incio = getByText(/About/i);
-  expect(incio).toBeInTheDocument();
-  fireEvent.click(incio);
-  const sobre = getByText(/About Pokédex/i);
-  expect(sobre).toBeInTheDocument();
-  const pokemonFavorito = getByText(/Favorite/i);
-  expect(pokemonFavorito).toBeInTheDocument();
-  fireEvent.click(pokemonFavorito);
-  const redireciona = getByText('Favorite Pokémons');
-  expect(redireciona).toBeInTheDocument();
-});
+    const incio = getByText(/About/i);
+    expect(incio).toBeInTheDocument();
+    fireEvent.click(incio);
+    const sobre = getByText(/About Pokédex/i);
+    expect(sobre).toBeInTheDocument();
+    const pokemonFavorito = getByText(/Favorite/i);
+    expect(pokemonFavorito).toBeInTheDocument();
+    fireEvent.click(pokemonFavorito);
+    const redireciona = getByText('Favorite Pokémons');
+    expect(redireciona).toBeInTheDocument();
+  });
 
   describe('Testando  Página Perdida', () => {
     test('Página não encontrada ', () => {
@@ -36,4 +36,4 @@ import { MemoryRouter } from 'react-router-dom';
       const pagPerdida = getByText(/not found/i);
       expect(pagPerdida).toBeInTheDocument();
     });
-  })
+  });
