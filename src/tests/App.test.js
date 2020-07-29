@@ -4,8 +4,6 @@ import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
 describe('Tests do App', () => {
-  afterEach(cleanup);
-
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
@@ -20,7 +18,7 @@ describe('Tests do App', () => {
   });
 
   test('Vai para "/" quando clica em "Home"', () => {
-		const { getByText, history } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
       fireEvent.click(getByText('Home'));
       const caminho = history.location.pathname;
       expect(caminho).toBe('/');
@@ -28,7 +26,7 @@ describe('Tests do App', () => {
   });
 
   test('Vai para "/favorites" quando clica em "Favorite Pokémons"', () => {
-		const { getByText, history } = renderWithRouter(<App />);
+	  const { getByText, history } = renderWithRouter(<App />);
       fireEvent.click(getByText('Favorite Pokémons'));
       const caminho = history.location.pathname;
       expect(caminho).toBe('/favorites');
@@ -36,7 +34,7 @@ describe('Tests do App', () => {
   });
 
   test('Vai para "/about" quando clica em "About"', () => {
-		const { getByText, history } = renderWithRouter(<App />);
+	  const { getByText, history } = renderWithRouter(<App />);
       fireEvent.click(getByText('About'));
       const caminho = history.location.pathname;
       expect(caminho).toBe('/about');
@@ -44,7 +42,7 @@ describe('Tests do App', () => {
   });
 
   test('Entra em "Not Found"', () => {
-		const { getByText, history } = renderWithRouter(<App />);
+	  const { getByText, history } = renderWithRouter(<App />);
       fireEvent.click(getByText('About'));
       history.push('/bestpokemon');
       expect(getByText('Page requested not found')).toBeInTheDocument();
