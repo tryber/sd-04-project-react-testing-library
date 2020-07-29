@@ -1,9 +1,10 @@
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { fireEvent, cleanup, getAllByTestId } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 import pokemons from '../data';
 import renderWithRouter from './renderWithRouter';
+import { pokemonType } from '../types';
 
 afterEach(cleanup);
 
@@ -83,6 +84,36 @@ describe('Pokedex component tests', () => {
       expect(nextBtn).toBeDisabled();
       fireEvent.click(allBtn);
       expect(nextBtn).toBeEnabled();
+    });
+  });
+
+  it('type buttons should be dynamically rendered', () => {
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
+
+    pokemons.forEach((pokemon) => {
+      getAllByTestId('pokemon-type-button').forEach((button) => {
+        if (button.textContent === pokemon.type) {
+          expect(button).toBeInTheDocument();
+          expect(getByText('All')).toBeInTheDocument();
+        }
+      });
+    });
+  });
+
+  it('should disable next button if only one pokemon of a type is rendered', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const pokemonTypes = pokemons.reduce((acc, { type }) => {
+      if (acc[type]) acc[type] += 1;
+      else acc[type] = 1;
+      return acc;
+    }, {})
+    const singlePokemon = Object.entries(pokemonTypes).find(type => type[1] === 1);
+    
+    getAllByTestId('pokemon-type-button').forEach((button) => {
+      if (button.textContent === singlePokemon[0]) {
+        fireEvent.click(button);
+        expect(getByTestId('next-pokemon')).toBeDisabled();
+      }
     });
   });
 });
