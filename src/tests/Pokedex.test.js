@@ -1,8 +1,8 @@
 import React from 'react';
-// import { fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
-// import pokemons from '../data';
+import pokemons from '../data';
 
 describe('Tests da Pokedex', () => {
   test('Existe um botão com "Próximo pokémon" como texto', () => {
@@ -10,7 +10,7 @@ describe('Tests da Pokedex', () => {
     expect(getByText('Próximo pokémon').type).toBe('button');
   });
 
-  /*  test('Verifica cada Pokemon na lista', () => {
+  test('Verifica cada Pokemon na lista', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
@@ -86,5 +86,5 @@ describe('Tests da Pokedex', () => {
       const pokemonsType = pokemons.filter((item) => item.type === button.textContent);
       if (pokemonsType.length === 1) expect(atualPok === proximoPok);
     });
-  });  */
+  });
 });
