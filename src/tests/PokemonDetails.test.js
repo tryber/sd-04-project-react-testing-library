@@ -10,7 +10,7 @@ describe('Across the Pokedetails', () => {
         route: `/pokemons/${pokemon.id}`,
       });
 
-      expect(getByText(`${pokemon.name} Details`)).toBeInTheDocument()
+      expect(getByText(`${pokemon.name} Details`)).toBeInTheDocument();
       expect(queryByText(/More Details/i)).not.toBeInTheDocument();
       expect(getByText('Summary').tagName).toBe('H2');
       expect(getByText(pokemon.summary)).toBeInTheDocument();
