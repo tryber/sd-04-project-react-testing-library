@@ -28,7 +28,7 @@ test('Verificando rota', () => {
   const redireciona = getByText(/Favorite Pokémons/i);
   expect(redireciona).toBeInTheDocument();
 });
-
+//commit
 describe('Testando  Página Perdida', () => {
   test('Página não encontrada ', () => {
     const { getByText } = renderWithRouter(<App />, { route: '/nao-existe' });
