@@ -40,7 +40,6 @@ test('display Pokémon at a time', () => {
 
 describe('testing filter buttons', () => {
   test('embrace only a sort kind of Pokemon', () => {
-
     const { getByTestId, queryAllByTestId, getByText } = renderWithRouter(<App />);
     const next = getByTestId('next-pokemon');
     const buttons = queryAllByTestId('pokemon-type-button');
