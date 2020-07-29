@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../tests/renderWithRouter';
 import App from '../App';
 
 test('Verificando paths', () => {
@@ -11,7 +11,7 @@ test('Verificando paths', () => {
   expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute('href', '/favorites');
 });
 test('Verificando rota', () => {
-  const { getByText } = render(
+  const { getByText, getAllByText } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
@@ -25,7 +25,7 @@ test('Verificando rota', () => {
   const pokemonFavorito = getByText(/Favorite/i);
   expect(pokemonFavorito).toBeInTheDocument();
   fireEvent.click(pokemonFavorito);
-  const redireciona = getByText(/Favorite Pokémons/i);
+  const redireciona = getAllByText(/Favorite Pokémons/i);
   expect(redireciona).toBeInTheDocument();
 });
 
