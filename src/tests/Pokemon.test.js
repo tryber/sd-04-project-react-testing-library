@@ -51,6 +51,6 @@ test('Verificação 5', () => {
   expect(favorito).toHaveAttribute('src', '/star-icon.svg');
   expect(favorito).toHaveAttribute(
     'alt',
-    `${pokemons[7].name} is marked as favorite`
+    `${pokemons[7].name} is marked as favorite`,
   );
 });
