@@ -1,29 +1,9 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
+import { renderWithRouter } from '../Helper/renderWithRouter';
 import App from '../App';
 
-
 afterEach(cleanup);
-
-
-// jest.mock('react-router-dom', () => {
-//   const moduloOriginal = jest.requireActual('react-router-dom');
-// })
-
-function renderWithRouter(ui, routeConfigs = {}) {
-  const route = routeConfigs.route || '/';
-  const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] });
-  // if (routeConfigs.pageNotFound) {
-  //   history.push(route)
-  // }
-
-  return {
-    ...render(<Router history={history}> {ui}</Router>),
-    history,
-  };
-}
 
 const arrayTest = [{ sequence: 'Primeiro', text: 'Home', url: '/' },
 { sequence: 'Segundo', text: 'About', url: '/about' },
