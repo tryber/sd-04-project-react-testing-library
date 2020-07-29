@@ -16,7 +16,7 @@ test('Verificando rota', () => {
       <App />
     </MemoryRouter>,
   );
-
+// bla
   const incio = getByText(/About/i);
   expect(incio).toBeInTheDocument();
   fireEvent.click(incio);
