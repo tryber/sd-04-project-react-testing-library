@@ -4,6 +4,7 @@ import renderWithRouter from '../services/renderWithRouter';
 import data from '../data';
 import Pokemon from '../components/Pokemon';
 import App from '../App';
+import pokemons from '../data';
 
 test('Informações de determinado pokémon, nome correto do pokémon deve aparecer na tela', () => {
   const { getByTestId, getByText, getAllByText } = renderWithRouter(<App />, { route: '/' });
