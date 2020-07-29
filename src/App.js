@@ -31,7 +31,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { isPokemonFavoriteById: App.setIsPokemonFavoriteById() };
+    this.state = { isPokemonFavoriteById: App.setIsPokemonFavoriteById(), };
   }
 
   onUpdateFavoritePokemons(pokemonId, isFavorite) {
@@ -101,6 +101,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default App;
