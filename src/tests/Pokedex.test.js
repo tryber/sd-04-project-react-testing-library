@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, getByText } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
@@ -65,15 +65,26 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Dinamica dos tipos de botões', () => {
-    const { getByText, getAllByTestId } = renderWithRouter(<App />);
-    const allTypes = getAllByTestId('pokemon-type-button');
-    const mapTypes = allTypes.map((button) => button.textContent);
-    const pokemonsTypes = pokemons.map((pokemon) => pokemon.type);
-    const onlyPokTypes = [...new Set(pokemonsTypes)];
-    const sortPok = onlyPokTypes.sort();
-    const sortTypes = mapTypes.sort();
-    expect(sortTypes).toEqual(sortPok);
-    expect(getByText('All')).toBeInTheDocument();
+    const { getByText, getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const pokemonTypeButtons = getAllByTestId('pokemon-type-button');
+    expect(pokemonTypeButtons.length).toBe(3);
+    expect(pokemonTypeButtons[0].textContent).toBe('Dragon');
+    expect(pokemonTypeButtons[1].textContent).toBe('Fire');
+    fireEvent.click(pokemonTypeButtons[1]);
+    expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
+    const nextPokemonButton = getByText('Próximo pokémon');
+    fireEvent.click(nextPokemonButton);
+    expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
+    fireEvent.click(getByText('All'));
+    fireEvent.click(nextPokemonButton);
+    expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
+    expect(getByTestId('pokemonType').textContent).toBe('Fire');
+    fireEvent.click(nextPokemonButton);
+    expect(getByTestId('pokemon-name').textContent).toBe('Mew');
+    expect(getByTestId('pokemonType').textContent).toBe('Psychic');
+    fireEvent.click(nextPokemonButton);
+    expect(getByTestId('pokemon-name').textContent).toBe('Dragonair');
+    expect(getByTestId('pokemonType').textContent).toBe('Dragon');
   });
 
   test('Desabilitar o botão proximo pokemon se só tiver um', () => {
@@ -86,5 +97,12 @@ describe('Tests da Pokedex', () => {
       const pokemonsType = pokemons.filter((item) => item.type === button.textContent);
       if (pokemonsType.length === 1) expect(atualPok === proximoPok);
     });
+  });
+
+  test('<H2> no topo da tela', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const heading = getByText('Encountered pokémons');
+    expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H2');
   });
 });
