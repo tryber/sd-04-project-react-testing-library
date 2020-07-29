@@ -7,10 +7,9 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('PokemonDetails component tests', () => {
-
   test('???', () => {
     const route = '/pokemons/25';
-      const { getAllByAltText } = renderWithRouter(<App />, { route });
+    const { getAllByAltText } = renderWithRouter(<App />, { route });
     const mapImgs = getAllByAltText('Pikachu location');
     mapImgs.forEach((img) => expect(img.src).not.toBe(''));
   });

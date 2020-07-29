@@ -8,7 +8,6 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('Pokedex component tests', () => {
-
   test('???', () => {
     const { getByText, getAllByTestId } = renderWithRouter(<App />);
     const heading = getByText(/Encountered pokémons/);

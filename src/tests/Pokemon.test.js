@@ -7,7 +7,6 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('Pokemon component tests', () => {
-
   test('???', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const pokemonTypes = getAllByTestId('pokemonType');
