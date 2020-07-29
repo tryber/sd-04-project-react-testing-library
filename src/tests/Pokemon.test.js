@@ -9,11 +9,9 @@ afterEach(cleanup);
 describe('Pokemon component tests', () => {
 
   test('???', () => {
-    const { getAllByTestId } = render(
-      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
-    );
-    const el = getAllByTestId('pokemonType');
-    el.forEach((but) => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const pokemonTypes = getAllByTestId('pokemonType');
+    pokemonTypes.forEach((but) => {
       expect(but).toBeInTheDocument();
       expect(but.textContent).not.toBe('');
     });

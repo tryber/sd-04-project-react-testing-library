@@ -9,9 +9,8 @@ afterEach(cleanup);
 describe('PokemonDetails component tests', () => {
 
   test('???', () => {
-    const { getAllByAltText } = render(
-      <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
-    );
+    const route = '/pokemons/25';
+      const { getAllByAltText } = renderWithRouter(<App />, { route });
     const mapImgs = getAllByAltText('Pikachu location');
     mapImgs.forEach((img) => expect(img.src).not.toBe(''));
   });
