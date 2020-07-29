@@ -19,32 +19,32 @@ describe('Tests do App', () => {
 
   test('Vai para "/" quando clica em "Home"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-      fireEvent.click(getByText('Home'));
-      const caminho = history.location.pathname;
-      expect(caminho).toBe('/');
-      expect(getByText('Pokédex')).toBeInTheDocument();
+    fireEvent.click(getByText('Home'));
+    const caminho = history.location.pathname;
+    expect(caminho).toBe('/');
+    expect(getByText('Pokédex')).toBeInTheDocument();
   });
 
   test('Vai para "/favorites" quando clica em "Favorite Pokémons"', () => {
-	  const { getByText, history } = renderWithRouter(<App />);
-      fireEvent.click(getByText('Favorite Pokémons'));
-      const caminho = history.location.pathname;
-      expect(caminho).toBe('/favorites');
-      expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText('Favorite Pokémons'));
+    const caminho = history.location.pathname;
+    expect(caminho).toBe('/favorites');
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
 
   test('Vai para "/about" quando clica em "About"', () => {
-	  const { getByText, history } = renderWithRouter(<App />);
-      fireEvent.click(getByText('About'));
-      const caminho = history.location.pathname;
-      expect(caminho).toBe('/about');
-      expect(getByText('About Pokédex')).toBeInTheDocument();
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText('About'));
+    const caminho = history.location.pathname;
+    expect(caminho).toBe('/about');
+    expect(getByText('About Pokédex')).toBeInTheDocument();
   });
 
   test('Entra em "Not Found"', () => {
-	  const { getByText, history } = renderWithRouter(<App />);
-      fireEvent.click(getByText('About'));
-      history.push('/bestpokemon');
-      expect(getByText('Page requested not found')).toBeInTheDocument();
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText('About'));
+    history.push('/bestpokemon');
+    expect(getByText('Page requested not found')).toBeInTheDocument();
   });
 });
