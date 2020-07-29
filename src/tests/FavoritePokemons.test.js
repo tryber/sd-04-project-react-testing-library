@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup, getByLabelText } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { FavoritePokemons } from '../components';
 import App from '../App';
@@ -33,5 +33,4 @@ describe('Favorite page tests', () => {
     fireEvent.click(favoriteLink);
     expect(getByText(/More details/i)).toBeInTheDocument();
   });
-
 });
