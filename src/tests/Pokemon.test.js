@@ -1,7 +1,9 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
-import pokemons from '../data';
+import data from '../data';
+import Pokemon from '../components/Pokemon';
+import App from '../App';
 
 test('Informações de determinado pokémon, nome correto do pokémon deve aparecer na tela', () => {
   const { getByTestId, getByText, getAllByText } = renderWithRouter(<App />, { route: '/' });
