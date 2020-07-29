@@ -63,7 +63,7 @@ test('Navegação do pokémon', () => {
 
 test('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
   const { getByAltText } = renderWithRouter(
-  <Pokemon pokemon={pokemons[7]} isFavorite />,
+    <Pokemon pokemon={pokemons[7]} isFavorite />,
   );
   const img = getByAltText(`${pokemons[7].name} is marked as favorite`);
   expect(img).toBeInTheDocument();
