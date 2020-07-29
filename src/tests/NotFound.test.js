@@ -8,3 +8,11 @@ test('A página deve conter um heading `h2` com o texto `Page requested not foun
   expect(header).toBeInTheDocument();
   expect(header.tagName).toBe('H2');
 });
+
+test('A página deve exibir a imagem', () => {
+  renderWithRouter(<NotFound />);
+  const image = document.querySelector('.not-found-image');
+
+  expect(image).toBeInTheDocument();
+  expect(image.getAttribute('src')).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+});
