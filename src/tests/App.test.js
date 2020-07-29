@@ -1,14 +1,42 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+afterEach(cleanup);
+
+describe('App tests', () => {
+  it('shows Pokedéx main page on `/` route', () => {
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText('Pokédex')).toBeInTheDocument();
+  });
+
+  it('render Home link with `/` URL', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const homeLink = getByText(/Home/i);
+    expect(homeLink).toBeInTheDocument();
+  });
+
+  it('render About link with `/about` URL', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const aboutLink = getByText(/About/i);
+    expect(aboutLink).toBeInTheDocument();
+    fireEvent.click(aboutLink);
+    expect(history.location.pathname).toBe('/about');
+  });
+
+  it('render Favorite Pokémons link with `/favorites` URL', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const favoritesLink = getByText(/Favorite Pokémons/i);
+    expect(favoritesLink).toBeInTheDocument();
+    fireEvent.click(favoritesLink);
+    expect(history.location.pathname).toBe('/favorites');
+  });
+
+  it('render NotFound page when URL does not match', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/page/not-found');
+    expect(getByText(/Not Found/i)).toBeInTheDocument();
+  });
 });
