@@ -47,6 +47,7 @@ describe('Tests da Pokedex', () => {
     fireEvent.click(getByText('Psychic'));
     pokemons.forEach(() => {
       expect(getByTestId('pokemonType').textContent).toBe('Psychic');
+      fireEvent.click(getByText('Próximo pokémon'));
     });
   });
 
@@ -69,7 +70,9 @@ describe('Tests da Pokedex', () => {
     const mapTypes = allTypes.map((button) => button.textContent);
     const pokemonsTypes = pokemons.map((pokemon) => pokemon.type);
     const onlyPokTypes = [...new Set(pokemonsTypes)];
-    expect(mapTypes).toEqual(onlyPokTypes);
+    const sortPok = onlyPokTypes.sort();
+    const sortTypes = mapTypes.sort();
+    expect(sortTypes).toEqual(sortPok);
     expect(getByText('All')).toBeInTheDocument();
   });
 
