@@ -67,24 +67,24 @@ describe('Tests da Pokedex', () => {
   test('Dinamica dos tipos de botões', () => {
     const { getByText, getAllByTestId, getByTestId } = renderWithRouter(<App />);
     const pokemonTypeButtons = getAllByTestId('pokemon-type-button');
-    expect(pokemonTypeButtons.length).toBe(3);
-    expect(pokemonTypeButtons[0].textContent).toBe('Dragon');
+    expect(pokemonTypeButtons.length).toBe(7);
+    expect(pokemonTypeButtons[0].textContent).toBe('Electric');
     expect(pokemonTypeButtons[1].textContent).toBe('Fire');
     fireEvent.click(pokemonTypeButtons[1]);
     expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
     const nextPokemonButton = getByText('Próximo pokémon');
     fireEvent.click(nextPokemonButton);
-    expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
+    expect(getByTestId('pokemon-name').textContent).toBe('Rapidash');
     fireEvent.click(getByText('All'));
     fireEvent.click(nextPokemonButton);
     expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
     expect(getByTestId('pokemonType').textContent).toBe('Fire');
     fireEvent.click(nextPokemonButton);
-    expect(getByTestId('pokemon-name').textContent).toBe('Mew');
-    expect(getByTestId('pokemonType').textContent).toBe('Psychic');
+    expect(getByTestId('pokemon-name').textContent).toBe('Caterpie');
+    expect(getByTestId('pokemonType').textContent).toBe('Bug');
     fireEvent.click(nextPokemonButton);
-    expect(getByTestId('pokemon-name').textContent).toBe('Dragonair');
-    expect(getByTestId('pokemonType').textContent).toBe('Dragon');
+    expect(getByTestId('pokemon-name').textContent).toBe('Ekans');
+    expect(getByTestId('pokemonType').textContent).toBe('Poison');
   });
 
   test('Desabilitar o botão proximo pokemon se só tiver um', () => {
