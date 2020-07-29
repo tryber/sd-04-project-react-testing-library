@@ -107,7 +107,7 @@ describe('Pokedex component tests', () => {
       return acc;
     }, {});
     const singlePokemon = Object.entries(pokemonTypes).find((type) => type[1] === 1);
-    
+
     getAllByTestId('pokemon-type-button').forEach((button) => {
       if (button.textContent === singlePokemon[0]) {
         fireEvent.click(button);
