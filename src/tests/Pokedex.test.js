@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getAllByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
