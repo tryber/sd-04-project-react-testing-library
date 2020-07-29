@@ -12,7 +12,7 @@ test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon
   pokemons.forEach((elemento) => {
     const nome = getByTestId('pokemon-name');
     expect(nome).toHaveTextContent(elemento.name);
-    fireEvent.click(proximo);
+    fireEvent.click(botao);
   });
   expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
 });
