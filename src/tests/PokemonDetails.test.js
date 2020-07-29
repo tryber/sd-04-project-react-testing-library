@@ -7,7 +7,6 @@ import pokemons from '../data';
 afterEach(cleanup);
 
 describe('Testes do arquivo PokemonDetails', () => {
-
   test('Conter informações apenas do nome do pokemon  selecionado', () => {
     const { getByText } = renderWithRouter(<App />);
     const text = getByText(/More details/i);
