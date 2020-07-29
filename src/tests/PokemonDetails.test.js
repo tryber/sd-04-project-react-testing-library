@@ -10,7 +10,7 @@ describe('Pokemon Details test', () => {
       const { getByText, getAllByAltText } = render(
         <MemoryRouter initialEntries={[{ pathname: `/pokemons/${id}` }]}>
           <App />
-        </MemoryRouter>
+        </MemoryRouter>,
       );
       expect(getByText(`${name} Details`)).toBeInTheDocument();
       expect(getByText('Summary')).toBeInTheDocument();
