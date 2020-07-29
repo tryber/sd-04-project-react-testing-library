@@ -9,7 +9,7 @@ test('Pokemons Favoritos', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   const favoritos = getByText(/Favorite/i);
   fireEvent.click(favoritos);
