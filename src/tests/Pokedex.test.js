@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import renderWithRouter from '../helper/renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
@@ -23,4 +23,11 @@ describe('It should show the next Pokemon', () => {
     });
   });
 
-  
+  test('should return the first Pokemon', () => {
+    const { getByTestId, getByText } = renderWithRouter(<App />);
+    for (let i = 0; i < 9; i += 1) {
+      fireEvent.click(getByTestId('next-pokemon'));
+    }
+    expect(getByText('Pikachu')).toBeInTheDocument();
+  });
+});
