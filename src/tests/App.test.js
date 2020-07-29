@@ -8,16 +8,13 @@ test('Verificando paths', () => {
   const { getByText } = renderWithRouter(<App />);
   expect(getByText('Home').closest('a')).toHaveAttribute('href', '/');
   expect(getByText('About').closest('a')).toHaveAttribute('href', '/about');
-  expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute(
-    'href',
-    '/favorites'
-  );
+  expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute('href','/favorites');
 });
 test('Verificando rota', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   const incio = getByText(/About/i);
