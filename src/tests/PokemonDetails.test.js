@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import pokemons from '../data';
 
-describe("Pokemon Details test", () => {
+describe('Pokemon Details test', () => {
   pokemons.forEach(({ name, id, summary, foundAt }) => {
     test(`pokemon ${name} name, Summary`, () => {
       const { getByText, getAllByAltText } = render(
@@ -13,11 +13,11 @@ describe("Pokemon Details test", () => {
         </MemoryRouter>
       );
       expect(getByText(`${name} Details`)).toBeInTheDocument();
-      expect(getByText("Summary")).toBeInTheDocument();
+      expect(getByText('Summary')).toBeInTheDocument();
       expect(getByText(summary)).toBeInTheDocument();
       expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
       const locationImage = getAllByAltText(`${name} location`);
-      const favorite = getByText("Pokémon favoritado?");
+      const favorite = getByText('Pokémon favoritado?');
       fireEvent.click(favorite);
       fireEvent.click(favorite);
       console.log(favorite.innerHTML);
