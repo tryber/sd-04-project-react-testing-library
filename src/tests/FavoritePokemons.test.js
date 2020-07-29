@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+import renderWithRouter from '../services/renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
@@ -20,22 +19,14 @@ describe('Testes do FavoritePokemons', () => {
 	});
 
 	test('Existe um ou mais pokemons nos favoritos?', () => {
-		const historico = createMemoryHistory();
-		const { queryByText } = render(
-			<Router history={historico}>
-				{<FavoritePokemons pokemons={newPokemons} />}
-			</Router>);
+		const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={newPokemons} />);
 			expect(queryByText(
 				'Charmander', 'Caterpie', 'Ekans', 'Alakazam', 'Mew', 'Rapidash', 'Snorlax', 'Dragonair'),
 			).toBeInTheDocument();
 		});
 			
 	test('Se não tiver no favoritos não pode rendenizar pokemons', () => {
-		const historico = createMemoryHistory();
-		const { queryByText } = render(
-			<Router history={historico}>
-				{<FavoritePokemons pokemons={newPokemons} />}
-			</Router>);
+		const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={newPokemons} />);
 		expect(queryByText('Pikachu')).not.toBeInTheDocument();
 	});
 });

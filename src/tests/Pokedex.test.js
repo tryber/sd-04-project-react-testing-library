@@ -1,26 +1,17 @@
 import React from 'react';
-import { render, fireEvent, getAllByTestId } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+import { fireEvent, getAllByTestId } from '@testing-library/react';
+import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
 describe('Tests da Pokedex', () => {
   test('Existe um botão com "Próximo pokémon" como texto', () => {
-    const historico = createMemoryHistory();
-		const { getByText } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText } = renderWithRouter(<App />);
     expect(getByText('Próximo pokémon').type).toBe('button');
   });
 
   test('Verifica cada Pokemon na lista', () => {
-    const historico = createMemoryHistory();
-		const { getByText, getByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText, getByTestId } = renderWithRouter(<App />);
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(getByTestId('next-pokemon'));
@@ -28,11 +19,7 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Verifica loop da lista', () => {
-    const historico = createMemoryHistory();
-		const { getByText, getByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText, getByTestId } = renderWithRouter(<App />);
     pokemons.forEach(() => {
       fireEvent.click(getByTestId('next-pokemon'));
     });
@@ -40,20 +27,12 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Apenas um pokemon por vez', () => {
-    const historico = createMemoryHistory();
-		const { getAllByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getAllByTestId } = renderWithRouter(<App />);
     expect(getAllByTestId('pokemon-name').length).toBe(1);
   });
 
   test('Rotacionar somente pelos pokemons do tipo escolhido', () => {
-    const historico = createMemoryHistory();
-		const { getByTestId, getAllByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
     const allButs = getAllByTestId('pokemon-type-button');
     allButs.forEach((button) => {
       fireEvent.click(button);
@@ -64,11 +43,7 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Test no botão do "Psychic"', () => {
-    const historico = createMemoryHistory();
-		const { getByText, getByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText, getByTestId } = renderWithRouter(<App />);
     fireEvent.click(getByText('Psychic'));
     pokemons.forEach(() => {
       expect(getByTestId('pokemonType').textContent).toBe('Psychic');
@@ -76,20 +51,12 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Test se o filtro "All" existe', () => {
-    const historico = createMemoryHistory();
-		const { getByText } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText } = renderWithRouter(<App />);
     expect(getByText('All')).toBeInTheDocument();
   });
 
   test('Rotacionar todos pokemons', () => {
-    const historico = createMemoryHistory();
-		const { getByText, getByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText, getByTestId } = renderWithRouter(<App />);
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(getByTestId('next-pokemon'));
@@ -97,11 +64,7 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Dinamica dos tipos de botões', () => {
-    const historico = createMemoryHistory();
-		const { getByText, getAllByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByText, getAllByTestId } = renderWithRouter(<App />);
     const allTypes = getAllByTestId('pokemon-type-button');
     const mapTypes = allTypes.map((button) => button.textContent);
     const pokemonsTypes = pokemons.map((pokemon) => pokemon.type);
@@ -111,11 +74,7 @@ describe('Tests da Pokedex', () => {
   });
 
   test('Desabilitar o botão proximo pokemon se só tiver um', () => {
-    const historico = createMemoryHistory();
-		const { getByTestId, getAllByTestId } = render(
-    <Router history={historico}>
-      {<App />}
-    </Router>);
+		const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
     const butTypes = getAllByTestId('pokemon-type-button');
     butTypes.forEach((button) => {
       const atualPok = getByTestId('pokemon-name');
