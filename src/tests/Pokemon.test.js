@@ -21,8 +21,9 @@ describe('Pokémon tests', () => {
   test('Pokémon peso', () => {
     const { getByTestId } = renderWithRouter(<App />);
     const firstPok = pokemons[0].averageWeight;
-    expect(getByTestId('pokemon-weight').innerHTML)
-    .toBe(`Average weight:${firstPok.value}${firstPok.measurementUnit}`);
+    expect(getByTestId('pokemon-weight').innerHTML).toBe(
+      `Average weight:${firstPok.value}${firstPok.measurementUnit}`,
+    );
   });
 
   test('Imagem Pokémon', () => {
@@ -48,7 +49,8 @@ describe('Pokémon tests', () => {
     fireEvent.click(getByText('More details'));
     fireEvent.click(getByText('Pokémon favoritado?'));
     expect(container.querySelector('img + img').src).toMatch('/star-icon.svg');
-    expect(container.querySelector('img + img').alt)
-      .toMatch(`${pokemons[0].name} is marked as favorite`);
+    expect(container.querySelector('img + img').alt).toMatch(
+      `${pokemons[0].name} is marked as favorite`,
+    );
   });
 });
