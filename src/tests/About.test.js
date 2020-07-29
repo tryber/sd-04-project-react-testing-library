@@ -11,6 +11,7 @@ describe('About page tests', () => {
     const { getByText } = renderWithRouter(<About />);
     const heading = getByText(/About Pokédex/i);
     expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H2');
   });
 
   it('should render two paragraphs about the Pokédex', () => {
