@@ -1,5 +1,5 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../services/renderWithRouter';
 import About from '../components/About';
 
 test('Information about pokemons', () => {
