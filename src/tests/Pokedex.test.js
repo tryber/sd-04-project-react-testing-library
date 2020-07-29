@@ -8,6 +8,20 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('Pokedex component tests', () => {
+
+  test('???', () => {
+    const { getByText, getAllByTestId } = render(
+      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
+    );
+    const el = getByText(/Encountered pokémons/);
+    const el2 = getAllByTestId('pokemon-type-button');
+    expect(el).toBeInTheDocument();
+    el2.forEach((but) => {
+      expect(but).toBeInTheDocument();
+      expect(but.textContent).not.toBe('');
+    });
+  });
+
   describe('Next button tests', () => {
     it('should contain `Próximo pokémon` text', () => {
       const { getByTestId } = renderWithRouter(<App />);

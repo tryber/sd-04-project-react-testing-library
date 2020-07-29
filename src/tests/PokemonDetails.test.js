@@ -7,6 +7,15 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('PokemonDetails component tests', () => {
+
+  test('???', () => {
+    const { getAllByAltText } = render(
+      <MemoryRouter initialEntries={['/pokemons/25']}><App /></MemoryRouter>,
+    );
+    const mapImgs = getAllByAltText('Pikachu location');
+    mapImgs.forEach((img) => expect(img.src).not.toBe(''));
+  });
+
   describe('should contain more info about pokemon', () => {
     it('page should contain `<pokemon> Details` text', () => {
       const route = '/pokemons/25';

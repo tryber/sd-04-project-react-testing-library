@@ -7,6 +7,18 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('Pokemon component tests', () => {
+
+  test('???', () => {
+    const { getAllByTestId } = render(
+      <MemoryRouter initialEntries={['/']}><App /></MemoryRouter>,
+    );
+    const el = getAllByTestId('pokemonType');
+    el.forEach((but) => {
+      expect(but).toBeInTheDocument();
+      expect(but.textContent).not.toBe('');
+    });
+  });
+
   describe('Pokemon card info tests', () => {
     it('should render pokemon name', () => {
       const { getByTestId } = renderWithRouter(<App />);
