@@ -6,7 +6,7 @@ import pokemons from '../data';
 
 describe('Testes do FavoritePokemons', () => {
   const newPokemons = pokemons.filter((pokemon, index) => {
-    if(index > 0) return pokemon;
+    if (index > 0) return pokemon;
   });
 
   test('Certeza que não ha nenhum outro pokemon favorito?', () => {
@@ -15,13 +15,22 @@ describe('Testes do FavoritePokemons', () => {
     const noFav = getByText('No favorite pokemon found');
     if (favoritesInStore === undefined) {
       expect(noFav).toBeInTheDocument();
-    };
+    }
   });
 
   test('Existe um ou mais pokemons nos favoritos?', () => {
     const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={newPokemons} />);
-    expect(queryByText(
-      'Charmander', 'Caterpie', 'Ekans', 'Alakazam', 'Mew', 'Rapidash', 'Snorlax', 'Dragonair'),
+    expect(
+      queryByText(
+        'Charmander',
+        'Caterpie',
+        'Ekans',
+        'Alakazam',
+        'Mew',
+        'Rapidash',
+        'Snorlax',
+        'Dragonair',
+      ),
     ).toBeInTheDocument();
   });
 
