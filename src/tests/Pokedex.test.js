@@ -21,5 +21,3 @@ test('A Pokédex deve exibir apenas um pokémon por vez', () => {
   const { queryAllByTestId } = renderWithRouter(<App />);
   expect(queryAllByTestId('pokemon-name')).toHaveLength(1);
 });
-
-
