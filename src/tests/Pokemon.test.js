@@ -19,8 +19,8 @@ test('a must see the correct name of the pokedude', () => {
 
 test('See the average weight and measurement unit of the pokemon', () => {
   const { getByTestId } = renderWithRouter(<App />);
-  const value = pokemons[0].averageWeight.value;
-  const measurementUnit = pokemons[0].averageWeight.measurementUnit;
+  const {value} = pokemons[0].averageWeight;
+  const {measurementUnit} = pokemons[0].averageWeight;
   expect(getByTestId('pokemon-weight')).toHaveTextContent(
     `Average weight:${value}${measurementUnit}`,
   );
