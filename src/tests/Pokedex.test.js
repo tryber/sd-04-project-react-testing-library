@@ -1,10 +1,9 @@
 import React from 'react';
-import { fireEvent, cleanup, getAllByTestId } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 import pokemons from '../data';
 import renderWithRouter from './renderWithRouter';
-import { pokemonType } from '../types';
 
 afterEach(cleanup);
 
@@ -106,8 +105,8 @@ describe('Pokedex component tests', () => {
       if (acc[type]) acc[type] += 1;
       else acc[type] = 1;
       return acc;
-    }, {})
-    const singlePokemon = Object.entries(pokemonTypes).find(type => type[1] === 1);
+    }, {});
+    const singlePokemon = Object.entries(pokemonTypes).find((type) => type[1] === 1);
     
     getAllByTestId('pokemon-type-button').forEach((button) => {
       if (button.textContent === singlePokemon[0]) {
