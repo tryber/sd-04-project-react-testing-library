@@ -1,5 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { cleanup, fireEvent } from '@testing-library/react';
 import pokemons from '../data';
 import App from '../App';
@@ -8,7 +7,6 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 describe('Pokemon component tests', () => {
-
   describe('Pokemon card info tests', () => {
     it('should render pokemon name', () => {
       const { getByTestId } = renderWithRouter(<App />);
