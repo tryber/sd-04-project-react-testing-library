@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup, getByText, getByTestId, getByRole } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 import pokemons from '../data';
@@ -19,10 +19,10 @@ describe('Pokedex component tests', () => {
       const { getByTestId, getByText } = renderWithRouter(<App />);
       const nextBtn = getByTestId('next-pokemon');
 
-      pokemons.forEach(pokemon => {
+      pokemons.forEach((pokemon) => {
         expect(getByTestId('pokemon-name').textContent).toBe(pokemon.name);
         fireEvent.click(nextBtn);
-      })
+      });
     });
 
     it('on the last pokémon, clicking the button should display the first pokémon', () => {
@@ -34,7 +34,7 @@ describe('Pokedex component tests', () => {
           fireEvent.click(nextBtn);
           expect(getByTestId('pokemon-name').textContent).toBe(pokemons[0].name);
         } else fireEvent.click(nextBtn);
-      })
+      });
     });
   });
 
@@ -57,10 +57,11 @@ describe('Pokedex component tests', () => {
     it('type buttons should contain own type name', () => {
       const { getAllByTestId } = renderWithRouter(<App />);
 
-      pokemons.forEach(pokemon => {
+      pokemons.forEach((pokemon) => {
         getAllByTestId('pokemon-type-button').forEach((button) => {
-          if (button.textContent === pokemon.type)
+          if (button.textContent === pokemon.type) {
             expect(button.textContent).toBe(pokemon.type);
+          }
         });
       })
     });
