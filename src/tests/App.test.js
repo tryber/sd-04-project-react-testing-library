@@ -8,13 +8,16 @@ test('Verificando paths', () => {
   const { getByText } = renderWithRouter(<App />);
   expect(getByText('Home').closest('a')).toHaveAttribute('href', '/');
   expect(getByText('About').closest('a')).toHaveAttribute('href', '/about');
-  expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute('href', '/favorites');
+  expect(getByText('Favorite Pokémons').closest('a')).toHaveAttribute(
+    'href',
+    '/favorites'
+  );
 });
 test('Verificando rota', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   // bla
   const incio = getByText(/About/i);
@@ -22,9 +25,24 @@ test('Verificando rota', () => {
   fireEvent.click(incio);
   const sobre = getByText(/About Pokédex/i);
   expect(sobre).toBeInTheDocument();
+});
+test('Outro teste2', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
   const pokemonFavorito = getByText(/Favorite/i);
   expect(pokemonFavorito).toBeInTheDocument();
   fireEvent.click(pokemonFavorito);
+});
+test('Outro teste', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
   const pokemon = getByText(/favorite pokémons/i);
   expect(pokemon).toBeInTheDocument();
 });
