@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup, getByText, getByTestId } from '@testing-library/react';
+import { fireEvent, cleanup, getByText, getByTestId, getByRole } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 import pokemons from '../data';
@@ -10,14 +10,14 @@ afterEach(cleanup);
 describe('Pokedex component tests', () => {
   describe('Next button tests', () => {
     it('should contain `Próximo pokémon` text', () => {
-      const { getByText } = renderWithRouter(<App />);
-      const nextBtn = getByText('Próximo pokémon');
-      expect(nextBtn.type).toBe('button');
+      const { getByTestId } = renderWithRouter(<App />);
+      const nextBtn = getByTestId('next-pokemon');
+      expect(nextBtn.textContent).toBe('Próximo pokémon');
     });
 
     it('subsequent clicks to button should always display the next pokémon', () => {
       const { getByTestId, getByText } = renderWithRouter(<App />);
-      const nextBtn = getByText('Próximo pokémon');
+      const nextBtn = getByTestId('next-pokemon');
 
       pokemons.forEach(pokemon => {
         expect(getByTestId('pokemon-name').textContent).toBe(pokemon.name);
@@ -27,7 +27,7 @@ describe('Pokedex component tests', () => {
 
     it('on the last pokémon, clicking the button should display the first pokémon', () => {
       const { getByTestId, getByText } = renderWithRouter(<App />);
-      const nextBtn = getByText('Próximo pokémon');
+      const nextBtn = getByTestId('next-pokemon');
 
       pokemons.forEach((pokemon, i) => {
         if (i === pokemons.length - 1) {
@@ -72,5 +72,16 @@ describe('Pokedex component tests', () => {
       expect(getByText('All').type).toBe('button');
     });
 
+    it('if clicked, should reset pokemons filtering by type', () => {
+      const { getByText, getAllByTestId, getByTestId } = renderWithRouter(<App />);
+      const allBtn = getByText('All');
+      const electricBtn = getAllByTestId('pokemon-type-button')[0];
+      const nextBtn = getByTestId('next-pokemon');
+
+      fireEvent.click(electricBtn);
+      expect(nextBtn).toBeDisabled();
+      fireEvent.click(allBtn);
+      expect(nextBtn).toBeEnabled();
+    });
   });
 });
