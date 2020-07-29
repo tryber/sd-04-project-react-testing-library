@@ -1,8 +1,7 @@
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { NotFound } from '../components';
-import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 afterEach(cleanup);
@@ -16,8 +15,8 @@ describe('Not Found page tests', () => {
   });
 
   it('should render a image of pikachu crying', () => {
-    const imgSrc = "https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif";
-    const imgAlt = "Pikachu crying because the page requested was not found"
+    const imgSrc = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+    const imgAlt = 'Pikachu crying because the page requested was not found';
     const { getByAltText } = renderWithRouter(<NotFound />);
     const { src } = getByAltText(imgAlt);
     expect(src).toBe(imgSrc);
