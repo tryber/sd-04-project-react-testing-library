@@ -5,7 +5,7 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Tests da Pokedex', () => {
-  test('Existe um botão com "Próximo pokémon" como texto', () => {
+  /*  test('Existe um botão com "Próximo pokémon" como texto', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText('Próximo pokémon').type).toBe('button');
   });
@@ -26,10 +26,10 @@ describe('Tests da Pokedex', () => {
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
 
-  //  test('Apenas um pokemon por vez', () => {
-  //  const { getAllByTestId } = renderWithRouter(<App />);
-  //  expect(getAllByTestId('pokemon-name').length).toBe(1);
-  //  });
+  test('Apenas um pokemon por vez', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    expect(getAllByTestId('pokemon-name').length).toBe(1);
+  });
 
   test('Rotacionar somente pelos pokemons do tipo escolhido', () => {
     const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
@@ -86,5 +86,5 @@ describe('Tests da Pokedex', () => {
       const pokemonsType = pokemons.filter((item) => item.type === button.textContent);
       if (pokemonsType.length === 1) expect(atualPok === proximoPok);
     });
-  });
+  });  */
 });
