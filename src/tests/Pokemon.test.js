@@ -44,6 +44,11 @@ describe('Pokémon tests', () => {
     expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
 
+  test('O tipo do pokemon (obrigatorio)', () => {
+    const { getByTestId } = renderWithRouter(<App />);
+    expect(getByTestId('pokemonType').textContent).toBe('Electric');
+  });
+
   test('Pokémons Favoritos Star', () => {
     const { getByText, container } = renderWithRouter(<App />);
     fireEvent.click(getByText('More details'));
