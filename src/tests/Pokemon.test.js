@@ -25,7 +25,7 @@ describe('Rest Pokemon.js', () => {
     });
   });
 
-  test('favorite pokemon should have a star',() => {
+  test('favorite pokemon should have a star', () => {
     pokemons.forEach((pokemon) => {
       const { getByAltText } = renderWithRouter(<Pokemon pokemon={pokemon} isFavorite />);
       const img = getByAltText(`${pokemon.name} is marked as favorite`);
