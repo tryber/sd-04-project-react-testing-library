@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import { renderWithRouter } from '../Helper/renderWithRouter';
+import renderWithRouter from '../Helper/renderWithRouter';
 import App from '../App';
 
 afterEach(cleanup);

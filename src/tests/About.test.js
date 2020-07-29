@@ -1,6 +1,6 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
-import { renderWithRouter } from '../Helper/renderWithRouter';
+import { cleanup } from '@testing-library/react';
+import renderWithRouter from '../Helper/renderWithRouter';
 import About from '../components/About';
 
 afterEach(cleanup);
@@ -18,7 +18,7 @@ describe('Testes do arquivo About', () => {
     const text = getByText(/About Pokédex/i);
     expect(tag).toBe(text);
   });
-  test(' Conter dois <p> com texto sobre a Pokédex', () => {
+  test('Conter dois <p> com texto sobre a Pokédex', () => {
     const { container } = renderWithRouter(<About />);
     const tag = container.querySelectorAll('p');
     expect(tag.length).toBe(2);
