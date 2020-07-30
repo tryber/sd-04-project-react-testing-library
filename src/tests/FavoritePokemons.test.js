@@ -17,7 +17,7 @@ test('Caso a pessoa não tenha pokémons favoritos, a mensagem `No favorite poke
 
 test('A página não deve exibir nenhum card de pokémon não favoritado', () => {
   const { queryByText } = renderWithRouter(
-    <FavoritePokemons pokemons={pokemons.slice(3,5)} />,
+    <FavoritePokemons pokemons={pokemons.slice(3, 5)} />,
     { route: '/favorites' },
   );
   expect(queryByText).not.toEqual(mock());
