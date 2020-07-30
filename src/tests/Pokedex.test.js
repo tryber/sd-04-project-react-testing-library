@@ -8,6 +8,12 @@ const pokemonTypes = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
 ];
 
+test('Testando titulo', () => {
+  const { getByText } = renderWithRouter(<App />, { route: '/' });
+  const title = getByText(/Encountered pokémons/i);
+  expect(title).toBeInTheDocument();
+});
+
 test('A página deve exibir o próximo pokémon da lista', () => {
   const { getByTestId } = renderWithRouter(<App />, { route: '/' });
   const button = getByTestId('next-pokemon');
