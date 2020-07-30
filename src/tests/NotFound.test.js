@@ -1,5 +1,5 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../services/renderWithRouter';
 import NotFound from '../components/NotFound';
 
 test('A página deve conter um heading `h2` com o texto `Page requested not found 😭`', () => {

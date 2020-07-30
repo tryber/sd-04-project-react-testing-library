@@ -1,8 +1,12 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
+import { MemoryRouter } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
+import App from '../App';
+import renderWithRouter from '../services/renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
+import pokemons from '../data';
 
-const mock = () => [10];
+const mock = () => pokemons[2];
 
 test('Caso a pessoa não tenha pokémons favoritos, a mensagem `No favorite pokemon found` deve aparecer na tela', () => {
   const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[]} />, { route: '/favorites' });
@@ -13,16 +17,24 @@ test('Caso a pessoa não tenha pokémons favoritos, a mensagem `No favorite poke
 
 test('A página não deve exibir nenhum card de pokémon não favoritado', () => {
   const { queryByText } = renderWithRouter(
-    <FavoritePokemons pokemons={mock()} />,
+    <FavoritePokemons pokemons={pokemons.slice(3,5)} />,
     { route: '/favorites' },
   );
   expect(queryByText).not.toEqual(mock());
 });
 
 test('A página deve exibir todos os cards de pokémons favoritados', () => {
-  const { getByText } = renderWithRouter(
-    <FavoritePokemons pokemons={mock} />,
-    { route: '/favorites' },
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
   );
-  expect(getByText).toBeInTheDocument();
+  const favoritos = getByText(/Favorite/i);
+  const detalhes = getByText(/More details/i);
+  fireEvent.click(detalhes);
+  const favoritados = getByText(/Pokémon favoritado?/i);
+  fireEvent.click(favoritados);
+  fireEvent.click(favoritos);
+  const escolhido = getByText(/Pikachu/i);
+  expect(escolhido).toBeInTheDocument();
 });

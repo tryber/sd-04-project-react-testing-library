@@ -1,5 +1,5 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 import data from '../data';
 
